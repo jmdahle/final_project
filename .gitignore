@@ -1,3 +1,8 @@
+# ignore our project note files
+notes/
+
+.DS_Store
+
 # Logs
 logs
 *.log
