@@ -1,0 +1,16 @@
+.navbar {
+    background-color: blue;
+}
+
+.navbar-brand {
+    color: goldenrod;
+}
+
+a.nav-link {
+    color: lightblue;
+}
+
+a.nav-link:hover {
+    color: lightcoral;
+    text-decoration: underline;
+}
