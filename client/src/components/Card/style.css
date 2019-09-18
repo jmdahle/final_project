@@ -1,0 +1,13 @@
+.card {
+    margin-top: 20px;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.card-header {
+    background-color: white;
+    color: darkblue;
+}
+
+.card-body {
+    background-color: lightgrey;
+}
