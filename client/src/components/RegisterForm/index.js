@@ -55,7 +55,7 @@ class RegisterForm extends React.Component {
                 <button 
                     type='submit' 
                     className='btn btn-style'
-                    onClick={this.props.handleFormSubmit}
+                    onClick={this.props.handleRegisterFormSubmit}
                 >Register!
                 </button>
             </form>
