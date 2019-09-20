@@ -1,0 +1,17 @@
+.CatagoryCard {
+    margin-top: 20px;
+    height: 200px;
+    width: 400px;
+    color:black;
+    background-color:bisque;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* .card-header {
+    background-color: white;
+    color: rgb(68, 180, 40);
+}
+
+.card-body {
+    background-color: lightgrey;
+} */

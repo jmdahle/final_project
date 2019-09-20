@@ -4,7 +4,7 @@ import './style.css';
 import API from '../../utils/API';
 // import React components
 import Container from '../../components/Container';
-import RegisterForm from '../../components/RegisterForm';
+import LandingPage from '../LandingPage';
 import Card from '../../components/Card';
 
 
@@ -47,15 +47,12 @@ class Test extends React.Component {
                 <Container>
                     <h1>Test</h1>
                     <Card heading='Register'>
-                        <RegisterForm 
-                            firstName={this.state.firstName}
-                            lastName={this.state.lastName}
-                            email={this.state.email}
-                            password={this.state.password}
-                            handleOnChange={this.handleOnChange}
-                            handleFormSubmit={this.handleFormSubmit}
-                        />
+                    
                     </Card>
+
+                    
+                    <LandingPage />
+
                 </Container>
             </div>
         );
