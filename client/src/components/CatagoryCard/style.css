@@ -5,6 +5,9 @@
     color:black;
     background-color:bisque;
     box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
+    display:inline-block;
+    margin: 2px;
+    padding: 1px;
 }
 
 /* .card-header {
