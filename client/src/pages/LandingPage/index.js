@@ -1,14 +1,14 @@
 import React from 'react';
-import CatagoryCard from '../../components/CatagoryCard';
+import CategoryCard from '../../components/CategoryCard';
 import CTAButton from "../../components/CTAButton";
 class LandingPage extends React.Component {
     state={
         testArray:[
-            {Catagory_Name: "Health", info:"I want to see my feet again"},
+            {Category_Name: "Health", info:"I want to see my feet again"},
             
-            {Catagory_Name: "Work", info:"Need to not get fired"},
-            {Catagory_Name:"Social", info: "I've become a hermit, help!"},
-            {Catagory_Name:"Fitness", info: "Get Swol, whatever that means?"}
+            {Category_Name: "Work", info:"Need to not get fired"},
+            {Category_Name:"Social", info: "I've become a hermit, help!"},
+            {Category_Name:"Fitness", info: "Get Swol, whatever that means?"}
 
     
     
@@ -22,9 +22,9 @@ class LandingPage extends React.Component {
                 <figure className="col-md-4">
                  <div className="card"> 
             {this.state.testArray.map(catagory => (
-                <CatagoryCard catagory={catagory.Catagory_Name} info={catagory.info} />
+                <CategoryCard category={category.Category_Name} info={category.info} />
             ))}
-           
+            <CTAButton buttonText="Click here" />
              </div>
             </figure>        
             </div>    

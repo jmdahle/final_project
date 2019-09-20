@@ -1,10 +1,10 @@
 import React from 'react';
 import './style.css';
 
-class CatagoryCard extends React.Component {
+class CategoryCard extends React.Component {
     render() {
         return (
-            <div className="CatagoryCard">
+            <div className="CategoryCard">
                
                     <h1>{this.props.catagory} {this.props.info}</h1>
                     <h3>test copy</h3>
@@ -14,4 +14,4 @@ class CatagoryCard extends React.Component {
     }
 }
 
-export default CatagoryCard;
+export default CategoryCard;
