@@ -1,6 +1,9 @@
 # ignore our project note files
 notes/
 
+# ignore changes made in test
+client/src/pages/Test/
+
 .DS_Store
 
 # Logs
