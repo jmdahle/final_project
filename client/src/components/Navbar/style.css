@@ -1,5 +1,6 @@
 .navbar {
-    background-color: blue;
+    background-color: #0E184B;
+    color: white;
 }
 
 .navbar-brand {
@@ -7,10 +8,22 @@
 }
 
 a.nav-link {
-    color: lightblue;
+    color: #F66E5E;
+    text-transform: uppercase;
+    letter-spacing: .2em;
 }
 
 a.nav-link:hover {
-    color: lightcoral;
+    color: #FBD900;
+}
+
+.btn-style {
+    background-color: blue;
+    color: white;
+    margin: 3px;
+}
+
+.btn-style:hover {
+    color: #ffffff;
     text-decoration: underline;
 }
