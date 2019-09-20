@@ -10,14 +10,12 @@ import Manage from './pages/Manage';
 import AddGoal from './pages/AddGoal';
 import Progress from './pages/Progress';
 import Test from './pages/Test';
-import Button from './components/Button';
 
 function App() {
   return (
     <Router>
       <div>
         <Navbar />
-        <Button />
         <Switch>
           <Route exact path='/' component={HelloWorld} />
           <Route exact path='/home' componenrt={Home} />

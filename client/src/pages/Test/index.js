@@ -6,6 +6,7 @@ import API from '../../utils/API';
 import Container from '../../components/Container';
 import RegisterForm from '../../components/RegisterForm';
 import Card from '../../components/Card';
+import Button from '../../components/Button';
 
 
 class Test extends React.Component {
@@ -57,6 +58,7 @@ class Test extends React.Component {
                         />
                     </Card>
                 </Container>
+                <Button/>
             </div>
         );
     }
