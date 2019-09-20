@@ -1,0 +1,28 @@
+.login-popup {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    width: 450px;
+    margin-left: -225px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #333333;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
+    background-color: #cccccc;
+    opacity: 0.9;
+}
+
+.login-message {
+    font-size: 10pt;
+    color: darkred;
+}
+
+a.inline-link {
+    color: darkblue;
+}
+
+a.inline-link:hover {
+    color: darkblue;
+    text-decoration: underline;
+}
+
