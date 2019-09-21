@@ -22,6 +22,10 @@ class App extends React.Component {
         lastName: '',
         email: '',
         password: '',
+        categoryName: '',
+        categories: [],
+        categoryId: '',
+        goalName: '',
         isAuthenticated: false,
         showLogin: false,
         failedLoginAttempts: 0,
@@ -71,30 +75,6 @@ class App extends React.Component {
                 console.log( error );
             });
     }
-
-    // handleRegisterFormSubmit = event => {
-    //     event.preventDefault();
-    //     console.log('submit clicked');
-    //     let userData = {
-    //         firstName: this.state.firstName,
-    //         lastName: this.state.lastName,
-    //         email: this.state.email,
-    //         password: this.state.password
-    //     }
-    //     console.log(userData);
-    //     API.registerUser(userData)
-    //         .then(jsonData => {
-    //             console.log(jsonData);
-    //             let userKey = jsonData.data._id;
-    //             console.log(userKey);
-    //             this.setUserSession(userKey);
-    //             //go back to root page
-    //             this.context.router.history.push('/');
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         });
-    // }
 
     setUserSession = (key) => {
         localStorage.setItem('userKey', key);
@@ -159,7 +139,14 @@ class App extends React.Component {
                         <Route exact path='/manage' component={Manage} />
                         <Route exact path='/addgoal' component={AddGoal} />
                         <Route exact path='/progress' component={Progress} />
-                        <Route exact path='/test' component={Test} />
+                        <Route exact path='/test' render={(props) => <Test {...props}
+                            categoryName={this.state.categoryName}
+                            categories={this.state.categories}
+                            categoryId={this.state.categoryId}
+                            goalName={this.state.goalName}
+                            handleOnChange={this.handleOnChange}
+                            />}
+                        />
                         <Route component={Error404} />
                     </Switch>
                 </div>

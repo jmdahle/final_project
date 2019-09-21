@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const user_historySchema = new Schema ({
-    user_id: {
+const userHistorySchema = new Schema ({
+    userId: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    goal_id: {
+    goalId: {
         type: Schema.Types.ObjectId,
         ref: 'Goal'
     },
-    task_id: {
+    taskId: {
         type: Schema.Types.ObjectId,
         ref: 'Task'
     },
@@ -18,13 +18,13 @@ const user_historySchema = new Schema ({
         type: Date,
         required: true
     },
-    completed_YN: {
+    completedYN: {
         type: Boolean,
         required: true,
         default: false
     }
 });
 
-const User_History = mongoose.model('User_History', user_historySchema);
+const UserHistory = mongoose.model('UserHistory', userHistorySchema);
 
-module.exports = User_History;
+module.exports = UserHistory;

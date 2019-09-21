@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const goalSchema = new Schema ({
-    goal_name: {
+    goalName: {
         type: String,
         required: true,
         unique: true
     },
-    category_id: {
+    categoryId: {
         // reference to category; goal is a child of category
         // NOT an array since goal is related to only one category
         type: Schema.Types.ObjectId,
@@ -19,6 +19,6 @@ const goalSchema = new Schema ({
     }]
 });
 
-const Goal = mongooase.model('Goal', goalSchema);
+const Goal = mongoose.model('Goal', goalSchema);
 
 module.exports = Goal;

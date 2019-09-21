@@ -1,5 +1,6 @@
 # ignore our project note files
 notes/
+client/src/pages/Test/
 
 .DS_Store
 
