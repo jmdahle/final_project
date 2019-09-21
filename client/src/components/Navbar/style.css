@@ -27,3 +27,14 @@ a.nav-link:hover {
     color: #ffffff;
     text-decoration: underline;
 }
+
+.btn-style {
+    background-color: blue;
+    color: white;
+    margin: 3px;
+}
+
+.btn-style:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
