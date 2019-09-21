@@ -4,7 +4,7 @@
 }
 
 .navbar-brand {
-    color: goldenrod;
+    color: white;
 }
 
 a.nav-link {
@@ -17,9 +17,9 @@ a.nav-link:hover {
     color: #FBD900;
 }
 
-.btn-style {
-    background-color: blue;
-    color: white;
+.btn {
+    background-color:#d4d600;
+    color: #0e184b;
     margin: 3px;
 }
 
