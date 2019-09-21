@@ -1,15 +1,23 @@
 import React from 'react';
 import './style.css';
 
+
+// this is for text insid ethe card
+
 class CategoryCard extends React.Component {
     render() {
         return (
             <div className="CategoryCard">
                
-                    <h1>{this.props.catagory} {this.props.info}</h1>
-                    <h3>test copy</h3>
-                
-            </div>
+                   
+                   <div className= "card-title">Category
+                    {this.props.category} {this.props.info}
+                   
+                    {/* <a href="#" className="btn">Click here</a> */}
+                    </div>
+                 </div>
+             
+        
         );
     }
 }

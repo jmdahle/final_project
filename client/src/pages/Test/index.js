@@ -8,6 +8,7 @@ import LandingPage from '../LandingPage';
 import Card from '../../components/Card';
 import CatagoryCard from '../../components/CategoryCard';
 import CTAButton from '../../components/CTAButton';
+import CategoryCard from '../../components/CategoryCard';
 
 
 class Test extends React.Component {
@@ -70,11 +71,14 @@ class Test extends React.Component {
                     
                     </Card>
 
-                    <CTAButton buttonText="Click here" />
+                   
                     <CatagoryCard />
                     <CatagoryCard />
+                    <CategoryCard />
 
                 </Container>
+                <CTAButton buttonText="Click here" />
+                <AddGoal />
             </div>
         );
     }
