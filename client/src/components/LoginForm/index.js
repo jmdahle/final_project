@@ -33,7 +33,7 @@ class LoginForm extends React.Component {
                     </div>
                     <button 
                         type='submit' 
-                        className='btn btn-style'
+                        className='btn navbutton'
                         onClick={this.props.handleLoginFormSubmit}
                     >Log In
                     </button>

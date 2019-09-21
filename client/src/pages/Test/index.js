@@ -64,7 +64,7 @@ class Test extends React.Component {
         return (
             <div>
                 <Container>
-                    <h1>Test</h1>
+                    <h1>Test:AddGoal</h1>
                     <Card heading='Register'>
                         <RegisterForm 
                             // firstName={this.state.firstName}

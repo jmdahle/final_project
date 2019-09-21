@@ -1,28 +1,28 @@
 .navbar {
-    background-color: blue;
+    background-color: #0d4aa1;
     color: white;
 }
 
-.navbar-brand {
-    color: goldenrod;
-}
-
 a.nav-link {
-    color: lightblue;
+    color: #fbd900;
 }
 
 a.nav-link:hover {
-    color: lightcoral;
+    color: #fbd900;
     text-decoration: underline;
 }
 
-.btn-style {
-    background-color: blue;
+.navbutton {
+    background-color: #0d4aa1;
     color: white;
     margin: 3px;
 }
 
-.btn-style:hover {
+.navbutton:hover {
     color: #ffffff;
     text-decoration: underline;
+}
+
+.navlogo {
+    height: 80px;
 }

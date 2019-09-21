@@ -7,6 +7,13 @@ const categorySchema = new Schema ({
         required: true,
         unique: true
     },
+    categoryTagLine: {
+        type: String,
+        required: true,
+    },
+    categoryImgSrc: {
+        type: String,
+    },
     goals: [{
         // a reference to goal model; goal is a child of category
         // each category has 0 or more goals

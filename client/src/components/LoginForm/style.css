@@ -8,7 +8,7 @@
     border-radius: 10px;
     border: 1px solid #333333;
     box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
-    background-color: #cccccc;
+    background-color: #2f949A;
     opacity: 0.9;
 }
 
@@ -18,11 +18,11 @@
 }
 
 a.inline-link {
-    color: darkblue;
+    color: #0e184b;
 }
 
 a.inline-link:hover {
-    color: darkblue;
+    color: #0e184b;
     text-decoration: underline;
 }
 
