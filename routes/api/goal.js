@@ -6,4 +6,8 @@ router.route('/')
     .post(goalController.create)
     .get(goalController.findAll);
 
+// matches with route /api/{cateogry_id}
+router.route('/:category_id')
+    .get(goalController.findInCategory)
+
 module.exports = router;

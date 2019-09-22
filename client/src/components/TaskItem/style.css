@@ -1,0 +1,14 @@
+.taskItem {
+    width: 100%;
+}
+.taskIncludeYN {
+    width: 15%;
+}
+
+.taskName {
+    width: 65%
+}
+
+.weeklyTarget, .totalTarget {
+    width: 10%;
+}

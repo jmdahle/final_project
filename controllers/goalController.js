@@ -18,5 +18,12 @@ module.exports = {
             .find({})
             .then( dbGoal => response.json(dbGoal) )
             .catch( dbError => response.status(400).json(dbError) )
+    },
+    findInCategory: function(request, response) {
+        console.log('select goals for category');
+        db.Goal
+            .find({categoryId: request.params.category_id})
+            .then( dbGoal => response.json(dbGoal ) )
+            .catch( dbError => response.status(400).json(dbError) )
     }
 }

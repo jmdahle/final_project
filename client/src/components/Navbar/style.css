@@ -1,24 +1,29 @@
 .navbar {
-    background-color: #0d4aa1;
+    background-color: #0E184B;
     color: white;
 }
 
-a.nav-link {
-    color: #fbd900;
-}
-
-a.nav-link:hover {
-    color: #fbd900;
-    text-decoration: underline;
-}
-
-.navbutton {
-    background-color: #0d4aa1;
+.navbar-brand {
     color: white;
+}
+
+.nav-link {
+    color: #F66E5E;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+}
+
+.nav-link:hover {
+    color: #FBD900;
+}
+
+.btn, .navbutton {
+    background-color:#d4d600;
+    color: #0e184b;
     margin: 3px;
 }
 
-.navbutton:hover {
+.btn-style:hover, .navbutton:hover {
     color: #ffffff;
     text-decoration: underline;
 }

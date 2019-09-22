@@ -23,12 +23,18 @@ class App extends React.Component {
         email: '',
         password: '',
         categoryName: '',
+        categoryTagLine: '',
+        categoryImgSrc: '',
         categories: [],
         categoryId: '',
         goalName: '',
         isAuthenticated: false,
         showLogin: false,
         failedLoginAttempts: 0,
+    }
+
+    componentDidMount = () => {
+        this.getCategories()
     }
 
     handleOnChange = event => {
@@ -73,6 +79,42 @@ class App extends React.Component {
             })
             .catch( error => {
                 console.log( error );
+            });
+    }
+
+    handleCategoryFormSubmit = event => {
+        event.preventDefault();
+        console.log('submit category clicked');
+        let categoryData = {
+            categoryName: this.state.categoryName,
+            categoryTagLine: this.state.categoryTagLine,
+            categoryImgSrc: this.state.categoryImgSrc
+        }
+        console.log(categoryData);
+        API.addCategory(categoryData)
+            .then(jsonData => {
+                this.getCategories();
+                console.log(jsonData);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    handleGoalFormSubmit = event => {
+        event.preventDefault();
+        console.log('submit goal clicked');
+        let goalData = {
+            categoryId: this.state.categoryId,
+            goalName: this.state.goalName
+        }
+        console.log(goalData);
+        API.addGoal(goalData)
+            .then(jsonData => {
+                console.log(jsonData);
+            })
+            .catch(error => {
+                console.log(error);
             });
     }
 
@@ -156,9 +198,14 @@ class App extends React.Component {
                         <Route exact path='/progress' component={Progress} />
                         <Route exact path='/test' render={(props) => <Test {...props}
                             categoryId={this.state.categoryId}
+                            categoryName={this.state.categoryName}
+                            categoryTagLine={this.state.categoryTagLine}
+                            categoryImgSrc={this.state.categoryImgSrc}
                             categories={this.state.categories}
                             getCategories={this.getCategories}
                             handleOnChange={this.handleOnChange}
+                            handleCategoryFormSubmit={this.handleCategoryFormSubmit}
+                            handleGoalFormSubmit={this.handleGoalFormSubmit}
                             />}
                         />
                         <Route component={Error404} />
