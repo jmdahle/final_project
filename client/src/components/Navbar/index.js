@@ -1,20 +1,21 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './style.css';
 
 class Navbar extends React.Component {
     render() {
         return (
             <nav className='navbar navbar-expand' role='navigation'>
-                <a className='navbar-brand' href='/'>
+                <Link to='/'><div className='navbar-brand'>
                     <img className='navlogo' src='images/KeepItTogetherLogo.png' alt='logo' />
-                </a>
+                </div></Link>
                 <div className='navbar-nav mr-auto'>
-                    <a className='nav-item nav-link' href='/test'>Test</a>
+                    <Link className='nav-item nav-link' to='/test'>Test</Link>
                     { this.props.isAuthenticated ? (
                         <React.Fragment>
-                            <a className='nav-item nav-link' href='/addgoal'>Add Goal</a>
-                            <a className='nav-item nav-link' href='/manage'>Manage Goals</a>
-                            <a className='nav-item nav-link' href='/progress'>Visualize Progress</a>
+                            <Link className='nav-item nav-link' to='/addgoal'>Add Goal</Link>
+                            <Link className='nav-item nav-link' to='/manage'>Manage Goals</Link>
+                            <Link className='nav-item nav-link' to='/progress'>Visualize Progress</Link>
                             <span>You are logged in as {this.props.firstName}</span>
                             <button 
                                 type='button' 
@@ -25,7 +26,7 @@ class Navbar extends React.Component {
                         </React.Fragment>
                     ) : (
                         <React.Fragment>
-                            <a className='nav-item nav-link' href='/register'>Register</a>
+                            <Link className='nav-item nav-link' to='/register'>Register</Link>
                             <button 
                                 type='button' 
                                 className='btn navbutton'
