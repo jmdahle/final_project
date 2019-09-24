@@ -19,6 +19,10 @@ export default {
         console.log('API request - getCategories');
         return axios.get('/api/category');
     },
+    getCategoryMatch: function(categoryId) {
+        console.log('API request - getCategoryMatch');
+        return axios.get('/api/category/' + categoryId);
+    },
 
     addGoal: function(goalData) {
         console.log('API request - addGoal');

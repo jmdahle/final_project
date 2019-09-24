@@ -26,6 +26,7 @@ class App extends React.Component {
         categoryTagLine: '',
         categoryImgSrc: '',
         categories: [],
+        selectedCategory: {},
         categoryId: '',
         goalName: '',
         goalId: '',
@@ -47,9 +48,12 @@ class App extends React.Component {
         this.setState({
             [event.target.name]: event.target.value
         });
-        // when categoryId changes, load the goals for that category
+        // when categoryId changes, 
+        // load the goals for that category
+        // and populate the selectedCategory
         if (event.target.name === 'categoryId') {
-            this.getGoalsInCategory(event.target.value)
+            this.getGoalsInCategory(event.target.value);
+            this.getCategoryMatch(event.target.value);
         }
         // when goalId changes, load the tasks for that goal
         if (event.target.name === 'goalId') {
@@ -164,6 +168,17 @@ class App extends React.Component {
             });
     }
 
+    getCategoryMatch = (categoryId) => {
+        console.log('loding selected category with id ' + categoryId);
+        API.getCategoryMatch(categoryId)
+            .then(jsonData => {
+                console.log(jsonData)
+                this.setState({
+                    selectedCategory: jsonData.data[0]
+                })
+            });
+    }
+
     getGoalsInCategory = (categoryId) => {
         console.log('loading goals for category ' + categoryId);
         API.getGoalsInCategory(categoryId)
@@ -249,7 +264,14 @@ class App extends React.Component {
                         />
                         <Route exact path='/home' component={Home} />
                         <Route exact path='/manage' component={Manage} />
-                        <Route exact path='/addgoal' component={AddGoal} />
+                        <Route exact path='/addgoal' render={ (props) => <AddGoal {...props}
+                                categoryId={this.state.categoryId}
+                                selectedCategory={this.state.selectedCategory}
+                                handleOnChange={this.handleOnChange}
+                                getCategories={this.getCategories}
+                                categories={this.state.categories}            
+                            />}
+                        />
                         <Route exact path='/progress' component={Progress} />
                         {/* <Route exact path='/test' render={(props) => <Test {...props}
                             handleOnChange={this.handleOnChange}

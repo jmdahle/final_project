@@ -25,7 +25,11 @@ class SelectedCategory extends React.Component {
                     </div>
                 </form>
             ) : (
-                <h2>Category Name (selected id = {this.props.categoryId})</h2>
+                <div>
+                    <h2>{this.props.selectedCategory.categoryName}</h2>
+                    <h5>{this.props.selectedCategory.categoryTagLine}</h5>
+                    <p>And load the image at: {this.props.selectedCategory.categoryImgSrc}</p>
+                </div>
             )}
             </div>
 
