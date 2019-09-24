@@ -7,21 +7,21 @@
     color: white;
 }
 
-.nav-link {
-    color: #F66E5E;
+
+a.nav-link {
+    color: #d4d600;
     text-transform: uppercase;
-    letter-spacing: .2em;
+    letter-spacing: .25em;
+    font-size: 1.2em;
+    font-weight: 700;
+    font-family: 'karla', serif;
 }
 
-.nav-link:hover {
-    color: #FBD900;
+a.nav-link:hover {
+    color: white;
 }
 
-.btn, .navbutton {
-    background-color:#d4d600;
-    color: #0e184b;
-    margin: 3px;
-}
+
 
 .btn-style:hover, .navbutton:hover {
     color: #ffffff;
@@ -31,3 +31,4 @@
 .navlogo {
     height: 80px;
 }
+
