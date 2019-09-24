@@ -12,8 +12,7 @@ import Manage from './pages/Manage';
 import AddGoal from './pages/AddGoal';
 import Progress from './pages/Progress';
 import Test from './pages/Test';
-import LandingPage from './pages/LandingPage';
-import CTAButton from '../src/components/CTAButton';
+
 
 // import client API
 import API from './utils/API';
