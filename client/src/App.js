@@ -12,6 +12,7 @@ import Manage from './pages/Manage';
 import AddGoal from './pages/AddGoal';
 import Progress from './pages/Progress';
 import Test from './pages/Test';
+import Admin from './pages/Admin';
 
 // import client API
 import API from './utils/API';
@@ -28,6 +29,11 @@ class App extends React.Component {
         categories: [],
         categoryId: '',
         goalName: '',
+        goalId: '',
+        goals: [],
+        taskName: '',
+        weeklyTarget: '7',
+        totalTarget: '7',
         isAuthenticated: false,
         showLogin: false,
         failedLoginAttempts: 0,
@@ -41,6 +47,9 @@ class App extends React.Component {
         this.setState({
             [event.target.name]: event.target.value
         });
+        if (event.target.name === 'categoryId') {
+            this.getGoalsInCategory(event.target.value)
+        }
     }
 
     handleLoginFormSubmit = event => {
@@ -118,6 +127,11 @@ class App extends React.Component {
             });
     }
 
+    handleTaskFormSubmit = event => {
+        event.preventDefault();
+        console.log('submit task clicked');
+    }
+
     getCategories = () => {
         console.log('loading category options');
         API.getCategories()
@@ -125,6 +139,17 @@ class App extends React.Component {
                 console.log(jsonData)
                 this.setState({
                     categories: jsonData.data
+                })
+            });
+    }
+
+    getGoalsInCategory = (categoryId) => {
+        console.log('loading goals for category' + categoryId);
+        API.getGoalsInCategory(categoryId)
+            .then(jsonData => {
+                console.log(jsonData)
+                this.setState({
+                    goals: jsonData.data
                 })
             });
     }
@@ -196,16 +221,42 @@ class App extends React.Component {
                         <Route exact path='/manage' component={Manage} />
                         <Route exact path='/addgoal' component={AddGoal} />
                         <Route exact path='/progress' component={Progress} />
-                        <Route exact path='/test' render={(props) => <Test {...props}
+Z                        <Route exact path='/test' render={(props) => <Test {...props}
                             categoryId={this.state.categoryId}
                             categoryName={this.state.categoryName}
                             categoryTagLine={this.state.categoryTagLine}
                             categoryImgSrc={this.state.categoryImgSrc}
                             categories={this.state.categories}
                             getCategories={this.getCategories}
+                            goalId={this.state.goalId}
+                            goals={this.state.goals}
+                            getGoalsInCategory={this.getGoalsInCategory}
                             handleOnChange={this.handleOnChange}
                             handleCategoryFormSubmit={this.handleCategoryFormSubmit}
                             handleGoalFormSubmit={this.handleGoalFormSubmit}
+                            taskName={this.state.taskName}
+                            weeklyTarget={this.state.weeklyTarget}
+                            totalTarget={this.state.totalTarget}
+                            handleTaskFormSubmit={this.handleTaskFormSubmit}
+                            />}
+                        />
+                         <Route exact path='/admin' render={(props) => <Admin {...props}
+                            categoryId={this.state.categoryId}
+                            categoryName={this.state.categoryName}
+                            categoryTagLine={this.state.categoryTagLine}
+                            categoryImgSrc={this.state.categoryImgSrc}
+                            categories={this.state.categories}
+                            getCategories={this.getCategories}
+                            goalId={this.state.goalId}
+                            goals={this.state.goals}
+                            getGoalsInCategory={this.getGoalsInCategory}
+                            handleOnChange={this.handleOnChange}
+                            handleCategoryFormSubmit={this.handleCategoryFormSubmit}
+                            handleGoalFormSubmit={this.handleGoalFormSubmit}
+                            taskName={this.state.taskName}
+                            weeklyTarget={this.state.weeklyTarget}
+                            totalTarget={this.state.totalTarget}
+                            handleTaskFormSubmit={this.handleTaskFormSubmit}
                             />}
                         />
                         <Route component={Error404} />

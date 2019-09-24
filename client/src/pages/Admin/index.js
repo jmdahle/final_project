@@ -5,32 +5,16 @@ import './style.css';
 import Container from '../../components/Container';
 
 import Card from '../../components/Card';
-import SelectedCategory from '../../components/SelectedCategory';
-import Instructions from '../../components/Instructions';
 import CategoryForm from '../../components/CategoryForm';
 import GoalForm from '../../components/GoalForm';
 import TaskForm from '../../components/TaskForm';
 
-
-class Test extends React.Component {
-
-
+class Admin extends React.Component {
     render() {
         return (
             <div>
                 <Container>
-                    <h1>Test:AddGoal</h1>
-                    <SelectedCategory 
-                        categoryId={this.props.categoryId}
-                        categories={this.props.categories}
-                        getCategories={this.props.getCategories}
-                        handleOnChange={this.props.handleOnChange}
-                    />
-                    <Instructions
-                        instructionsHeading='Instructions'
-                        instructionsText='Select a Goal.'
-                    />
-                    <hr />
+                    <h1>Administration</h1>
                     <Card heading='Add A Category'>
                         <CategoryForm 
                             categoryName={this.props.categoryName}
@@ -67,4 +51,4 @@ class Test extends React.Component {
     }
 }
 
-export default Test;
+export default Admin;
