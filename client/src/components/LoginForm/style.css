@@ -6,10 +6,12 @@
     margin-left: -225px;
     padding: 20px;
     border-radius: 10px;
-    border: 1px solid #333333;
-    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
-    background-color: #2f949A;
-    opacity: 0.9;
+
+    border: 5px solid #d4d600;
+    background-color:white;
+    color: #0e184b;
+    /* box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.4); */
+    /* opacity: 0.9; */
 }
 
 .login-message {
@@ -18,11 +20,15 @@
 }
 
 a.inline-link {
-    color: #0e184b;
+    color: #f66e5e;
 }
 
 a.inline-link:hover {
     color: #0e184b;
     text-decoration: underline;
+}
+
+input{
+    border: 1px solid black;
 }
 
