@@ -1,13 +1,27 @@
 .card {
-    margin-top: 20px;
-    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
+    width: 70%;
+    margin-top: 3em;
+    border: 2px solid #fbd900;
+    color: #0e184b; 
+    font-family: 'Karla', serif;
+    font-size:1.2em;
+    letter-spacing: -.03em;
+    /* box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5); */
 }
 
 .card-header {
-    background-color: white;
-    color: darkblue;
+    background-color:#fbd900;
+    color: #0e184b;
+    margin-bottom: -1em;
+    font-weight:700;
+}
+
+h5{
+    font-family: 'Space Mono', monospace;
+    letter-spacing: -.05em;
+    font-size: 1.5em;
 }
 
 .card-body {
-    background-color: lightgrey;
+    background-color: #fbd900;
 }

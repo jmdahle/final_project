@@ -1,4 +1,8 @@
 body {
-  font-family: 'Oswald', sans-serif;
-  color: #009900;
+  font-family: 'Karla', sans-serif;
+  color: #0E184B;
+}
+
+h1,h2,h3,h4,h5{
+  font-family: 'Space Mono', monospace;
 }

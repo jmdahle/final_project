@@ -1,28 +1,32 @@
 .navbar {
-    background-color: blue;
+    background-color: #0E184B;
     color: white;
 }
 
 .navbar-brand {
-    color: goldenrod;
+    color: white;
 }
 
 a.nav-link {
-    color: lightblue;
+    color: #d4d600;
+    text-transform: uppercase;
+    letter-spacing: .25em;
+    font-size: 1.2em;
+    font-weight: 700;
+    font-family: 'karla', serif;
 }
 
 a.nav-link:hover {
-    color: lightcoral;
-    text-decoration: underline;
-}
-
-.btn-style {
-    background-color: blue;
     color: white;
-    margin: 3px;
 }
 
-.btn-style:hover {
+/* .btn {
+    background-color:#d4d600;
+    color: #0e184b;
+    margin: 3px;
+} */
+
+/* .btn-style:hover {
     color: #ffffff;
     text-decoration: underline;
-}
+} */

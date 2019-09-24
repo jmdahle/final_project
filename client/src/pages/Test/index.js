@@ -6,59 +6,41 @@ import API from '../../utils/API';
 import Container from '../../components/Container';
 import RegisterForm from '../../components/RegisterForm';
 import Card from '../../components/Card';
-import Button from '../../components/Button';
+// import Button from '../../components/Button';
 
 
 class Test extends React.Component {
-    // state = {
-    //     firstName: '',
-    //     lastName: '',
-    //     email: '',
-    //     password: '',
-    //     isAuthenticated: false
-    // }
+    state = {
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: ''
+    }
 
-    // handleOnChange = event => {
-    //     this.setState( {
-    //         [event.target.name]: event.target.value
-    //     } );  
-    // }
+    handleOnChange = event => {
+        this.setState( {
+            [event.target.name]: event.target.value
+        } );  
+    }
 
-    // handleFormSubmit = event => {
-    //     event.preventDefault();
-    //     console.log('submit clicked');
-    //     let userData = {
-    //         firstName: this.state.firstName,
-    //         lastName: this.state.lastName,
-    //         email: this.state.email,
-    //         password: this.state.password
-    //     }
-    //     console.log(userData);
-    //     API.registerUser(userData)
-    //     .then( jsonData => {
-    //         console.log(jsonData);
-    //         let userKey = jsonData.data._id;
-    //         console.log(userKey);
-    //         this.setUserSession(userKey);
-    //     })
-    //     .catch( error => {
-    //         console.log(error)
-    //     });
-    // }
-
-    // setUserSession = (key) => {
-    //     localStorage.setItem('userKey', key);
-    //     this.setState({
-    //         isAuthenticated: true
-    //     });
-    // }
-
-    // logout = () => {
-    //     localStorage.setItem('userKey', '');
-    //     this.setState({
-    //         isAuthenticated: false
-    //     });
-    // }
+    handleFormSubmit = event => {
+        event.preventDefault();
+        console.log('submit clicked');
+        let userData = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            password: this.state.password
+        }
+        console.log(userData);
+        API.registerUser(userData)
+        .then( jsonData => {
+            console.log(jsonData);
+        })
+        .catch( error => {
+            console.log(error)
+        });
+    }
 
     render() {
         return (
@@ -67,16 +49,16 @@ class Test extends React.Component {
                     <h1>Test</h1>
                     <Card heading='Register'>
                         <RegisterForm 
-                            // firstName={this.state.firstName}
-                            // lastName={this.state.lastName}
-                            // email={this.state.email}
-                            // password={this.state.password}
-                            // handleOnChange={this.handleOnChange}
-                            // handleFormSubmit={this.handleFormSubmit}
+                            firstName={this.state.firstName}
+                            lastName={this.state.lastName}
+                            email={this.state.email}
+                            password={this.state.password}
+                            handleOnChange={this.handleOnChange}
+                            handleFormSubmit={this.handleFormSubmit}
                         />
                     </Card>
                 </Container>
-                <Button/>
+                {/* <Button /> */}
             </div>
         );
     }
