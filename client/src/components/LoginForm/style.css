@@ -6,6 +6,7 @@
     margin-left: -225px;
     padding: 20px;
     border-radius: 10px;
+
     border: 5px solid #d4d600;
     background-color:white;
     color: #0e184b;
@@ -23,7 +24,7 @@ a.inline-link {
 }
 
 a.inline-link:hover {
-    color: darkblue;
+    color: #0e184b;
     text-decoration: underline;
 }
 

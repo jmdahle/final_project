@@ -22,9 +22,19 @@ class App extends React.Component {
         lastName: '',
         email: '',
         password: '',
+        categoryName: '',
+        categoryTagLine: '',
+        categoryImgSrc: '',
+        categories: [],
+        categoryId: '',
+        goalName: '',
         isAuthenticated: false,
         showLogin: false,
         failedLoginAttempts: 0,
+    }
+
+    componentDidMount = () => {
+        this.getCategories()
     }
 
     handleOnChange = event => {
@@ -72,29 +82,52 @@ class App extends React.Component {
             });
     }
 
-    // handleRegisterFormSubmit = event => {
-    //     event.preventDefault();
-    //     console.log('submit clicked');
-    //     let userData = {
-    //         firstName: this.state.firstName,
-    //         lastName: this.state.lastName,
-    //         email: this.state.email,
-    //         password: this.state.password
-    //     }
-    //     console.log(userData);
-    //     API.registerUser(userData)
-    //         .then(jsonData => {
-    //             console.log(jsonData);
-    //             let userKey = jsonData.data._id;
-    //             console.log(userKey);
-    //             this.setUserSession(userKey);
-    //             //go back to root page
-    //             this.context.router.history.push('/');
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         });
-    // }
+    handleCategoryFormSubmit = event => {
+        event.preventDefault();
+        console.log('submit category clicked');
+        let categoryData = {
+            categoryName: this.state.categoryName,
+            categoryTagLine: this.state.categoryTagLine,
+            categoryImgSrc: this.state.categoryImgSrc
+        }
+        console.log(categoryData);
+        API.addCategory(categoryData)
+            .then(jsonData => {
+                this.getCategories();
+                console.log(jsonData);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    handleGoalFormSubmit = event => {
+        event.preventDefault();
+        console.log('submit goal clicked');
+        let goalData = {
+            categoryId: this.state.categoryId,
+            goalName: this.state.goalName
+        }
+        console.log(goalData);
+        API.addGoal(goalData)
+            .then(jsonData => {
+                console.log(jsonData);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    getCategories = () => {
+        console.log('loading category options');
+        API.getCategories()
+            .then(jsonData => {
+                console.log(jsonData)
+                this.setState({
+                    categories: jsonData.data
+                })
+            });
+    }
 
     setUserSession = (key) => {
         localStorage.setItem('userKey', key);
@@ -144,14 +177,18 @@ class App extends React.Component {
                         handleLoginFormSubmit={this.handleLoginFormSubmit}
                         />
                     <Switch>
-                        <Route exact path='/' component={HelloWorld} />
+                        {/* <Route exact path='/' component={HelloWorld} /> */}
+                        <Route exact path='/' render={
+                                (props) => <HelloWorld {...props} />
+                            }
+                        />
                         <Route exact path='/register' render={(props) => <Register {...props}  
                             firstName={this.state.firstName}
                             lastName={this.state.lastName}
                             email={this.state.email}
                             password={this.state.password}
                             handleOnChange={this.handleOnChange}
-                            handleRegisterFormSubmit={this.handleRegisterFormSubmit}
+                            // handleRegisterFormSubmit={this.handleRegisterFormSubmit}
                             setUserSession={this.setUserSession}
                             />}
                         />
@@ -159,7 +196,18 @@ class App extends React.Component {
                         <Route exact path='/manage' component={Manage} />
                         <Route exact path='/addgoal' component={AddGoal} />
                         <Route exact path='/progress' component={Progress} />
-                        <Route exact path='/test' component={Test} />
+                        <Route exact path='/test' render={(props) => <Test {...props}
+                            categoryId={this.state.categoryId}
+                            categoryName={this.state.categoryName}
+                            categoryTagLine={this.state.categoryTagLine}
+                            categoryImgSrc={this.state.categoryImgSrc}
+                            categories={this.state.categories}
+                            getCategories={this.getCategories}
+                            handleOnChange={this.handleOnChange}
+                            handleCategoryFormSubmit={this.handleCategoryFormSubmit}
+                            handleGoalFormSubmit={this.handleGoalFormSubmit}
+                            />}
+                        />
                         <Route component={Error404} />
                     </Switch>
                 </div>

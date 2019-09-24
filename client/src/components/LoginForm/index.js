@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';  
 import './style.css';
 
 class LoginForm extends React.Component {
@@ -6,7 +7,7 @@ class LoginForm extends React.Component {
         if (this.props.showLogin) {
             return (
                 <div className='login-popup'>
-                <p>Don't have an account?  <a className='inline-link' href='/register'>Register</a> now.</p>
+                <p>Don't have an account?  <Link className='inline-link' to='/register'>Register</Link> now.</p>
                 <form>
                     <div className='form-group'>
                         <label htmlFor='email'>Email Address</label>
@@ -33,7 +34,7 @@ class LoginForm extends React.Component {
                     </div>
                     <button 
                         type='submit' 
-                        className='btn btn-style'
+                        className='btn navbutton'
                         onClick={this.props.handleLoginFormSubmit}
                     >Log In
                     </button>

@@ -7,6 +7,7 @@
     color: white;
 }
 
+
 a.nav-link {
     color: #d4d600;
     text-transform: uppercase;
@@ -20,13 +21,14 @@ a.nav-link:hover {
     color: white;
 }
 
-/* .btn {
-    background-color:#d4d600;
-    color: #0e184b;
-    margin: 3px;
-} */
 
-/* .btn-style:hover {
+
+.btn-style:hover, .navbutton:hover {
     color: #ffffff;
     text-decoration: underline;
-} */
+}
+
+.navlogo {
+    height: 80px;
+}
+

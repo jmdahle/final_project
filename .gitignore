@@ -1,5 +1,6 @@
 # ignore our project note files
 notes/
+client/src/pages/Test/
 
 # ignore changes made in test
 client/src/pages/Test/
