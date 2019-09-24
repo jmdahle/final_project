@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.css';
+
 
 // import React components
 import Container from '../../components/Container';
@@ -8,6 +8,8 @@ import Card from '../../components/Card';
 import CategoryForm from '../../components/CategoryForm';
 import GoalForm from '../../components/GoalForm';
 import TaskForm from '../../components/TaskForm';
+import TaskList from '../../components/TaskList';
+
 
 class Admin extends React.Component {
     render() {
@@ -34,6 +36,7 @@ class Admin extends React.Component {
                             handleGoalFormSubmit={this.props.handleGoalFormSubmit}
                         />
                     </Card>
+                    <hr />
                     <Card heading='Add a TaskList Item'>
                         <TaskForm
                             goalId={this.props.goalId}
@@ -43,7 +46,10 @@ class Admin extends React.Component {
                             totalTarget={this.props.totalTarget}
                             handleOnChange={this.props.handleOnChange}
                             handleTaskFormSubmit={this.props.handleTaskFormSubmit}
-                        />                            
+                        />
+                        <TaskList
+                            tasks={this.props.tasks}
+                        />
                     </Card>
                 </Container>
             </div>

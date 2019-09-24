@@ -27,5 +27,14 @@ export default {
     getGoalsInCategory: function(categoryId) {
         console.log('API request - getGoalsInCategory');
         return axios.get('/api/goal/' + categoryId);
+    },
+
+    addTask: function(taskData) {
+        console.log('API request - addTask');
+        return axios.post('/api/task', taskData);
+    },
+    getTasksInGoal: function(goalId) {
+        console.log('API request - getTasksInGoal');
+        return axios.get('/api/task/' + goalId);
     }
 }
