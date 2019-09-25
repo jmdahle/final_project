@@ -18,7 +18,7 @@ app.use(routes);
 
 // Connect to the Mongo DB
 const uri = process.env.MONGODB_URI || "mongodb://localhost/shame_db";
-mongoose.connect(uri, { useFindAndModify: false, useNewUrlParser: true, useCreateIndex: true });
+mongoose.connect(uri, { useFindAndModify: false, useNewUrlParser: true, useCreateIndex: true,  useUnifiedTopology: true });
 
 const connection = mongoose.connection;
 connection.once("open", () => {

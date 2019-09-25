@@ -7,6 +7,10 @@ import GoalCard from '../../components/GoalCard';
 
 
 class AddGoal extends React.Component {
+    state = {
+        showTaskOverlay: false
+    }
+    
     render() {
         return (
             <div className='add-goal'>

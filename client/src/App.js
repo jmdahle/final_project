@@ -70,8 +70,7 @@ class App extends React.Component {
                 "ButtonLink": "#"
               }
             
-          ]
-          ,
+        ],
         selectedCategory: {},
         categoryId: '',
         goalName: '',
@@ -80,7 +79,7 @@ class App extends React.Component {
         selectedGoal: {},
         taskName: '',
         tasks: [],
-        weeklyTarget: '7',
+        streakTarget: '7',
         totalTarget: '7',
         isAuthenticated: false,
         showLogin: false,
@@ -190,7 +189,7 @@ class App extends React.Component {
         let taskData = {
             goalId: this.state.goalId,
             taskName: this.state.taskName,
-            weeklyTarget: parseInt(this.state.weeklyTarget),
+            streakTarget: parseInt(this.state.streakTarget),
             totalTarget: parseInt(this.state.totalTarget)
         }
         console.log(taskData);
@@ -365,7 +364,7 @@ class App extends React.Component {
                             handleGoalFormSubmit={this.handleGoalFormSubmit}
                             taskName={this.state.taskName}
                             tasks={this.state.tasks}
-                            weeklyTarget={this.state.weeklyTarget}
+                            streakTarget={this.state.streakTarget}
                             totalTarget={this.state.totalTarget}
                             handleTaskFormSubmit={this.handleTaskFormSubmit}
                             />}

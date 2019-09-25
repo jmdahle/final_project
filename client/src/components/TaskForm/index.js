@@ -23,10 +23,10 @@ class Task extends React.Component {
                                 Task Name
                             </td>
                             <td>
-                                Weekly Taget (# times per week)
+                                Streak Taget (# times consecutively)
                             </td>
                             <td>
-                                Total Target (# times for completion)
+                                Total Target (# times in total)
                             </td>
                         </tr>
                     </thead>
@@ -45,17 +45,17 @@ class Task extends React.Component {
                                     />
                                 </div>
                             </td>
-                            <td className='weeklyTarget'>
+                            <td className='streakTarget'>
                                 <div class='form-group'>
-                                    <select className='form-control' id='weeklyTarget' name='weeklyTarget' onChange={this.props.handleOnChange} value={this.props.weeklyTarget}>
-                                        <option value='1'>1</option>
-                                        <option value='2'>2</option>
-                                        <option value='3'>3</option>
-                                        <option value='4'>4</option>
-                                        <option value='5'>5</option>
-                                        <option value='6'>6</option>
-                                        <option value='7'>7</option>
-                                    </select>
+                                <input 
+                                        type='number' 
+                                        className='form-control' 
+                                        placeholder='# Consecutive'
+                                        value={this.props.streakTarget}
+                                        name='streakTarget'
+                                        id='streakTarget' 
+                                        onChange={this.props.handleOnChange}
+                                    />
                                 </div>
                             </td>
                             <td className='totalTarget'>
@@ -63,7 +63,7 @@ class Task extends React.Component {
                                     <input 
                                         type='number' 
                                         className='form-control' 
-                                        placeholder='# for Completion'
+                                        placeholder='# Total'
                                         value={this.props.totalTarget}
                                         name='totalTarget'
                                         id='totalTarget' 

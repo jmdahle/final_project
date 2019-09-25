@@ -1,4 +1,5 @@
 import React from 'react';
+import TaskItem from '../../components/TaskItem';
 
 class TaskList extends React.Component {
     render() {
@@ -20,17 +21,12 @@ class TaskList extends React.Component {
                     </thead>
                     <tbody>
                     {this.props.tasks.map( task => (
-                        <tr>
-                            <td className='taskName'>
-                                {task.taskName}
-                            </td>
-                            <td className='weeklyTarget'>
-                                {task.weeklyTarget}
-                            </td>
-                            <td className='totalTarget'>
-                                {task.totalTarget}
-                            </td>
-                        </tr>
+                        <TaskItem 
+                            taskName={task.taskName}
+                            streakTarget={task.streakTarget}
+                            totalTarget={task.totalTarget}
+                            id={task._id}
+                        />
                     ))}
                     </tbody>
                 </table>
