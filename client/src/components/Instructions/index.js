@@ -5,7 +5,7 @@ class Instructions extends React.Component {
     render() {
         return (
             <div className='jumbotron instructions'>
-                {this.props.heading === '' ? '' : (
+                {this.props.instructionsHeading === '' ? '' : (
                     <h4>{this.props.instructionsHeading}</h4>
                 )}
                 <p>{this.props.instructionsText}</p>

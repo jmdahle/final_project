@@ -83,6 +83,7 @@ class App extends React.Component {
     goalName: "",
     goalId: "",
     goals: [],
+    selectedGoal: {},
     taskName: "",
     tasks: [],
     weeklyTarget: "7",
@@ -230,12 +231,22 @@ class App extends React.Component {
     });
   };
 
-  getGoalsInCategory = categoryId => {
-    console.log("loading goals for category " + categoryId);
-    API.getGoalsInCategory(categoryId).then(jsonData => {
+  getGoalMatch = goalId => {
+    console.log("loading selected goal with id " + goalId);
+    API.getGoalMatch(goalId).then(jsonData => {
       console.log(jsonData);
       this.setState({
-        goals: jsonData.data
+        selectedGoal: jsonData.data[0]
+      });
+    });
+  };
+
+  getTasksInGoal = goalId => {
+    console.log("loading tasks for goal " + goalId);
+    API.getTasksInGoal(goalId).then(jsonData => {
+      console.log(jsonData);
+      this.setState({
+        tasks: jsonData.data
       });
     });
   };
@@ -272,11 +283,12 @@ class App extends React.Component {
     });
   };
 
-  loginClick = () => {
-    console.log("logging in...");
-    this.setState({
-      showLogin: true
-    });
+  selectGoal = goalId => {
+    console.log("clicked a goal card " + goalId);
+    // populate selectedGoal
+    this.getGoalMatch(goalId);
+    // get tasks for the selectedGoal
+    this.getTasksInGoal(goalId);
   };
 
   render() {
@@ -339,6 +351,8 @@ class App extends React.Component {
                   handleOnChange={this.handleOnChange}
                   getCategories={this.getCategories}
                   categories={this.state.categories}
+                  goals={this.state.goals}
+                  selectGoal={this.selectGoal}
                 />
               )}
             />
