@@ -1,34 +1,50 @@
-import React from "react";
 
+import React, { Component } from "react";
+import './style.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-
-class App extends Card{
+import categories from '../../utils/category.json';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import { cpus } from "os";
+class HomeCard extends Component {
   state={
-    Catagory,
+    categories,
     image:[],
     title:[],
     about:[],
     button:[]
 
   }
+
+
+render(){
+   console.log(this.state.category)
+  return (
+<Row>
+    {this.state.categories.map(category => (
+      <Col>
+      <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src={category.CategoryImgSrc} />
+      <Card.Body>
+        <Card.Title>{category.Categoryname}</Card.Title>
+        <Card.Text>
+        {category.CategoryTagline}
+        </Card.Text>
+        <Button >{category.ButtonLink}</Button>
+      </Card.Body>
+    </Card>
+    </Col>
+    ))}
+  </Row>  
+    
+    )
+  }
+
+
+
 }
 
-function HomeCard(props){
-   
-        return (
-<Card style={{ width: '18rem' }}>
-  <Card.Img variant="top" src={props.image} />
-  <Card.Body>
-    <Card.Title>{props.title}</Card.Title>
-    <Card.Text>
-    {props.body}
-    </Card.Text>
-    <Button >{props.button}</Button>
-  </Card.Body>
-</Card>
-    )
-}
 
 
 export default HomeCard;
