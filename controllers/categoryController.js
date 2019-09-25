@@ -15,5 +15,12 @@ module.exports = {
             .find({})
             .then( dbCategory => response.json(dbCategory) )
             .catch( dbError => response.status(400).json(dbError) )
+    },
+    findOne: function(request, response) {
+        console.log('select category with id ' + request.params.category_id);
+        db.Category
+            .find({ _id: request.params.category_id} )
+            .then( dbCategory => response.json( dbCategory) )
+            .catch( dbError => response.status(400).json(dbError) );
     }
 }

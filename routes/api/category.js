@@ -6,4 +6,7 @@ router.route('/')
     .post(categoryController.create)
     .get(categoryController.findAll);
 
+router.route('/:category_id')
+    .get(categoryController.findOne);
+
 module.exports = router;
