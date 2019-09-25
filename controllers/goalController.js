@@ -25,5 +25,12 @@ module.exports = {
             .find({categoryId: request.params.category_id})
             .then( dbGoal => response.json(dbGoal ) )
             .catch( dbError => response.status(400).json(dbError) )
+    },
+    findOne: function(request, response) {
+        console.log('select goal where id is ' + request.params.goal_id);
+        db.Goal
+            .find({ _id: request.params.goal_id })
+            .then( dbGoal => response.json(dbGoal) )
+            .catch( dbError => response.status(400).json(dbError) )
     }
 }
