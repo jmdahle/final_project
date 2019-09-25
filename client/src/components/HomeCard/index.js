@@ -3,35 +3,26 @@ import React, { Component } from "react";
 import './style.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import categories from '../../utils/category.json';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { cpus } from "os";
+
 class HomeCard extends Component {
-  state={
-    categories,
-    image:[],
-    title:[],
-    about:[],
-    button:[]
-
-  }
-
+ 
 
 render(){
-   console.log(this.state.category)
+  
   return (
 <Row>
-    {this.state.categories.map(category => (
+    {this.props.categories.map(category => (
       <Col>
       <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={category.CategoryImgSrc} />
+      <Card.Img variant="top" src={category.categoryImgSrc} />
       <Card.Body>
-        <Card.Title>{category.Categoryname}</Card.Title>
+        <Card.Title>{category.categoryName}</Card.Title>
         <Card.Text>
-        {category.CategoryTagline}
+        {category.categoryTagline}
         </Card.Text>
-        <Button >{category.ButtonLink}</Button>
+        <Button >function here</Button>
       </Card.Body>
     </Card>
     </Col>

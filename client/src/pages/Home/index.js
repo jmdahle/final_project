@@ -15,7 +15,10 @@ class Home extends React.Component {
         <h1 className="home">About us Copy</h1>
         <Row className="rowabout">
         
-          <Homecard />
+          <Homecard 
+            categories={this.props.categories}
+          />
+          
          
         {/* <Col>
            <Homecard />

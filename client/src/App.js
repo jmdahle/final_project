@@ -26,7 +26,52 @@ class App extends React.Component {
         categoryName: '',
         categoryTagLine: '',
         categoryImgSrc: '',
-        categories: [],
+        categories: [
+            {
+              "id": 1,
+              "categoryName": "Fitness",
+              "categoryImgSrc": "https://i.chzbgr.com/full/4029669888/hF36A37F6/",
+              "categoryTagline": "see what happens when you leave your computer",
+              "ButtonLink": "#"
+            },
+            {
+                "id": 2,
+                "categoryName": "Healthy eating",
+                "categoryImgSrc": "https://i.pinimg.com/originals/c6/c4/33/c6c433db5099fdfead1677633de561b1.jpg",
+                "categoryTagline": "becasue taco tuesdays and thirsty thursdays after 30 looks like this",
+                "ButtonLink": "#"
+              },
+              {
+                "id": 3,
+                "categoryName": "Increase productivity at work",
+                "categoryImgSrc": "https://i0.wp.com/www.billymoyerboss.com/wp-content/uploads/2015/09/Slacker-blog.jpg?fit=760%2C507",
+                "categoryTagline": "try not to get fired...at least before you can apply for unemployment",
+                "ButtonLink": "#"
+              },
+              {
+                "id": 4,
+                "categoryName": "Increase willpower",
+                "categoryImgSrc": "https://www.adywatts.com/wp-content/uploads/cookie-604x540.jpg",
+                "categoryTagline": "Try to be less of a garbage person.",
+                "ButtonLink": "#"
+              },
+              {
+                "id": 5,
+                "categoryName": "Upgrade your social life",
+                "categoryImgSrc": "https://img.buzzfeed.com/buzzfeed-static/static/2015-08/7/15/enhanced/webdr02/original-13074-1438974186-3.jpg?downsize=700%3A%2A&output-quality=auto&output-format=auto&output-quality=auto&output-format=auto&downsize=360:*",
+                "categoryTagline": "End that sould crushing lonlyness that happenes after college.",
+                "ButtonLink": "#"
+              },
+              {
+                "id": 6,
+                "categoryName": "Learn a new skill",
+                "categoryImgSrc": "https://confettifair.files.wordpress.com/2015/08/unicorn.jpg",
+                "categoryTagline": "Because all your friends on social media seem to have it all figured out, why haveent you?",
+                "ButtonLink": "#"
+              }
+            
+          ]
+          ,
         selectedCategory: {},
         categoryId: '',
         goalName: '',
@@ -252,6 +297,7 @@ class App extends React.Component {
                     <Switch>
                         <Route exact path='/' render={
                             (props) => <Home {...props} 
+                            categories={this.state.categories}
                             />}
                         />
                         <Route exact path='/register' render={(props) => <Register {...props}
@@ -263,7 +309,11 @@ class App extends React.Component {
                             setUserSession={this.setUserSession}
                             />}
                         />
-                        <Route exact path='/home' component={Home} />
+                        <Route exact path='/home' render={
+                               (props) => <Home {...props} 
+                               catagories={this.state.categories}
+                               />}
+                         />
                         <Route exact path='/manage' component={Manage} />
                         <Route exact path='/addgoal' render={ (props) => <AddGoal {...props}
                                 categoryId={this.state.categoryId}
