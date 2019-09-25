@@ -1,7 +1,7 @@
 import React from "react";
 import Hero from "../../components/Hero";
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Row from "react-bootstrap/Row";
+// import Col from 'react-bootstrap/Col';
 import Homecard from "../../components/HomeCard";
 
 import Footer from "../../components/Footer";
@@ -14,13 +14,9 @@ class Home extends React.Component {
         <Hero backgroundImage="https://files.slack.com/files-pri/TH6SQL9BJ-FNNH5G2DD/hero.png" />
         <h1 className="home">About us Copy</h1>
         <Row className="rowabout">
-        
-          <Homecard 
-            categories={this.props.categories}
-          />
-          
-         
-        {/* <Col>
+          <Homecard categories={this.props.categories} />
+
+          {/* <Col>
            <Homecard />
        </Col>
        <Col>
@@ -68,12 +64,9 @@ class Home extends React.Component {
             />
        </Col>
        */}
-
         </Row>
         <Footer />
-
-        </div>
-  
+      </div>
     );
   }
 }
