@@ -15,6 +15,7 @@ if (process.env.NODE_ENV === "production") {
 // Add routes, both API and view
 app.use(routes);
 
+
 // Connect to the Mongo DB
 const uri = process.env.MONGODB_URI || "mongodb://localhost/shame_db";
 mongoose.connect(uri, { useFindAndModify: false, useNewUrlParser: true, useCreateIndex: true });

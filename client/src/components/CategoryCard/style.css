@@ -1,0 +1,26 @@
+.CategoryCard {
+    margin-top: 20px;
+    height: 200px;
+    width: 400px;
+    border-radius: 10px;
+    color:black;
+    background-image: url("https://backgrounddownload.com/wp-content/uploads/2018/09/pretty-watercolour-background-7.jpg");
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
+    display:inline-block;
+    margin: 5px;
+    padding: 2px;
+}
+
+.btn1{
+    background-color:#b4b9ff;
+   
+}
+
+/* .card-header {
+    background-color: white;
+    color: rgb(68, 180, 40);
+}
+
+.card-body {
+    background-color: lightgrey;
+} */

@@ -1,0 +1,46 @@
+[
+    {
+      "id": 1,
+      "Categoryname": "Fitness",
+      "CategoryImgSrc": "https://i.chzbgr.com/full/4029669888/hF36A37F6/",
+      "CategoryTagline": "see what happens when you leave your computer",
+      "ButtonLink": "#"
+    },
+    {
+        "id": 2,
+        "Categoryname": "Healthy eating",
+        "CategoryImgSrc": "https://i.pinimg.com/originals/c6/c4/33/c6c433db5099fdfead1677633de561b1.jpg",
+        "CategoryTagline": "becasue taco tuesdays and thirsty thursdays after 30 looks like this",
+        "ButtonLink": "#"
+      },
+      {
+        "id": 3,
+        "Categoryname": "Increase productivity at work",
+        "CategoryImgSrc": "https://i0.wp.com/www.billymoyerboss.com/wp-content/uploads/2015/09/Slacker-blog.jpg?fit=760%2C507",
+        "CategoryTagline": "try not to get fired...at least before you can apply for unemployment",
+        "ButtonLink": "#"
+      },
+      {
+        "id": 4,
+        "Categoryname": "Increase willpower",
+        "CategoryImgSrc": "https://www.adywatts.com/wp-content/uploads/cookie-604x540.jpg",
+        "CategoryTagline": "Try to be less of a garbage person.",
+        "ButtonLink": "#"
+      },
+      {
+        "id": 5,
+        "Categoryname": "Upgrade your social life",
+        "CategoryImgSrc": "https://img.buzzfeed.com/buzzfeed-static/static/2015-08/7/15/enhanced/webdr02/original-13074-1438974186-3.jpg?downsize=700%3A%2A&output-quality=auto&output-format=auto&output-quality=auto&output-format=auto&downsize=360:*",
+        "CategoryTagline": "End that sould crushing lonlyness that happenes after college.",
+        "ButtonLink": "#"
+      },
+      {
+        "id": 6,
+        "Categoryname": "Learn a new skill",
+        "CategoryImgSrc": "https://confettifair.files.wordpress.com/2015/08/unicorn.jpg",
+        "CategoryTagline": "Because all your friends on social media seem to have it all figured out, why haveent you?",
+        "ButtonLink": "#"
+      }
+    
+  ]
+  
