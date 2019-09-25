@@ -1,5 +1,7 @@
 .hello-world {
-    font-family: 'Oswald', sans-serif;
-    font-size: 20pt;
-    color: #009900;
+    font-family: 'Space Mono', monospace;
+    font-size: 3em;
+    font-weight: 700;
+    font-style:italic;
+    color: #f66e5e;
 }

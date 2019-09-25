@@ -1,9 +1,42 @@
 .btn-style {
-    background-color: blue;
+    background-color:#0d4aa1;
+    text-transform: uppercase;
     color: white;
     margin: 3px;
 }
 
 .btn-style:hover {
-    color: #ffffff;
+    background-color: #d4d600;
+}
+
+.card {
+    width: 70%;
+    margin-top: 3em;
+    border: 2px solid #fbd900;
+    color: #0e184b; 
+    font-family: 'Karla', serif;
+    font-size:1.2em;
+    letter-spacing: -.03em;
+    /* box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5); */
+}
+
+.card-header {
+    background-color:#fbd900;
+    color: #0e184b;
+    margin-bottom: -1em;
+    font-weight:700;
+}
+
+h5{
+    font-family: 'Space Mono', monospace;
+    letter-spacing: -.05em;
+    font-size: 1.6em;
+}
+
+.card-body {
+    background-color: #fbd900;
+}
+
+.form-control{
+    border: 1px solid #0d4aa1;
 }

@@ -4,14 +4,14 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import LoginForm from './components/LoginForm';
 // import top level pages that get displayed from routes
-import HelloWorld from './pages/HelloWorld';
 import Error404 from './pages/Error404';
 import Register from './pages/Register';
 import Home from './pages/Home';
 import Manage from './pages/Manage';
 import AddGoal from './pages/AddGoal';
 import Progress from './pages/Progress';
-import Test from './pages/Test';
+// import Test from './pages/Test';
+import Admin from './pages/Admin';
 
 
 // import client API
@@ -23,15 +23,43 @@ class App extends React.Component {
         lastName: '',
         email: '',
         password: '',
+        categoryName: '',
+        categoryTagLine: '',
+        categoryImgSrc: '',
+        categories: [],
+        selectedCategory: {},
+        categoryId: '',
+        goalName: '',
+        goalId: '',
+        goals: [],
+        taskName: '',
+        tasks: [],
+        weeklyTarget: '7',
+        totalTarget: '7',
         isAuthenticated: false,
         showLogin: false,
         failedLoginAttempts: 0,
+    }
+
+    componentDidMount = () => {
+        this.getCategories()
     }
 
     handleOnChange = event => {
         this.setState({
             [event.target.name]: event.target.value
         });
+        // when categoryId changes, 
+        // load the goals for that category
+        // and populate the selectedCategory
+        if (event.target.name === 'categoryId') {
+            this.getGoalsInCategory(event.target.value);
+            this.getCategoryMatch(event.target.value);
+        }
+        // when goalId changes, load the tasks for that goal
+        if (event.target.name === 'goalId') {
+            this.getTasksInGoal(event.target.value)
+        }
     }
 
     handleLoginFormSubmit = event => {
@@ -73,29 +101,106 @@ class App extends React.Component {
             });
     }
 
-    // handleRegisterFormSubmit = event => {
-    //     event.preventDefault();
-    //     console.log('submit clicked');
-    //     let userData = {
-    //         firstName: this.state.firstName,
-    //         lastName: this.state.lastName,
-    //         email: this.state.email,
-    //         password: this.state.password
-    //     }
-    //     console.log(userData);
-    //     API.registerUser(userData)
-    //         .then(jsonData => {
-    //             console.log(jsonData);
-    //             let userKey = jsonData.data._id;
-    //             console.log(userKey);
-    //             this.setUserSession(userKey);
-    //             //go back to root page
-    //             this.context.router.history.push('/');
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         });
-    // }
+    handleCategoryFormSubmit = event => {
+        event.preventDefault();
+        console.log('submit category clicked');
+        let categoryData = {
+            categoryName: this.state.categoryName,
+            categoryTagLine: this.state.categoryTagLine,
+            categoryImgSrc: this.state.categoryImgSrc
+        }
+        console.log(categoryData);
+        API.addCategory(categoryData)
+            .then(jsonData => {
+                this.getCategories();
+                console.log(jsonData);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    handleGoalFormSubmit = event => {
+        event.preventDefault();
+        console.log('submit goal clicked');
+        let goalData = {
+            categoryId: this.state.categoryId,
+            goalName: this.state.goalName
+        }
+        console.log(goalData);
+        API.addGoal(goalData)
+            .then(jsonData => {
+                console.log(jsonData);
+                this.getGoalsInCategory(this.state.categoryId);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    handleTaskFormSubmit = event => {
+        event.preventDefault();
+        console.log('submit task clicked');
+        let taskData = {
+            goalId: this.state.goalId,
+            taskName: this.state.taskName,
+            weeklyTarget: parseInt(this.state.weeklyTarget),
+            totalTarget: parseInt(this.state.totalTarget)
+        }
+        console.log(taskData);
+        API.addTask(taskData)
+            .then(jsonData => {
+                console.log(jsonData);
+                this.getTasksInGoal(this.state.goalId);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    getCategories = () => {
+        console.log('loading category options');
+        API.getCategories()
+            .then(jsonData => {
+                console.log(jsonData)
+                this.setState({
+                    categories: jsonData.data
+                })
+            });
+    }
+
+    getCategoryMatch = (categoryId) => {
+        console.log('loding selected category with id ' + categoryId);
+        API.getCategoryMatch(categoryId)
+            .then(jsonData => {
+                console.log(jsonData)
+                this.setState({
+                    selectedCategory: jsonData.data[0]
+                })
+            });
+    }
+
+    getGoalsInCategory = (categoryId) => {
+        console.log('loading goals for category ' + categoryId);
+        API.getGoalsInCategory(categoryId)
+            .then(jsonData => {
+                console.log(jsonData)
+                this.setState({
+                    goals: jsonData.data
+                })
+            });
+    }
+
+    getTasksInGoal = (goalId) => {
+        console.log('loading tasks for goal ' + goalId);
+        API.getTasksInGoal(goalId)
+            .then(jsonData => {
+                console.log(jsonData)
+                this.setState({
+                    tasks: jsonData.data
+                })
+            });
+    }
 
     setUserSession = (key) => {
         localStorage.setItem('userKey', key);
@@ -145,22 +250,54 @@ class App extends React.Component {
                         handleLoginFormSubmit={this.handleLoginFormSubmit}
                         />
                     <Switch>
-                        <Route exact path='/' component={HelloWorld} />
-                        <Route exact path='/register' render={(props) => <Register {...props}  
+                        <Route exact path='/' render={
+                            (props) => <Home {...props} 
+                            />}
+                        />
+                        <Route exact path='/register' render={(props) => <Register {...props}
                             firstName={this.state.firstName}
                             lastName={this.state.lastName}
                             email={this.state.email}
                             password={this.state.password}
                             handleOnChange={this.handleOnChange}
-                            handleRegisterFormSubmit={this.handleRegisterFormSubmit}
                             setUserSession={this.setUserSession}
                             />}
                         />
                         <Route exact path='/home' component={Home} />
                         <Route exact path='/manage' component={Manage} />
-                        <Route exact path='/addgoal' component={AddGoal} />
+                        <Route exact path='/addgoal' render={ (props) => <AddGoal {...props}
+                                categoryId={this.state.categoryId}
+                                selectedCategory={this.state.selectedCategory}
+                                handleOnChange={this.handleOnChange}
+                                getCategories={this.getCategories}
+                                categories={this.state.categories}            
+                            />}
+                        />
                         <Route exact path='/progress' component={Progress} />
-                        <Route exact path='/test' component={Test} />
+                        {/* <Route exact path='/test' render={(props) => <Test {...props}
+                            handleOnChange={this.handleOnChange}
+                            />}
+                        /> */}
+                         <Route exact path='/admin' render={(props) => <Admin {...props}
+                            categoryId={this.state.categoryId}
+                            categoryName={this.state.categoryName}
+                            categoryTagLine={this.state.categoryTagLine}
+                            categoryImgSrc={this.state.categoryImgSrc}
+                            categories={this.state.categories}
+                            getCategories={this.getCategories}
+                            goalId={this.state.goalId}
+                            goals={this.state.goals}
+                            getGoalsInCategory={this.getGoalsInCategory}
+                            handleOnChange={this.handleOnChange}
+                            handleCategoryFormSubmit={this.handleCategoryFormSubmit}
+                            handleGoalFormSubmit={this.handleGoalFormSubmit}
+                            taskName={this.state.taskName}
+                            tasks={this.state.tasks}
+                            weeklyTarget={this.state.weeklyTarget}
+                            totalTarget={this.state.totalTarget}
+                            handleTaskFormSubmit={this.handleTaskFormSubmit}
+                            />}
+                        />
                         <Route component={Error404} />
                     </Switch>
                 </div>

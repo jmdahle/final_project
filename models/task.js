@@ -2,19 +2,19 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const taskSchema = new Schema ({
-    task_name: {
+    taskName: {
         type: String,
         required: true
     },
-    weekly_target: {
+    weeklyTarget: {
         type: Number,
         required: true
     },
-    total_target: {
+    totalTarget: {
         type: Number,
         required: true
     },
-    goal_id: {
+    goalId: {
         type: Schema.Types.ObjectId,
         ref: 'Goal'
     }

@@ -17,7 +17,13 @@ app.use(routes);
 
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/shame_db");
+const uri = process.env.MONGODB_URI || "mongodb://localhost/shame_db";
+mongoose.connect(uri, { useFindAndModify: false, useNewUrlParser: true, useCreateIndex: true });
+
+const connection = mongoose.connection;
+connection.once("open", () => {
+  console.log("mongoDB database connection established successfully");
+});
 
 // Start the API server
 app.listen(PORT, function() {
