@@ -5,6 +5,7 @@ import React from "react";
 
 // import React components
 import Container from "../../components/Container";
+// import UserGoalCard from "../../components/UserGoalCard";
 import GoalCard from "../../components/GoalCard";
 
 class Manage extends React.Component {
@@ -21,6 +22,11 @@ class Manage extends React.Component {
                   key={goal._id}
                   goalName={goal.goalName}
                 />
+                // <UserGoalCard
+                //   id={goal._id}
+                //   key={goal._id}
+                //   goalName={goal.goalName}
+                // />
               ))
             ) : (
               <span>No goals in this section.</span>
