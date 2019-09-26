@@ -99,13 +99,6 @@ class App extends React.Component {
             lastName: '',
             email: '',
             password: '',
-            isAuthenticated: false,
-            showLogin: false,
-            failedLoginAttempts: 0,
-            firstName: '',
-            lastName: '',
-            email: '',
-            password: '',
             categoryName: '',
             categoryTagLine: '',
             categoryImgSrc: '',
@@ -243,6 +236,8 @@ class App extends React.Component {
     handleAddGoalFormSubmit = event => {
         event.preventDefault();
         console.log('Add User Goal');
+        console.log('data?');
+        // close the TaskOverlay
         this.setState({
             showTaskOverlay: false
         })
