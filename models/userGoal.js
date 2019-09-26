@@ -6,17 +6,17 @@ const userGoalSchema = new Schema ({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    goals: [{ 
-        goal: { type: Schema.Types.ObjectId, ref: 'Goal'},
-        goalPercent: { type: Number, default: 0 }, // percent complete
-        tasks: [{
-            task: { type: Schema.Types.ObjectId, ref: 'Task'},
-            timeline: [{ // each date, track completion status
-                dateTime: Date,
-                completedYN: { type: Boolean, default: Boolean}
-            }]
-        }]
-    }]
+    // goals: [{ 
+    //     goalId: { type: Schema.Types.ObjectId, ref: 'Goal'},
+    //     goalPercent: { type: Number, default: 0 }, // percent complete
+    //     tasks: [{
+    //         taskId: { type: Schema.Types.ObjectId, ref: 'Task'},
+    //         timeline: [{ // each date, track completion status
+    //             dateTime: Date,
+    //             completedYN: { type: Boolean, default: Boolean}
+    //         }]
+    //     }]
+    // }]
 });
 
 const UserGoal = mongoose.model('UserGoal', userGoalSchema);

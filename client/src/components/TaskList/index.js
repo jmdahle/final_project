@@ -27,6 +27,7 @@ class TaskList extends React.Component {
                             streakTarget={task.streakTarget}
                             totalTarget={task.totalTarget}
                             id={task._id}
+                            key={task._id}
                         />
                     ))}
                     </tbody>

@@ -236,11 +236,34 @@ class App extends React.Component {
     handleAddGoalFormSubmit = event => {
         event.preventDefault();
         console.log('Add User Goal');
-        console.log('data?');
+        let userId = localStorage.getItem('userKey');
+        let goalId = this.state.selectedGoal._id;
+        let goalTasks = [];
+        for (let i = 0; i < this.state.tasks.length; i++) {
+            goalTasks.push({ taskId: this.state.tasks[i]._id});
+        }
+        console.log('Tasks for goal:', goalTasks);
+        let userGoalData = {
+            userId: userId,
+            goals: [{
+                goalId: { _id: goalId },
+                goalPercent: 0,
+                tasks: goalTasks
+            }]
+        }
+        console.log(userGoalData);
+        API.addUserGoal(userGoalData)
+            .then(jsonData => {
+                console.log(jsonData);
+                // go to manage goals page
+            })
+            .catch(error => {
+                console.log(error);
+            });
         // close the TaskOverlay
         this.setState({
             showTaskOverlay: false
-        })
+        });
     }
 
     getCategories = () => {

@@ -10,6 +10,7 @@ class TaskOverlay extends React.Component {
                 <div className='task-overlay'>
                     <h4>Goal: {this.props.selectedGoal.goalName}</h4>
                     <TaskList
+                        key='TaskList'
                         tasks={this.props.tasks}
                     />
                     <hr/>
