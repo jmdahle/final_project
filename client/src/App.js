@@ -10,7 +10,7 @@ import Home from "./pages/Home";
 import Manage from "./pages/Manage";
 import AddGoal from "./pages/AddGoal";
 import Progress from "./pages/Progress";
-// import Test from './pages/Test';
+import Test from "./pages/Test";
 import Admin from "./pages/Admin";
 
 // import client API
@@ -339,7 +339,17 @@ class App extends React.Component {
                 <Home {...props} catagories={this.state.categories} />
               )}
             />
-            <Route exact path="/manage" component={Manage} />
+            <Route
+              exact
+              path="/manage"
+              render={props => (
+                <Manage
+                  {...props}
+                  handleOnChange={this.handleOnChange}
+                  goals={this.state.goals}
+                />
+              )}
+            />
             <Route
               exact
               path="/addgoal"
@@ -357,10 +367,13 @@ class App extends React.Component {
               )}
             />
             <Route exact path="/progress" component={Progress} />
-            {/* <Route exact path='/test' render={(props) => <Test {...props}
-                            handleOnChange={this.handleOnChange}
-                            />}
-                        /> */}
+            <Route
+              exact
+              path="/test"
+              render={props => (
+                <Test {...props} handleOnChange={this.handleOnChange} />
+              )}
+            />
             <Route
               exact
               path="/admin"
