@@ -1,8 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 // import components that appear on every page
 import Navbar from "./components/Navbar";
 import LoginForm from "./components/LoginForm";
+
 // import top level pages that get displayed from routes
 import Error404 from "./pages/Error404";
 import Register from "./pages/Register";
@@ -10,7 +12,7 @@ import Home from "./pages/Home";
 import Manage from "./pages/Manage";
 import AddGoal from "./pages/AddGoal";
 import Progress from "./pages/Progress";
-import Test from "./pages/Test";
+// import Test from './pages/Test';
 import Admin from "./pages/Admin";
 
 // import client API
@@ -102,10 +104,9 @@ class App extends React.Component {
     failedLoginAttempts: 0
   };
 
-  // uncomment this when categories can be loaded from database
-  // componentDidMount = () => {
-  //     this.getCategories()
-  // }
+  componentDidMount = () => {
+    this.getCategories();
+  };
 
   handleOnChange = event => {
     this.setState({
@@ -240,22 +241,22 @@ class App extends React.Component {
     });
   };
 
+  getGoalsInCategory = categoryId => {
+    console.log("loading goals for category " + categoryId);
+    API.getGoalsInCategory(categoryId).then(jsonData => {
+      console.log(jsonData);
+      this.setState({
+        goals: jsonData.data
+      });
+    });
+  };
+
   getGoalMatch = goalId => {
     console.log("loading selected goal with id " + goalId);
     API.getGoalMatch(goalId).then(jsonData => {
       console.log(jsonData);
       this.setState({
         selectedGoal: jsonData.data[0]
-      });
-    });
-  };
-
-  getTasksInGoal = goalId => {
-    console.log("loading tasks for goal " + goalId);
-    API.getTasksInGoal(goalId).then(jsonData => {
-      console.log(jsonData);
-      this.setState({
-        tasks: jsonData.data
       });
     });
   };
@@ -289,6 +290,13 @@ class App extends React.Component {
       isAuthenticated: false,
       showLogin: false,
       failedLoginAttempts: 0
+    });
+  };
+
+  loginClick = () => {
+    console.log("logging in...");
+    this.setState({
+      showLogin: true
     });
   };
 
@@ -376,13 +384,10 @@ class App extends React.Component {
               )}
             />
             <Route exact path="/progress" component={Progress} />
-            <Route
-              exact
-              path="/test"
-              render={props => (
-                <Test {...props} handleOnChange={this.handleOnChange} />
-              )}
-            />
+            {/* <Route exact path='/test' render={(props) => <Test {...props}
+                            handleOnChange={this.handleOnChange}
+                            />}
+                        /> */}
             <Route
               exact
               path="/admin"
