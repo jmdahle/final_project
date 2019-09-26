@@ -21,14 +21,32 @@ a.nav-link:hover {
     color: white;
 }
 
-
+.btn-style, .navbutton {
+    background-color: #ffffff;
+    color: #0e184b;
+    border: 2px solid #2f949a;
+    text-transform: uppercase;
+    font-weight: 700;
+}
 
 .btn-style:hover, .navbutton:hover {
-    color: #ffffff;
-    text-decoration: underline;
+    background-color: #2f949a;
+    color: white;
+}
+
+.btn-style:active, .navbutton:active {
+    background-color: #2f949a;
+    color: white;
 }
 
 .navlogo {
-    height: 80px;
+    height: 4em;
+}
+
+.loggedInAs{
+    font-size:1.1em;
+    padding:.4em;
+    margin: .1em;
+    text-transform: uppercase;
 }
 

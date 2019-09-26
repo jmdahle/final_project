@@ -12,17 +12,17 @@ class HomeCard extends Component {
 render(){
   
   return (
-<Row>
+<Row className="homeCardRow">
     {this.props.categories.map(category => (
       <Col>
-      <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={category.categoryImgSrc} />
-      <Card.Body>
-        <Card.Title>{category.categoryName}</Card.Title>
-        <Card.Text>
+      <Card className="homeCard"style={{ width: '18rem' }}>
+      <Card.Img className="homeCardImg" variant="top" src={category.categoryImgSrc} />
+      <Card.Body className="homeCardBody">
+        <Card.Title className="cardTitle">{category.categoryName}</Card.Title>
+        <Card.Text className="homeCardCopy">
         {category.categoryTagline}
         </Card.Text>
-        <Button >function here</Button>
+        <Button className="homeCardButton">function here</Button>
       </Card.Body>
     </Card>
     </Col>
