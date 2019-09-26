@@ -1,7 +1,19 @@
-.error-404 {
+.error-404Header {
+    padding: .2em;
     font-family: 'Space Mono', monospace;
-    font-size: 3em;
+    font-size: 14em;
     font-weight: 700;
     font-style:italic;
     color: #f66e5e;
+    text-align: center;
+}
+
+.error-404Body{
+    padding: 0;
+    font-family: 'Space Mono', monospace;
+    font-size: 2em;
+    text-align: center;
+    letter-spacing: -.04em;
+    font-style: italic;
+    line-height: 1.4em;
 }
