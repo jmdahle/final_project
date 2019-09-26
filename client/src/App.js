@@ -82,7 +82,16 @@ class App extends React.Component {
     categoryId: "",
     goalName: "",
     goalId: "",
-    goals: [],
+    goals: [
+      {
+        goalName: "learn chinese",
+        categoryId: 6
+      },
+      {
+        goalName: "complete a marathon",
+        categoryId: 1
+      }
+    ],
     selectedGoal: {},
     taskName: "",
     tasks: [],
