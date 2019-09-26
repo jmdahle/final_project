@@ -74,7 +74,7 @@ class Task extends React.Component {
                         </tr>
                         <tr>
                             <td colspan='3'>
-                            <button 
+                                <button 
                                     type='submit' 
                                     className='btn btn-style'
                                     onClick={this.props.handleTaskFormSubmit}

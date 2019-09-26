@@ -4,13 +4,10 @@ import Container from '../../components/Container';
 import SelectedCategory from '../../components/SelectedCategory';
 import Instructions from '../../components/Instructions';
 import GoalCard from '../../components/GoalCard';
+import TaskOverlay from '../../components/TaskOverlay';
 
 
 class AddGoal extends React.Component {
-    state = {
-        showTaskOverlay: false
-    }
-    
     render() {
         return (
             <div className='add-goal'>
@@ -37,6 +34,14 @@ class AddGoal extends React.Component {
                                 selectGoal={this.props.selectGoal}
                             />
                         )) : <span>No goals in this category.</span>}
+                    </div>
+                    <div>
+                        <TaskOverlay 
+                            showTaskOverlay={this.props.showTaskOverlay}
+                            selectedGoal={this.props.selectedGoal}
+                            tasks={this.props.tasks}
+                            handleAddGoalFormSubmit={this.props.handleAddGoalFormSubmit}
+                        />
                     </div>
                 </Container>
             </div>

@@ -84,10 +84,47 @@ class App extends React.Component {
         isAuthenticated: false,
         showLogin: false,
         failedLoginAttempts: 0,
+        showTaskOverlay: false
     }
 
     componentDidMount = () => {
+        this.resetState();
         this.getCategories()
+    }
+
+    resetState = () => {
+        // re-set state to beginning state
+        this.setState({
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            isAuthenticated: false,
+            showLogin: false,
+            failedLoginAttempts: 0,
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            categoryName: '',
+            categoryTagLine: '',
+            categoryImgSrc: '',
+            categories: [],
+            selectedCategory: {},
+            categoryId: '',
+            goalName: '',
+            goalId: '',
+            goals: [],
+            selectedGoal: {},
+            taskName: '',
+            tasks: [],
+            streakTarget: '7',
+            totalTarget: '7',
+            isAuthenticated: false,
+            showLogin: false,
+            failedLoginAttempts: 0,
+            showTaskOverlay: false
+            });        
     }
 
     handleOnChange = event => {
@@ -203,6 +240,14 @@ class App extends React.Component {
             });
     }
 
+    handleAddGoalFormSubmit = event => {
+        event.preventDefault();
+        console.log('Add User Goal');
+        this.setState({
+            showTaskOverlay: false
+        })
+    }
+
     getCategories = () => {
         console.log('loading category options');
         API.getCategories()
@@ -269,15 +314,7 @@ class App extends React.Component {
     logoutClick = () => {
         console.log('logging out...');
         localStorage.setItem('userKey', '');
-        this.setState({
-            firstName: '',
-            lastName: '',
-            email: '',
-            password: '',
-            isAuthenticated: false,
-            showLogin: false,
-            failedLoginAttempts: 0,
-        });
+        this.resetState();
     }
 
     loginClick = () => {
@@ -293,6 +330,10 @@ class App extends React.Component {
         this.getGoalMatch(goalId);
         // get tasks for the selectedGoal
         this.getTasksInGoal(goalId);
+        // show TaskOverlay
+        this.setState({
+            showTaskOverlay: true
+        });
     }
 
     render() {
@@ -341,7 +382,11 @@ class App extends React.Component {
                                 getCategories={this.getCategories}
                                 categories={this.state.categories} 
                                 goals={this.state.goals}    
-                                selectGoal={this.selectGoal}       
+                                selectGoal={this.selectGoal}    
+                                showTaskOverlay={this.state.showTaskOverlay}   
+                                selectedGoal={this.state.selectedGoal}
+                                tasks={this.state.tasks}
+                                handleAddGoalFormSubmit={this.handleAddGoalFormSubmit}
                             />}
                         />
                         <Route exact path='/progress' component={Progress} />

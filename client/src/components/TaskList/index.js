@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.css';
 import TaskItem from '../../components/TaskItem';
 
 class TaskList extends React.Component {
@@ -7,15 +8,15 @@ class TaskList extends React.Component {
             <div> 
                 <table>
                     <thead>
-                        <tr>
+                        <tr className='task-list-head'>
                             <td>
-                                Task Name
+                                <br/>Task Name
                             </td>
                             <td>
-                                Weekly Taget
+                                Streak<br/>Taget
                             </td>
                             <td>
-                                Total Target
+                                Total<br/>Target
                             </td>
                         </tr>
                     </thead>
