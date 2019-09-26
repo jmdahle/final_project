@@ -1,3 +1,25 @@
 .rowabout{
     margin-left: 50px;
 }
+
+.aboutUsHeader{
+    text-align: center;
+    font-family: "Space Mono", monospace;
+    font-size: 3.6em;
+    font-weight:700;
+    font-style: italic;
+    padding: .5em;
+    color: #0e184b;
+    background-color: #d4d600;
+    text-transform: lowercase;
+}
+
+.aboutUsCopy{
+    text-align: center;
+    font-family: "Space Mono", monospace;
+    letter-spacing:-.05em;
+    font-style: italic;
+    font-size: 1.8em;
+    font-weight:400;
+    margin: .5em;
+}

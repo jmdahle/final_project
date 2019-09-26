@@ -5,8 +5,8 @@
     
 function Footer(){
       return (
-      <footer className="footerhome">
-          <h1> I am the footer</h1>
+      <footer className="footerHome">
+          <p className="footerCopy">Follow Us</p>
       </footer>
       );
     }

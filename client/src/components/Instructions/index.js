@@ -6,9 +6,9 @@ class Instructions extends React.Component {
         return (
             <div className='jumbotron instructions'>
                 {this.props.instructionsHeading === '' ? '' : (
-                    <h4>{this.props.instructionsHeading}</h4>
+                    <h4 className="instructionsHeading">{this.props.instructionsHeading}</h4>
                 )}
-                <p>{this.props.instructionsText}</p>
+                <p className="instructionsBody">{this.props.instructionsText}</p>
             </div>
         )
     }

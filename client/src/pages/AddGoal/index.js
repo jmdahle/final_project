@@ -6,13 +6,16 @@ import Instructions from '../../components/Instructions';
 import GoalCard from '../../components/GoalCard';
 import TaskOverlay from '../../components/TaskOverlay';
 
+import './style.css';
+
+
 
 class AddGoal extends React.Component {
     render() {
         return (
             <div className='add-goal'>
                 <Container>
-                    <h1>Add Goal</h1>
+                    <h1 className="addGoalHeader">Add Goal</h1>
                     <SelectedCategory
                         handleOnChange={this.props.handleOnChange}
                         categoryId={this.props.categoryId}

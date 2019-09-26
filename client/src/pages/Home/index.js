@@ -1,9 +1,8 @@
 import React from "react";
 import Hero from "../../components/Hero";
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+// import Col from 'react-bootstrap/Col';
 import Homecard from "../../components/HomeCard";
-
 import Footer from "../../components/Footer";
 import "./style.css";
 
@@ -11,8 +10,9 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <Hero backgroundImage="https://files.slack.com/files-pri/TH6SQL9BJ-FNNH5G2DD/hero.png" />
-        <h1 className="home">About us Copy</h1>
+        <Hero backgroundImage="images/heroImage.png" />
+        <h1 className="aboutUsHeader">About Us</h1>
+        <p className="aboutUsCopy">Blah Blah Blah!</p>
         <Row className="rowabout">
         
           <Homecard 
