@@ -1,23 +1,25 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-// import components that appear on every page
-import Navbar from './components/Navbar';
-import LoginForm from './components/LoginForm';
-// import top level pages that get displayed from routes
-import Error404 from './pages/Error404';
-import Register from './pages/Register';
-import Home from './pages/Home';
-import Manage from './pages/Manage';
-import AddGoal from './pages/AddGoal';
-import Progress from './pages/Progress';
-// import Test from './pages/Test';
-import Admin from './pages/Admin';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+// import components that appear on every page
+import Navbar from "./components/Navbar";
+import LoginForm from "./components/LoginForm";
+
+// import top level pages that get displayed from routes
+import Error404 from "./pages/Error404";
+import Register from "./pages/Register";
+import Home from "./pages/Home";
+import Manage from "./pages/Manage";
+import AddGoal from "./pages/AddGoal";
+import Progress from "./pages/Progress";
+// import Test from './pages/Test';
+import Admin from "./pages/Admin";
 
 // import client API
-import API from './utils/API';
+import API from "./utils/API";
 
 class App extends React.Component {
+
     state = {
         firstName: '',
         lastName: '',
@@ -123,72 +125,72 @@ class App extends React.Component {
             failedLoginAttempts: 0,
             showTaskOverlay: false
             });        
-    }
+        }
 
     handleOnChange = event => {
         this.setState({
             [event.target.name]: event.target.value
         });
-        // when categoryId changes, 
+        // when categoryId changes,
         // load the goals for that category
         // and populate the selectedCategory
-        if (event.target.name === 'categoryId') {
+        if (event.target.name === "categoryId") {
             this.getGoalsInCategory(event.target.value);
             this.getCategoryMatch(event.target.value);
-        }
+            }
         // when goalId changes, load the tasks for that goal
-        if (event.target.name === 'goalId') {
-            this.getTasksInGoal(event.target.value)
+        if (event.target.name === "goalId") {
+            this.getTasksInGoal(event.target.value);
         }
-    }
+    };
 
     handleLoginFormSubmit = event => {
-        event.preventDefault();
-        console.log('login submit clicked')
-        let loginData = {
-            email: this.state.email,
-            password: this.state.password
-        }
-        console.log(loginData);
-        API.authenticateUser(loginData)
-            .then( jsonData => {
-                let userData = jsonData.data;
-                console.log(userData);
-                if (userData.length === 0) {
-                    console.log('login failed');
-                    let failedCount = this.state.failedLoginAttempts + 1;
-                    this.setState({
-                        failedLoginAttempts: failedCount,
-                        email: '',
-                        password: '',
-                        isAuthenticated: false,                
-                    })
-                    } else if (userData.length === 1) {
-                    console.log('login successful')
-                    this.setState({
-                        loginMessage: '', 
-                        firstName: userData[0].firstName,
-                        lastName: userData[0].lastName,
-                        email: userData[0].email
-                    });
-                    this.setUserSession(userData[0]._id);
-                } else {
-                    console.log('WTF??!  How did you get more than 1??')
-                }
-            })
-            .catch( error => {
-                console.log( error );
-            });
-    }
+    event.preventDefault();
+    console.log("login submit clicked");
+    let loginData = {
+        email: this.state.email,
+        password: this.state.password
+    };
+    console.log(loginData);
+    API.authenticateUser(loginData)
+        .then(jsonData => {
+            let userData = jsonData.data;
+            console.log(userData);
+            if (userData.length === 0) {
+                console.log("login failed");
+                let failedCount = this.state.failedLoginAttempts + 1;
+                this.setState({
+                    failedLoginAttempts: failedCount,
+                    email: "",
+                    password: "",
+                    isAuthenticated: false
+                });
+            } else if (userData.length === 1) {
+                console.log("login successful");
+                this.setState({
+                    loginMessage: "",
+                    firstName: userData[0].firstName,
+                    lastName: userData[0].lastName,
+                    email: userData[0].email
+                });
+                this.setUserSession(userData[0]._id);
+            } else {
+              console.log("WTF??!  How did you get more than 1??");
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    };
 
     handleCategoryFormSubmit = event => {
         event.preventDefault();
-        console.log('submit category clicked');
+        console.log("submit category clicked");
         let categoryData = {
             categoryName: this.state.categoryName,
             categoryTagLine: this.state.categoryTagLine,
             categoryImgSrc: this.state.categoryImgSrc
-        }
+            };
         console.log(categoryData);
         API.addCategory(categoryData)
             .then(jsonData => {
@@ -198,25 +200,7 @@ class App extends React.Component {
             .catch(error => {
                 console.log(error);
             });
-    }
-
-    handleGoalFormSubmit = event => {
-        event.preventDefault();
-        console.log('submit goal clicked');
-        let goalData = {
-            categoryId: this.state.categoryId,
-            goalName: this.state.goalName
-        }
-        console.log(goalData);
-        API.addGoal(goalData)
-            .then(jsonData => {
-                console.log(jsonData);
-                this.getGoalsInCategory(this.state.categoryId);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }
+    };
 
     handleTaskFormSubmit = event => {
         event.preventDefault();
@@ -285,57 +269,63 @@ class App extends React.Component {
             });
     }
 
-    getCategoryMatch = (categoryId) => {
-        console.log('loding selected category with id ' + categoryId);
-        API.getCategoryMatch(categoryId)
+    handleGoalFormSubmit = event => {
+        event.preventDefault();
+        console.log("submit goal clicked");
+        let goalData = {
+            categoryId: this.state.categoryId,
+              goalName: this.state.goalName
+        };
+        console.log(goalData);
+        API.addGoal(goalData)
             .then(jsonData => {
-                console.log(jsonData)
-                this.setState({
-                    selectedCategory: jsonData.data[0]
-                })
+                console.log(jsonData);
+                this.getGoalsInCategory(this.state.categoryId);
+            })
+            .catch(error => {
+                console.log(error);
             });
-    }
+    };
 
-    getGoalsInCategory = (categoryId) => {
-        console.log('loading goals for category ' + categoryId);
-        API.getGoalsInCategory(categoryId)
-            .then(jsonData => {
-                console.log(jsonData)
-                this.setState({
-                    goals: jsonData.data
-                })
+    getCategoryMatch = categoryId => {
+        console.log("loding selected category with id " + categoryId);
+        API.getCategoryMatch(categoryId).then(jsonData => {
+            console.log(jsonData);
+            this.setState({
+                selectedCategory: jsonData.data[0]
             });
-    }
-
-    getGoalMatch = (goalId) => {
-        console.log('loading selected goal with id ' + goalId);
-        API.getGoalMatch(goalId)
-            .then(jsonData => {
-                console.log(jsonData)
-                this.setState({
-                    selectedGoal: jsonData.data[0]
-                })
-            });
-    }
-
-    getTasksInGoal = (goalId) => {
-        console.log('loading tasks for goal ' + goalId);
-        API.getTasksInGoal(goalId)
-            .then(jsonData => {
-                console.log(jsonData)
-                this.setState({
-                    tasks: jsonData.data
-                })
-            });
-    }
-
-    setUserSession = (key) => {
-        localStorage.setItem('userKey', key);
-        this.setState({
-            isAuthenticated: true,
-            showLogin: false
         });
-    }
+    };
+
+    getGoalsInCategory = categoryId => {
+        console.log("loading goals for category " + categoryId);
+        API.getGoalsInCategory(categoryId).then(jsonData => {
+            console.log(jsonData);
+            this.setState({
+                goals: jsonData.data
+            });
+        });
+    };
+
+    getGoalMatch = goalId => {
+        console.log("loading selected goal with id " + goalId);
+        API.getGoalMatch(goalId).then(jsonData => {
+            console.log(jsonData);
+            this.setState({
+                selectedGoal: jsonData.data[0]
+            });
+        });
+    };
+
+    getTasksInGoal = goalId => {
+        console.log("loading tasks for goal " + goalId);
+        API.getTasksInGoal(goalId).then(jsonData => {
+            console.log(jsonData);
+            this.setState({
+                tasks: jsonData.data
+            });
+        });
+    };
 
     logoutClick = () => {
         console.log('logging out...');
@@ -344,11 +334,19 @@ class App extends React.Component {
     }
 
     loginClick = () => {
-        console.log('logging in...');
+        console.log("logging in...");
         this.setState({
-            showLogin: true
+          showLogin: true
         });
-    }
+    };
+
+    setUserSession = key => {
+        localStorage.setItem("userKey", key);
+        this.setState({
+            isAuthenticated: true,
+            showLogin: false
+        });
+    };
 
     selectGoal = (goalId) => {
         console.log('clicked a goal card ' + goalId);
@@ -415,6 +413,14 @@ class App extends React.Component {
                                 handleAddGoalFormSubmit={this.handleAddGoalFormSubmit}
                             />}
                         />
+                        <Route exact path="/manage" render={ props =>
+                            <Manage 
+                                {...props}
+                                handleOnChange={this.handleOnChange}
+                                goals={this.state.goals}
+                            />}
+                        />
+
                         <Route exact path='/progress' component={Progress} />
                         {/* <Route exact path='/test' render={(props) => <Test {...props}
                             handleOnChange={this.handleOnChange}

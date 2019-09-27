@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const goalSchema = new Schema ({
+const goalSchema = new Schema({
     goalName: {
         type: String,
         required: true,
@@ -11,15 +11,16 @@ const goalSchema = new Schema ({
         // reference to category; goal is a child of category
         // NOT an array since goal is related to only one category
         type: Schema.Types.ObjectId,
-        ref: 'Category'
+        ref: "Category"
     },
-    tasks: [{
+    tasks: [
+        {
         type: Schema.Types.ObjectId,
-        ref: 'Task'
-    }]
+        ref: "Task"
+        }
+    ],
 });
 
-const Goal = mongoose.model('Goal', goalSchema);
-
+const Goal = mongoose.model("Goal", goalSchema);
 
 module.exports = Goal;
