@@ -1,4 +1,15 @@
 .instructions {
-    background-color: #cccccc;
-    color: #0e184b;
+    background-color: #f66e5e;
+    color: #ffffff;
+}
+
+.instructionsHeading{
+    font-weight:700;
+    font-style: italic;
+    letter-spacing: -.02em;
+    font-size: 2.2em;
+}
+
+.instructionsBody {
+    font-size: 1.1em;
 }
