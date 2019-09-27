@@ -76,6 +76,7 @@ class App extends React.Component {
         selectedCategory: {},
         categoryId: '',
         goalName: '',
+        goalTagline: '',
         goalId: '',
         goals: [],
         selectedGoal: {},
@@ -113,6 +114,7 @@ class App extends React.Component {
             selectedCategory: {},
             categoryId: '',
             goalName: '',
+            goalTagline: '',
             goalId: '',
             goals: [],
             selectedGoal: {},
@@ -274,7 +276,8 @@ class App extends React.Component {
         console.log("submit goal clicked");
         let goalData = {
             categoryId: this.state.categoryId,
-              goalName: this.state.goalName
+            goalName: this.state.goalName,
+            goalTagline: this.state.goalTagline,
         };
         console.log(goalData);
         API.addGoal(goalData)

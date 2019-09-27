@@ -7,6 +7,9 @@ const goalSchema = new Schema({
         required: true,
         unique: true
     },
+    goalTagLine: {
+        type: String,
+    },
     categoryId: {
         // reference to category; goal is a child of category
         // NOT an array since goal is related to only one category
