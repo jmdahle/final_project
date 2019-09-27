@@ -20,6 +20,13 @@ class TaskOverlay extends React.Component {
                         onClick={this.props.handleAddGoalFormSubmit}
                     >Let's Go!
                     </button>
+                    &nbsp;
+                    <button 
+                        type='submit' 
+                        className='btn btn-style'
+                        onClick={() => this.props.taskOverlayClose()}
+                    >Close
+                    </button>
                 </div>
             );
         } else {

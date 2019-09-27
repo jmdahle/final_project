@@ -129,7 +129,7 @@ class App extends React.Component {
             showTaskOverlay: false
             });        
             this.getCategories();
-        }
+    }
 
     handleOnChange = event => {
         this.setState({
@@ -262,17 +262,6 @@ class App extends React.Component {
         });
     }
 
-    getCategories = () => {
-        console.log('loading category options');
-        API.getCategories()
-            .then(jsonData => {
-                console.log(jsonData)
-                this.setState({
-                    categories: jsonData.data
-                })
-            });
-    }
-
     handleGoalFormSubmit = event => {
         event.preventDefault();
         console.log("submit goal clicked");
@@ -292,12 +281,24 @@ class App extends React.Component {
             });
     };
 
+    getCategories = () => {
+        console.log('loading category options');
+        API.getCategories()
+            .then(jsonData => {
+                console.log(jsonData)
+                this.setState({
+                    categories: jsonData.data
+                })
+            });
+    }
+
     getCategoryMatch = categoryId => {
         console.log("loding selected category with id " + categoryId);
         API.getCategoryMatch(categoryId).then(jsonData => {
             console.log(jsonData);
             this.setState({
-                selectedCategory: jsonData.data[0]
+                selectedCategory: jsonData.data[0],
+                categoryId: categoryId
             });
         });
     };
@@ -360,12 +361,19 @@ class App extends React.Component {
             showLogin: false
         });
     }
+
     loginClick = () => {
         console.log("logging in...");
         this.setState({
           showLogin: true
         });
     };
+
+    taskOverlayClose = () => {
+        this.setState({
+            showTaskOverlay: false
+        })
+    }
 
     setUserSession = key => {
         localStorage.setItem("userKey", key);
@@ -410,6 +418,8 @@ class App extends React.Component {
                         <Route exact path='/' render={
                             (props) => <Home {...props} 
                             categories={this.state.categories}
+                            // selectCategory={this.selectCategory}
+                            getCategoryMatch={this.getCategoryMatch}
                             />}
                         />
                         <Route exact path='/register' render={(props) => <Register {...props}
@@ -424,6 +434,7 @@ class App extends React.Component {
                         <Route exact path='/home' render={
                                (props) => <Home {...props} 
                                categories={this.state.categories}
+                               selectCategory={this.selectCategory}
                                />}
                          />
                         <Route exact path='/manage' component={Manage} />
@@ -438,6 +449,9 @@ class App extends React.Component {
                                 showTaskOverlay={this.state.showTaskOverlay}   
                                 selectedGoal={this.state.selectedGoal}
                                 tasks={this.state.tasks}
+                                getCategoryMatch={this.getCategoryMatch}
+                                getGoalsInCategory={this.getGoalsInCategory}
+                                taskOverlayClose={this.taskOverlayClose}
                                 handleAddGoalFormSubmit={this.handleAddGoalFormSubmit}
                             />}
                         />
