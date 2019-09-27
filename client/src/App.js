@@ -355,6 +355,11 @@ class App extends React.Component {
         this.resetState();
     }
 
+    loginClose = () => {
+        this.setState({
+            showLogin: false
+        });
+    }
     loginClick = () => {
         console.log("logging in...");
         this.setState({
@@ -399,6 +404,7 @@ class App extends React.Component {
                         failedLoginAttempts={this.state.failedLoginAttempts}
                         handleOnChange={this.handleOnChange}
                         handleLoginFormSubmit={this.handleLoginFormSubmit}
+                        handleLoginClose={this.loginClose}
                         />
                     <Switch>
                         <Route exact path='/' render={
