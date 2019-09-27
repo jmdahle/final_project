@@ -88,6 +88,11 @@ class App extends React.Component {
     }
 
     componentDidMount = () => {
+        if (localStorage.getItem('userKey')) {
+            console.log('user key is ' + localStorage.getItem('userKey') );
+        } else {
+            console.log('user key is missing!  No one is logged in');
+        }
         this.resetState();
         this.getCategories()
     }
@@ -237,16 +242,19 @@ class App extends React.Component {
         event.preventDefault();
         console.log('Add User Goal');
         let userId = localStorage.getItem('userKey');
-        let goalId = this.state.selectedGoal._id;
+        let goalName= this.state.selectedGoal.goalName;
         let goalTasks = [];
         for (let i = 0; i < this.state.tasks.length; i++) {
-            goalTasks.push({ taskId: this.state.tasks[i]._id});
+            goalTasks.push({
+                taskName: this.state.tasks[i].taskName,
+                streakTarget: this.state.tasks[i].streakTarget,
+                totalTarget: this.state.tasks[i].totalTarget
+            });
         }
-        console.log('Tasks for goal:', goalTasks);
         let userGoalData = {
             userId: userId,
             goals: [{
-                goalId: { _id: goalId },
+                goalName: goalName,
                 goalPercent: 0,
                 tasks: goalTasks
             }]
