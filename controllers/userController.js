@@ -19,5 +19,14 @@ module.exports = {
             })
             .then( dbUser => response.json(dbUser) )
             .catch( dbError => response.status(400).json(dbError) )
+    },
+    findOne: function (request, response) {
+        console.log('getting user details');
+        db.User
+            .findOne({
+                _id: request.params.user_id
+            }).select("-password")
+            .then( dbUser => response.json(dbUser) )
+            .catch( dbError => response.status(400).json(dbError) )
     }
 }

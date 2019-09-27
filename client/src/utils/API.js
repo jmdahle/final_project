@@ -10,6 +10,10 @@ export default {
         return axios.post('/api/user/login', loginData);
     },
 
+    getUserDetails: function(userId) {
+        return axios.post('/api/user/' + userId);
+    },
+
     addCategory: function(categoryData) {
         console.log('API request - addCategory');
         return axios.post('/api/category', categoryData);

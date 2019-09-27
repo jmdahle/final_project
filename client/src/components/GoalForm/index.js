@@ -29,6 +29,18 @@ class GoalForm extends React.Component {
                         onChange={this.props.handleOnChange}
                     />
                 </div>
+                <div className='form-group'>
+                    <label htmlFor='goalTagline'>Goal Tagline</label>
+                    <input 
+                        type='text' 
+                        className='form-control' 
+                        placeholder='Goal Tagline'
+                        value={this.props.goalTagline}
+                        name='goalTagline'
+                        id='goalTagline' 
+                        onChange={this.props.handleOnChange}
+                    />
+                </div>
                 <button 
                     type='submit' 
                     className='btn btn-style'
