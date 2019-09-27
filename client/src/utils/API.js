@@ -11,7 +11,8 @@ export default {
     },
 
     getUserDetails: function(userId) {
-        return axios.post('/api/user/' + userId);
+        console.log('API request - getUserDetails');
+        return axios.get('/api/user/' + userId);
     },
 
     addCategory: function(categoryData) {

@@ -91,13 +91,14 @@ class App extends React.Component {
     }
 
     componentDidMount = () => {
-        if (localStorage.getItem('userKey')) {
-            console.log('user key is ' + localStorage.getItem('userKey') );
+        this.resetState();
+        let userId = localStorage.getItem('userKey');
+        if (userId) {
+            console.log('user key is ' + userId );
+            this.getUserDetails(userId);
         } else {
             console.log('user key is missing!  No one is logged in');
         }
-        this.resetState();
-        this.getCategories()
     }
 
     resetState = () => {
@@ -127,6 +128,7 @@ class App extends React.Component {
             failedLoginAttempts: 0,
             showTaskOverlay: false
             });        
+            this.getCategories();
         }
 
     handleOnChange = event => {
@@ -329,6 +331,23 @@ class App extends React.Component {
             });
         });
     };
+
+    getUserDetails = (userId) => {
+        console.log('loading user details')
+        API.getUserDetails(userId)
+            .then(jsonData => {
+                console.log(jsonData);
+                let userData = jsonData.data;
+                this.setState({
+                    loginMessage: "",
+                    userId: userId,
+                    firstName: userData.firstName,
+                    lastName: userData.lastName,
+                    email: userData.email,
+                    isAuthenticated: true
+                });
+            })
+    }
 
     logoutClick = () => {
         console.log('logging out...');
