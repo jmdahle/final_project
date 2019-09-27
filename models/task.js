@@ -6,7 +6,7 @@ const taskSchema = new Schema ({
         type: String,
         required: true
     },
-    weeklyTarget: {
+    streakTarget: {
         type: Number,
         required: true
     },

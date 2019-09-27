@@ -44,5 +44,14 @@ export default {
     getTasksInGoal: function(goalId) {
         console.log('API request - getTasksInGoal');
         return axios.get('/api/task/' + goalId);
+    },
+
+    addUserGoal: function(userGoalData) {
+        console.log('API request - addUserGoal');
+        return axios.post('/api/usergoal', userGoalData);
+    },
+    getUserGoalByUser: function(userId) {
+        console.log('API request - getUserGoalByUser');
+        return axios.get('/api/usergoal/' + userId);
     }
 }
