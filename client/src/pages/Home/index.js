@@ -1,6 +1,6 @@
 import React from "react";
 import Hero from "../../components/Hero";
-import Row from 'react-bootstrap/Row';
+import Row from "react-bootstrap/Row";
 // import Col from 'react-bootstrap/Col';
 import Homecard from "../../components/HomeCard";
 import Footer from "../../components/Footer";
@@ -14,13 +14,9 @@ class Home extends React.Component {
         <h1 className="aboutUsHeader">About Us</h1>
         <p className="aboutUsCopy">Blah Blah Blah!</p>
         <Row className="rowabout">
-        
-          <Homecard 
-            categories={this.props.categories}
-          />
-          
-         
-        {/* <Col>
+          <Homecard categories={this.props.categories} />
+
+          {/* <Col>
            <Homecard />
        </Col>
        <Col>
@@ -40,7 +36,6 @@ class Home extends React.Component {
             />
        </Col>
       
-
         </Row>
         <Row className="rowabout">
         <Col>
@@ -68,12 +63,9 @@ class Home extends React.Component {
             />
        </Col>
        */}
-
         </Row>
         <Footer />
-
-        </div>
-  
+      </div>
     );
   }
 }
