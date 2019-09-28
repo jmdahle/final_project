@@ -14,5 +14,15 @@ module.exports = {
             .find({ userId: request.params.user_id})
             .then( dbUserGoal => response.json(dbUserGoal))
             .catch( dbError => response.status(400).json(dbError));
+    },
+    addGoal: function( request, response) {
+        console.log('add a goal to existing UserGoal');
+        db.UserGoal
+            .update(
+                { userId: request.params.user_id }, 
+                { $push: { goals: request.body } }
+            )
+            .then( dbUserGoal => response.json(dbUserGoal) )
+            .catch( dbError => response.status(400).json(dbError) );
     }
 }

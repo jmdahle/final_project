@@ -1,0 +1,14 @@
+.okdialog-popup {
+    position: fixed;
+    top: 75px;
+    left: 50%;
+    width: 450px;
+    margin-left: -225px;
+    padding: 20px;
+    border-radius: 10px;
+
+    border: 5px solid #d4d600;
+    background-color:white;
+    color: #0e184b;
+    z-index: 1;
+}

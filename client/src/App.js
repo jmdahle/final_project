@@ -230,31 +230,65 @@ class App extends React.Component {
         event.preventDefault();
         console.log('Add User Goal');
         let userId = localStorage.getItem('userKey');
-        let goalName= this.state.selectedGoal.goalName;
-        let goalTasks = [];
-        for (let i = 0; i < this.state.tasks.length; i++) {
-            goalTasks.push({
-                taskName: this.state.tasks[i].taskName,
-                streakTarget: this.state.tasks[i].streakTarget,
-                totalTarget: this.state.tasks[i].totalTarget
-            });
-        }
-        let userGoalData = {
-            userId: userId,
-            goals: [{
-                goalName: goalName,
-                goalPercent: 0,
-                tasks: goalTasks
-            }]
-        }
-        console.log(userGoalData);
-        API.addUserGoal(userGoalData)
-            .then(jsonData => {
-                console.log(jsonData);
-                // go to manage goals page
-            })
-            .catch(error => {
-                console.log(error);
+        // check if user has goals already
+        API.getUserGoalByUser(userId)
+            .then( jsonData => {
+                console.log(jsonData.data);
+                let i = jsonData.data.length;
+                if (i===0) {
+                    // first goal!
+                    let goalName= this.state.selectedGoal.goalName;
+                    let goalTasks = [];
+                    for (let i = 0; i < this.state.tasks.length; i++) {
+                        goalTasks.push({
+                            taskName: this.state.tasks[i].taskName,
+                            streakTarget: this.state.tasks[i].streakTarget,
+                            totalTarget: this.state.tasks[i].totalTarget
+                        });
+                    }
+                    let userGoalData = {
+                        userId: userId,
+                        goals: [{
+                            goalName: goalName,
+                            goalPercent: 0,
+                            tasks: goalTasks
+                        }]
+                    }
+                    console.log(userGoalData);
+                    API.addUserGoal(userGoalData)
+                        .then(jsonData => {
+                            console.log(jsonData);
+                            // go to manage goals page
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                } else {
+                    // user has goals, so add a goal
+                    let goalName= this.state.selectedGoal.goalName;
+                    let goalTasks = [];
+                    for (let i = 0; i < this.state.tasks.length; i++) {
+                        goalTasks.push({
+                            taskName: this.state.tasks[i].taskName,
+                            streakTarget: this.state.tasks[i].streakTarget,
+                            totalTarget: this.state.tasks[i].totalTarget
+                        });
+                    }
+                    let userGoalData = {
+                            goalName: goalName,
+                            goalPercent: 0,
+                            tasks: goalTasks
+                        }
+                    console.log(userGoalData);
+                    API.appendUserGoal(userId, userGoalData)
+                        .then( jsonData => {
+                            console.log(jsonData);
+                            // go to manage goals page
+                        })
+                        .catch( error => {
+                            console.log(error);
+                        });
+                }
             });
         // close the TaskOverlay
         this.setState({
