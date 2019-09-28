@@ -1,5 +1,7 @@
-.rowabout{
+.rowAbout{
     margin-left: 50px;
+    background-image: url("/images/crumplyBG.png");
+    margin:0;
 }
 
 .aboutUsHeader{
@@ -12,6 +14,8 @@
     color: #0e184b;
     background-color: #d4d600;
     text-transform: lowercase;
+    margin: 0;
+    padding-top: 1em;
 }
 
 .aboutUsCopy{
@@ -21,5 +25,11 @@
     font-style: italic;
     font-size: 1.8em;
     font-weight:400;
-    margin: .5em;
+    margin: 0;
+    padding: 0 25% 6% 25%;
+    background-color: #d4d600;
+}
+
+.rowInfoCards{
+    text-align: center;
 }
