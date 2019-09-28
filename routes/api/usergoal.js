@@ -8,6 +8,5 @@ router.route('/')
 // match with /api/usergoal/user/:user_id
 router.route('/user/:user_id')
     .get(userGoalController.findByUser)
-    .put(userGoalController.addGoal)
 
 module.exports = router;
