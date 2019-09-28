@@ -18,7 +18,7 @@ module.exports = {
     addGoal: function( request, response) {
         console.log('add a goal to existing UserGoal');
         db.UserGoal
-            .update(
+            .updateOne(
                 { userId: request.params.user_id }, 
                 { $push: { goals: request.body } }
             )

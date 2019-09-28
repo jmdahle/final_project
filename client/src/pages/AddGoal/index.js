@@ -5,6 +5,7 @@ import SelectedCategory from '../../components/SelectedCategory';
 import Instructions from '../../components/Instructions';
 import GoalCard from '../../components/GoalCard';
 import TaskOverlay from '../../components/TaskOverlay';
+import OkLinkDialog from '../../components/OkLinkDialog';
 
 import './style.css';
 
@@ -56,6 +57,13 @@ class AddGoal extends React.Component {
                             tasks={this.props.tasks}
                             handleAddGoalFormSubmit={this.props.handleAddGoalFormSubmit}
                             taskOverlayClose={this.props.taskOverlayClose}
+                        />
+                    </div>
+                    <div>
+                        <OkLinkDialog
+                            showOkDialog={this.props.showOkDialog}
+                            okDialogText='Congratulations!  You took another step towards being less of a garbage person!  But seriously, you got this!'
+                            okDialogLink='/'
                         />
                     </div>
                 </Container>

@@ -87,7 +87,8 @@ class App extends React.Component {
         isAuthenticated: false,
         showLogin: false,
         failedLoginAttempts: 0,
-        showTaskOverlay: false
+        showTaskOverlay: false,
+        showOkDialog: false
     }
 
     componentDidMount = () => {
@@ -292,7 +293,8 @@ class App extends React.Component {
             });
         // close the TaskOverlay
         this.setState({
-            showTaskOverlay: false
+            showTaskOverlay: false,
+            showOkDialog: true
         });
     }
 
@@ -429,6 +431,12 @@ class App extends React.Component {
         });
     }
 
+    okDialogClose = () => {
+        this.setState({
+            showOkDialog: false
+        });
+    }
+
     render() {
         return (
             <Router>
@@ -487,6 +495,8 @@ class App extends React.Component {
                                 getGoalsInCategory={this.getGoalsInCategory}
                                 taskOverlayClose={this.taskOverlayClose}
                                 handleAddGoalFormSubmit={this.handleAddGoalFormSubmit}
+                                showOkDialog={this.state.showOkDialog}
+                                okDialogClose={this.okDialogClose}
                             />}
                         />
                         <Route exact path="/manage" render={ props =>

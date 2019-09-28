@@ -17,6 +17,10 @@ class OkLinkDialog extends React.Component {
                     </Link>
                 </div>
             )
+        } else {
+            return(
+                <span></span>
+            )
         }
     }
 }
