@@ -22,6 +22,8 @@ module.exports = {
         console.log('select UserGoals by user');
         db.UserGoal
             .find({ userId: request.params.user_id})
+            .populate('userId')
+            .populate('goalId')
             .then( dbUserGoal => response.json(dbUserGoal))
             .catch( dbError => response.status(400).json(dbError));
     },

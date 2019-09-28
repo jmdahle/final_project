@@ -16,6 +16,8 @@ module.exports = {
         console.log('select goals');
         db.Goal
             .find({})
+            .populate('tasks')
+            .populate('userGoals')
             .then( dbGoal => response.json(dbGoal) )
             .catch( dbError => response.status(400).json(dbError) )
     },
@@ -23,6 +25,8 @@ module.exports = {
         console.log('select goals for category');
         db.Goal
             .find({categoryId: request.params.category_id})
+            .populate('tasks')
+            .populate('userGoals')
             .then( dbGoal => response.json(dbGoal ) )
             .catch( dbError => response.status(400).json(dbError) )
     },
@@ -30,6 +34,8 @@ module.exports = {
         console.log('select goal where id is ' + request.params.goal_id);
         db.Goal
             .find({ _id: request.params.goal_id })
+            .populate('tasks')
+            .populate('userGoals')
             .then( dbGoal => response.json(dbGoal) )
             .catch( dbError => response.status(400).json(dbError) )
     }

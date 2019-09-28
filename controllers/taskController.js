@@ -17,6 +17,8 @@ module.exports = {
         console.log('select tasks');
         db.Task
             .find({})
+            .populate('goalId')
+            .populate('taskTimelines')
             .then( dbTask => response.json(dbTask) )
             .catch( dbError => response.status(400).json(dbError) );
     },
