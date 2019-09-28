@@ -1,0 +1,45 @@
+.homeCard{
+    background-color:#ffffff;
+    border: .6em solid #fbd900;
+}
+
+.cardTitle{
+font-family:'Space Mono', monospace;
+text-transform: lowercase;
+letter-spacing: -.04em;
+font-size:1.6em;
+font-weight:700;
+line-height:1.05em;
+}
+
+.homeCardImg{
+    /* text-align: center; */
+}
+
+.homeCardCopy{
+    font-family: 'Karla', sans-serif;
+    font-size: .85em;
+    line-height: 1.2em;
+}
+
+.homeCardBody{
+    background-color:white;
+}
+
+.homeCardRow{
+    padding: 3em;
+}
+
+.homeCardButton {
+    background-color: #ffffff;
+    color: #0e184b;
+    border: 2px solid #2f949a;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.homeCardButton:hover, .homeCardButton:active {
+    background-color: #2f949a;
+    color: white;
+    border: 2px solid #2f949a;
+}
