@@ -13,26 +13,29 @@ class Home extends React.Component {
     return (
       <div>
         <Hero backgroundImage="images/heroImage.png" />
+        <div className="heroImgDiv">
+        <img src="images/rockToss.png" className="heroImg" alt=""/>
+        </div>
         <h1 className="aboutUsHeader">About Us</h1>
         <p className="aboutUsCopy">Adulting is hard.<br/>There's no real guidebook on how to do it right and worst of all, thanks to social media, we all believe that everyone seems to have it all together except for ourselves.</p>
         <Row className="rowInfoCards">
         
-        <Col>
-        <img src="https://emojis.slackmojis.com/emojis/images/1563480763/5999/meow_party.gif?1563480763" alt=""></img>
-        <h1>about us</h1>
-        <p>Lorem Ipsum</p>
+        <Col className="infoCardCol">
+        <img src="images/bossYell.jpg" alt="" className="infoCardImg"></img>
+        <h1 className="infoCardHeading">about us</h1>
+        <p>Keep It Together was designed to help you build good habits without stressing you out.</p>
           </Col>
 
-          <Col>
-        <img src="https://emojis.slackmojis.com/emojis/images/1563480763/5999/meow_party.gif?1563480763" alt=""></img>
-        <h1>about us</h1>
-        <p>Lorem Ipsum</p>
+          <Col className="infoCardCol">
+        <img src="images/sadBirthday.jpg" alt=""  className="infoCardImg"></img>
+        <h1 className="infoCardHeading">simple <br/>& fast</h1>
+        <p>Easily keep track of your goals, add new ones and level up with each goal completion.</p>
           </Col>
 
-          <Col>
-        <img src="https://emojis.slackmojis.com/emojis/images/1563480763/5999/meow_party.gif?1563480763" alt=""></img>
-        <h1>about us</h1>
-        <p>Lorem Ipsum</p>
+          <Col className="infoCardCol">
+        <img src="images/dudeWithShitTogether.jpg" alt=""  className="infoCardImg"></img>
+        <h1 className="infoCardHeading">the bigger picture</h1>
+        <p>Our visualizer helps you spot trends ranging days and weeks so you will be well on your way to being an adult in no time.</p>
           </Col>
 
         </Row>
