@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';  
+
 import './style.css';
 
 class OkLinkDialog extends React.Component {
@@ -8,13 +8,15 @@ class OkLinkDialog extends React.Component {
             return (
                 <div className='okdialog-popup'>
                     <p>{this.props.okDialogText}</p>
-                    <Link className='inline-link' to={this.props.okDialogLink}>
+                    {/* <Link className='inline-link' to={this.props.okDialogLink}> */}
                         <button 
                             type='submit' 
-                            className='btn navbutton'
+                            className='btn navbutton btn-okdialog'
+                            id='btn-okdialog'
+                            location-location='/'
                         >OK
                         </button>
-                    </Link>
+                    {/* </Link> */}
                 </div>
             )
         } else {

@@ -5,7 +5,7 @@ class Task extends React.Component {
     render() {
         return (
             <form>
-                <div class='form-group'>
+                <div className='form-group'>
                     <label htmlFor='goalId'>Select Goal</label>
                     <select className='form-control' id='goalId' name='goalId' onChange={this.props.handleOnChange} value={this.props.goalId}>
                         <option hidden selected>-- Select a Goal --</option>
@@ -46,7 +46,7 @@ class Task extends React.Component {
                                 </div>
                             </td>
                             <td className='streakTarget'>
-                                <div class='form-group'>
+                                <div className='form-group'>
                                 <input 
                                         type='number' 
                                         className='form-control' 

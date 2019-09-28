@@ -6,7 +6,7 @@ class GoalForm extends React.Component {
     render() {
         return (
             <form>
-                <div class='form-group'>
+                <div className='form-group'>
                     <label htmlFor='categoryId'>Select Category</label>
                     <select className='form-control' id='categoryId' name='categoryId' onChange={this.props.handleOnChange} value={this.props.categoryId}>
                         <option hidden selected>-- Select a Category --</option>

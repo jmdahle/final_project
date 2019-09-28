@@ -28,51 +28,7 @@ class App extends React.Component {
         categoryName: '',
         categoryTagLine: '',
         categoryImgSrc: '',
-        categories: [
-            {
-              "id": 1,
-              "categoryName": "Fitness",
-              "categoryImgSrc": "https://i.chzbgr.com/full/4029669888/hF36A37F6/",
-              "categoryTagline": "See what happens when you leave your computer",
-              "ButtonLink": "#"
-            },
-            {
-                "id": 2,
-                "categoryName": "Healthy Eating",
-                "categoryImgSrc": "https://i.pinimg.com/originals/c6/c4/33/c6c433db5099fdfead1677633de561b1.jpg",
-                "categoryTagline": "Because Taco Tuesdays and Thirsty Thursdays after 30 looks like this",
-                "ButtonLink": "#"
-              },
-              {
-                "id": 3,
-                "categoryName": "Increase Productivity at Work",
-                "categoryImgSrc": "https://i0.wp.com/www.billymoyerboss.com/wp-content/uploads/2015/09/Slacker-blog.jpg?fit=760%2C507",
-                "categoryTagline": "Try not to get fired...At least before you can apply for unemployment",
-                "ButtonLink": "#"
-              },
-              {
-                "id": 4,
-                "categoryName": "Increase Willpower",
-                "categoryImgSrc": "https://www.adywatts.com/wp-content/uploads/cookie-604x540.jpg",
-                "categoryTagline": "Try to be less of a garbage person.",
-                "ButtonLink": "#"
-              },
-              {
-                "id": 5,
-                "categoryName": "Upgrade Your Social Life",
-                "categoryImgSrc": "https://img.buzzfeed.com/buzzfeed-static/static/2015-08/7/15/enhanced/webdr02/original-13074-1438974186-3.jpg?downsize=700%3A%2A&output-quality=auto&output-format=auto&output-quality=auto&output-format=auto&downsize=360:*",
-                "categoryTagline": "End that soul-crushing loneliness that happens after college.",
-                "ButtonLink": "#"
-              },
-              {
-                "id": 6,
-                "categoryName": "Learn a New Skill",
-                "categoryImgSrc": "https://confettifair.files.wordpress.com/2015/08/unicorn.jpg",
-                "categoryTagline": "Because all your friends on social media seem to have it all figured out, why haven't you?",
-                "ButtonLink": "#"
-              }
-            
-        ],
+        categories: [],
         selectedCategory: {},
         categoryId: '',
         goalName: '',
@@ -99,6 +55,7 @@ class App extends React.Component {
             this.getUserDetails(userId);
         } else {
             console.log('user key is missing!  No one is logged in');
+            this.resetState();
         }
     }
 
@@ -231,7 +188,7 @@ class App extends React.Component {
         event.preventDefault();
         console.log('Add User Goal');
         let userId = localStorage.getItem('userKey');
-        let goalId = this.state.selectgedGoal._id;
+        let goalId = this.state.selectedGoal._id;
         let userGoalData = {
             userId: userId,
             goalId: goalId
@@ -239,12 +196,10 @@ class App extends React.Component {
         API.addUserGoal(userGoalData)
             .then(jsonData => {
                 console.log(jsonData);
-                // go to manage goals page
             })
             .catch(error => {
                 console.log(error);
             });
-        // close the TaskOverlay
         this.setState({
             showTaskOverlay: false,
             showOkDialog: true
@@ -384,12 +339,6 @@ class App extends React.Component {
         });
     }
 
-    okDialogClose = () => {
-        this.setState({
-            showOkDialog: false
-        });
-    }
-
     render() {
         return (
             <Router>
@@ -432,7 +381,7 @@ class App extends React.Component {
                                selectCategory={this.selectCategory}
                                />}
                          />
-                        <Route exact path='/manage' component={Manage} />
+
                         <Route exact path='/addgoal' render={ (props) => <AddGoal {...props}
                                 categoryId={this.state.categoryId}
                                 selectedCategory={this.state.selectedCategory}
@@ -449,7 +398,6 @@ class App extends React.Component {
                                 taskOverlayClose={this.taskOverlayClose}
                                 handleAddGoalFormSubmit={this.handleAddGoalFormSubmit}
                                 showOkDialog={this.state.showOkDialog}
-                                okDialogClose={this.okDialogClose}
                             />}
                         />
                         <Route exact path="/manage" render={ props =>

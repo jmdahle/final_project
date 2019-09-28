@@ -20,8 +20,9 @@ class Navbar extends React.Component {
                             <span className="loggedInAs">Let's do this {this.props.firstName}!</span>
                             <button 
                                 type='button' 
-                                className='btn navbutton'
-                                onClick={this.props.handleLogout}
+                                className='btn navbutton btn-logout'
+                                id='btn-logout'
+                                redirect-location='/'
                             >Log Out
                             </button>
                         </React.Fragment>
