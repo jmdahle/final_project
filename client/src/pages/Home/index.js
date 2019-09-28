@@ -6,7 +6,7 @@ import Homecard from "../../components/HomeCard";
 // import HomeInfoCard from "../../components/HomeInfoCard";
 import Footer from "../../components/Footer";
 import "./style.css";
-import Card from "../../components/Card";
+// import Card from "../../components/Card";
 
 class Home extends React.Component {
   render() {
@@ -18,19 +18,19 @@ class Home extends React.Component {
         <Row className="rowInfoCards">
         
         <Col>
-        <img src="https://emojis.slackmojis.com/emojis/images/1563480763/5999/meow_party.gif?1563480763"></img>
+        <img src="https://emojis.slackmojis.com/emojis/images/1563480763/5999/meow_party.gif?1563480763" alt=""></img>
         <h1>about us</h1>
         <p>Lorem Ipsum</p>
           </Col>
 
           <Col>
-        <img src="https://emojis.slackmojis.com/emojis/images/1563480763/5999/meow_party.gif?1563480763"></img>
+        <img src="https://emojis.slackmojis.com/emojis/images/1563480763/5999/meow_party.gif?1563480763" alt=""></img>
         <h1>about us</h1>
         <p>Lorem Ipsum</p>
           </Col>
 
           <Col>
-        <img src="https://emojis.slackmojis.com/emojis/images/1563480763/5999/meow_party.gif?1563480763"></img>
+        <img src="https://emojis.slackmojis.com/emojis/images/1563480763/5999/meow_party.gif?1563480763" alt=""></img>
         <h1>about us</h1>
         <p>Lorem Ipsum</p>
           </Col>
