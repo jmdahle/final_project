@@ -11,7 +11,8 @@ export default {
     },
 
     getUserDetails: function(userId) {
-        return axios.post('/api/user/' + userId);
+        console.log('API request - getUserDetails');
+        return axios.get('/api/user/' + userId);
     },
 
     addCategory: function(categoryData) {
@@ -56,6 +57,10 @@ export default {
     },
     getUserGoalByUser: function(userId) {
         console.log('API request - getUserGoalByUser');
-        return axios.get('/api/usergoal/' + userId);
+        return axios.get('/api/usergoal/user/' + userId);
+    },
+    appendUserGoal: function(userId, userGoalData) {
+        console.log('API request - appendUserGoal');
+        return axios.put('/api/usergoal/user/' + userId, userGoalData);
     }
 }

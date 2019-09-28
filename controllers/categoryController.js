@@ -13,6 +13,7 @@ module.exports = {
         console.log('select categories');
         db.Category
             .find({})
+            .populate('goals')
             .then( dbCategory => response.json(dbCategory) )
             .catch( dbError => response.status(400).json(dbError) )
     },
@@ -20,6 +21,7 @@ module.exports = {
         console.log('select category with id ' + request.params.category_id);
         db.Category
             .find({ _id: request.params.category_id} )
+            .populate('goals')
             .then( dbCategory => response.json( dbCategory) )
             .catch( dbError => response.status(400).json(dbError) );
     }

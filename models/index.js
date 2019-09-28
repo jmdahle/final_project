@@ -4,4 +4,5 @@ module.exports = {
     Goal: require('./goal'),
     Task: require('./task'),
     UserGoal: require('./userGoal'),
+    TaskTimeline: require('./taskTimeline')
 }

@@ -5,12 +5,24 @@ import SelectedCategory from '../../components/SelectedCategory';
 import Instructions from '../../components/Instructions';
 import GoalCard from '../../components/GoalCard';
 import TaskOverlay from '../../components/TaskOverlay';
+import OkLinkDialog from '../../components/OkLinkDialog';
 
 import './style.css';
 
 
 
 class AddGoal extends React.Component {
+
+    componentDidMount = () => {
+        let queryString = this.props.location.search;
+        if (queryString) {
+            let qsArray = queryString.split('=');
+            console.log(qsArray);
+            this.props.getCategoryMatch(qsArray[1]);
+            this.props.getGoalsInCategory(qsArray[1]);
+        }
+    }
+
     render() {
         return (
             <div className='add-goal'>
@@ -44,6 +56,14 @@ class AddGoal extends React.Component {
                             selectedGoal={this.props.selectedGoal}
                             tasks={this.props.tasks}
                             handleAddGoalFormSubmit={this.props.handleAddGoalFormSubmit}
+                            taskOverlayClose={this.props.taskOverlayClose}
+                        />
+                    </div>
+                    <div>
+                        <OkLinkDialog
+                            showOkDialog={this.props.showOkDialog}
+                            okDialogText='Congratulations!  You took another step towards being less of a garbage person!  But seriously, you got this!'
+                            okDialogLink='/'
                         />
                     </div>
                 </Container>

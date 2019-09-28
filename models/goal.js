@@ -22,6 +22,10 @@ const goalSchema = new Schema({
         ref: "Task"
         }
     ],
+    userGoals: [{
+        type: Schema.Types.ObjectId,
+        ref: 'UserGoal'
+    }],
 });
 
 const Goal = mongoose.model("Goal", goalSchema);

@@ -17,7 +17,11 @@ const taskSchema = new Schema ({
     goalId: {
         type: Schema.Types.ObjectId,
         ref: 'Goal'
-    }
+    },
+    taskTimelines: [{
+        type: Schema.Types.ObjectId,
+        ref: 'TaskTimeline'
+    }]
 });
 
 const Task = mongoose.model('Task', taskSchema);

@@ -38,6 +38,13 @@ class LoginForm extends React.Component {
                         onClick={this.props.handleLoginFormSubmit}
                     >Log In
                     </button>
+                    &nbsp;
+                    <button 
+                        type='submit' 
+                        className='btn navbutton'
+                        onClick={this.props.handleLoginClose}
+                    >Close
+                    </button>
                     <p className='login-message'>{this.props.failedLoginAttempts > 0 ? 'Incorrect email or password.' : ''}</p>
                 </form>
                 </div>

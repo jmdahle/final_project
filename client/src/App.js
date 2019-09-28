@@ -87,17 +87,19 @@ class App extends React.Component {
         isAuthenticated: false,
         showLogin: false,
         failedLoginAttempts: 0,
-        showTaskOverlay: false
+        showTaskOverlay: false,
+        showOkDialog: false
     }
 
     componentDidMount = () => {
-        if (localStorage.getItem('userKey')) {
-            console.log('user key is ' + localStorage.getItem('userKey') );
+        this.resetState();
+        let userId = localStorage.getItem('userKey');
+        if (userId) {
+            console.log('user key is ' + userId );
+            this.getUserDetails(userId);
         } else {
             console.log('user key is missing!  No one is logged in');
         }
-        this.resetState();
-        this.getCategories()
     }
 
     resetState = () => {
@@ -127,7 +129,8 @@ class App extends React.Component {
             failedLoginAttempts: 0,
             showTaskOverlay: false
             });        
-        }
+            this.getCategories();
+    }
 
     handleOnChange = event => {
         this.setState({
@@ -228,47 +231,71 @@ class App extends React.Component {
         event.preventDefault();
         console.log('Add User Goal');
         let userId = localStorage.getItem('userKey');
-        let goalName= this.state.selectedGoal.goalName;
-        let goalTasks = [];
-        for (let i = 0; i < this.state.tasks.length; i++) {
-            goalTasks.push({
-                taskName: this.state.tasks[i].taskName,
-                streakTarget: this.state.tasks[i].streakTarget,
-                totalTarget: this.state.tasks[i].totalTarget
-            });
-        }
-        let userGoalData = {
-            userId: userId,
-            goals: [{
-                goalName: goalName,
-                goalPercent: 0,
-                tasks: goalTasks
-            }]
-        }
-        console.log(userGoalData);
-        API.addUserGoal(userGoalData)
-            .then(jsonData => {
-                console.log(jsonData);
-                // go to manage goals page
-            })
-            .catch(error => {
-                console.log(error);
+        // check if user has goals already
+        API.getUserGoalByUser(userId)
+            .then( jsonData => {
+                console.log(jsonData.data);
+                let i = jsonData.data.length;
+                if (i===0) {
+                    // first goal!
+                    let goalName= this.state.selectedGoal.goalName;
+                    let goalTasks = [];
+                    for (let i = 0; i < this.state.tasks.length; i++) {
+                        goalTasks.push({
+                            taskName: this.state.tasks[i].taskName,
+                            streakTarget: this.state.tasks[i].streakTarget,
+                            totalTarget: this.state.tasks[i].totalTarget
+                        });
+                    }
+                    let userGoalData = {
+                        userId: userId,
+                        goals: [{
+                            goalName: goalName,
+                            goalPercent: 0,
+                            tasks: goalTasks
+                        }]
+                    }
+                    console.log(userGoalData);
+                    API.addUserGoal(userGoalData)
+                        .then(jsonData => {
+                            console.log(jsonData);
+                            // go to manage goals page
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                } else {
+                    // user has goals, so add a goal
+                    let goalName= this.state.selectedGoal.goalName;
+                    let goalTasks = [];
+                    for (let i = 0; i < this.state.tasks.length; i++) {
+                        goalTasks.push({
+                            taskName: this.state.tasks[i].taskName,
+                            streakTarget: this.state.tasks[i].streakTarget,
+                            totalTarget: this.state.tasks[i].totalTarget
+                        });
+                    }
+                    let userGoalData = {
+                            goalName: goalName,
+                            goalPercent: 0,
+                            tasks: goalTasks
+                        }
+                    console.log(userGoalData);
+                    API.appendUserGoal(userId, userGoalData)
+                        .then( jsonData => {
+                            console.log(jsonData);
+                            // go to manage goals page
+                        })
+                        .catch( error => {
+                            console.log(error);
+                        });
+                }
             });
         // close the TaskOverlay
         this.setState({
-            showTaskOverlay: false
+            showTaskOverlay: false,
+            showOkDialog: true
         });
-    }
-
-    getCategories = () => {
-        console.log('loading category options');
-        API.getCategories()
-            .then(jsonData => {
-                console.log(jsonData)
-                this.setState({
-                    categories: jsonData.data
-                })
-            });
     }
 
     handleGoalFormSubmit = event => {
@@ -290,12 +317,24 @@ class App extends React.Component {
             });
     };
 
+    getCategories = () => {
+        console.log('loading category options');
+        API.getCategories()
+            .then(jsonData => {
+                console.log(jsonData)
+                this.setState({
+                    categories: jsonData.data
+                })
+            });
+    }
+
     getCategoryMatch = categoryId => {
         console.log("loding selected category with id " + categoryId);
         API.getCategoryMatch(categoryId).then(jsonData => {
             console.log(jsonData);
             this.setState({
-                selectedCategory: jsonData.data[0]
+                selectedCategory: jsonData.data[0],
+                categoryId: categoryId
             });
         });
     };
@@ -330,10 +369,33 @@ class App extends React.Component {
         });
     };
 
+    getUserDetails = (userId) => {
+        console.log('loading user details')
+        API.getUserDetails(userId)
+            .then(jsonData => {
+                console.log(jsonData);
+                let userData = jsonData.data;
+                this.setState({
+                    loginMessage: "",
+                    userId: userId,
+                    firstName: userData.firstName,
+                    lastName: userData.lastName,
+                    email: userData.email,
+                    isAuthenticated: true
+                });
+            })
+    }
+
     logoutClick = () => {
         console.log('logging out...');
         localStorage.setItem('userKey', '');
         this.resetState();
+    }
+
+    loginClose = () => {
+        this.setState({
+            showLogin: false
+        });
     }
 
     loginClick = () => {
@@ -342,6 +404,12 @@ class App extends React.Component {
           showLogin: true
         });
     };
+
+    taskOverlayClose = () => {
+        this.setState({
+            showTaskOverlay: false
+        })
+    }
 
     setUserSession = key => {
         localStorage.setItem("userKey", key);
@@ -363,6 +431,12 @@ class App extends React.Component {
         });
     }
 
+    okDialogClose = () => {
+        this.setState({
+            showOkDialog: false
+        });
+    }
+
     render() {
         return (
             <Router>
@@ -380,11 +454,14 @@ class App extends React.Component {
                         failedLoginAttempts={this.state.failedLoginAttempts}
                         handleOnChange={this.handleOnChange}
                         handleLoginFormSubmit={this.handleLoginFormSubmit}
+                        handleLoginClose={this.loginClose}
                         />
                     <Switch>
                         <Route exact path='/' render={
                             (props) => <Home {...props} 
                             categories={this.state.categories}
+                            // selectCategory={this.selectCategory}
+                            getCategoryMatch={this.getCategoryMatch}
                             />}
                         />
                         <Route exact path='/register' render={(props) => <Register {...props}
@@ -399,6 +476,7 @@ class App extends React.Component {
                         <Route exact path='/home' render={
                                (props) => <Home {...props} 
                                categories={this.state.categories}
+                               selectCategory={this.selectCategory}
                                />}
                          />
                         <Route exact path='/manage' component={Manage} />
@@ -413,7 +491,12 @@ class App extends React.Component {
                                 showTaskOverlay={this.state.showTaskOverlay}   
                                 selectedGoal={this.state.selectedGoal}
                                 tasks={this.state.tasks}
+                                getCategoryMatch={this.getCategoryMatch}
+                                getGoalsInCategory={this.getGoalsInCategory}
+                                taskOverlayClose={this.taskOverlayClose}
                                 handleAddGoalFormSubmit={this.handleAddGoalFormSubmit}
+                                showOkDialog={this.state.showOkDialog}
+                                okDialogClose={this.okDialogClose}
                             />}
                         />
                         <Route exact path="/manage" render={ props =>
