@@ -8,15 +8,13 @@ class OkLinkDialog extends React.Component {
             return (
                 <div className='okdialog-popup'>
                     <p>{this.props.okDialogText}</p>
-                    {/* <Link className='inline-link' to={this.props.okDialogLink}> */}
                         <button 
                             type='submit' 
                             className='btn navbutton btn-okdialog'
                             id='btn-okdialog'
-                            location-location='/'
+                            redirect-location={this.props.okDialogLink}
                         >OK
                         </button>
-                    {/* </Link> */}
                 </div>
             )
         } else {

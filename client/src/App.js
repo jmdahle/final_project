@@ -44,7 +44,8 @@ class App extends React.Component {
         showLogin: false,
         failedLoginAttempts: 0,
         showTaskOverlay: false,
-        showOkDialog: false
+        showOkDialog: false,
+        loginMessage: 'Log in or register to enhance your experience!',
     }
 
     componentDidMount = () => {
@@ -188,22 +189,31 @@ class App extends React.Component {
         event.preventDefault();
         console.log('Add User Goal');
         let userId = localStorage.getItem('userKey');
-        let goalId = this.state.selectedGoal._id;
-        let userGoalData = {
-            userId: userId,
-            goalId: goalId
-        }
-        API.addUserGoal(userGoalData)
-            .then(jsonData => {
-                console.log(jsonData);
+        if (userId) {
+            // user is logged in
+            let goalId = this.state.selectedGoal._id;
+            let userGoalData = {
+                userId: userId,
+                goalId: goalId
+            }
+            API.addUserGoal(userGoalData)
+                .then(jsonData => {
+                    console.log(jsonData);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            this.setState({
+                showTaskOverlay: false,
+                showOkDialog: true
+            });    
+        } else {
+            // user is NOT logged in
+            // user must REGISTER or LOGIN
+            this.setState({
+                showLogin: true
             })
-            .catch(error => {
-                console.log(error);
-            });
-        this.setState({
-            showTaskOverlay: false,
-            showOkDialog: true
-        });
+        }
     }
 
     handleGoalFormSubmit = event => {
@@ -357,6 +367,7 @@ class App extends React.Component {
                         handleOnChange={this.handleOnChange}
                         handleLoginFormSubmit={this.handleLoginFormSubmit}
                         handleLoginClose={this.loginClose}
+                        message={this.state.loginMessage}
                         />
                     <Switch>
                         <Route exact path='/' render={
@@ -373,6 +384,7 @@ class App extends React.Component {
                             password={this.state.password}
                             handleOnChange={this.handleOnChange}
                             setUserSession={this.setUserSession}
+                            loginClose={this.loginClose}
                             />}
                         />
                         <Route exact path='/home' render={
