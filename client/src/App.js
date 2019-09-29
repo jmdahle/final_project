@@ -349,6 +349,14 @@ class App extends React.Component {
         });
     }
 
+    clearCategory = () => {
+        this.setState({
+            categoryId: '',
+            selectedCategory: {},
+            goals: [],
+        })
+    }
+
     render() {
         return (
             <Router>
@@ -410,6 +418,7 @@ class App extends React.Component {
                                 taskOverlayClose={this.taskOverlayClose}
                                 handleAddGoalFormSubmit={this.handleAddGoalFormSubmit}
                                 showOkDialog={this.state.showOkDialog}
+                                clearCategory={this.clearCategory}
                             />}
                         />
                         <Route exact path="/manage" render={ props =>

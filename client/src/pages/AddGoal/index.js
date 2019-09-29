@@ -34,6 +34,7 @@ class AddGoal extends React.Component {
                         getCategories={this.props.getCategories}
                         categories={this.props.categories}
                         selectedCategory={this.props.selectedCategory}
+                        clearCategory={this.props.clearCategory}
                     />
                     <Instructions 
                         instructionsHeading='Instructions'
