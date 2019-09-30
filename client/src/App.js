@@ -49,9 +49,9 @@ class App extends React.Component {
         showTaskOverlay: false,
         showOkDialog: false,
         loginMessage: 'Log in or register to enhance your experience!',
-        userDetails: [],
-        userGoals: [],
-        visualizerDates: []
+        visualizerDates: [],
+        userDetails:[],
+        userGoals: []
     }
 
     componentDidMount = () => {
@@ -88,12 +88,12 @@ class App extends React.Component {
             tasks: [],
             streakTarget: '7',
             totalTarget: '7',
-            userDetails: [],
-            userGoals: [],
             isAuthenticated: false,
             showLogin: false,
             failedLoginAttempts: 0,
-            showTaskOverlay: false
+            showTaskOverlay: false,
+            userDetails:[],
+            userGoals: []
             });        
             // get initial categories
             this.getCategories();
@@ -271,7 +271,7 @@ class App extends React.Component {
     }
 
     getCategoryMatch = categoryId => {
-        console.log("loading selected category with id " + categoryId);
+        console.log("loding selected category with id " + categoryId);
         API.getCategoryMatch(categoryId).then(jsonData => {
             console.log(jsonData);
             this.setState({
@@ -315,10 +315,8 @@ class App extends React.Component {
         console.log('loading user details')
         API.getUserDetails(userId)
             .then(jsonData => {
-                console.log('user details');
-                // console.log(jsonData);
+                console.log(jsonData);
                 let userData = jsonData.data;
-                console.log(userData);
                 this.setState({
                     loginMessage: "",
                     userId: userId,
@@ -441,19 +439,14 @@ class App extends React.Component {
                                 clearCategory={this.clearCategory}
                             />}
                         />
-                        <Route exact path="/manage" render={ (props) => <Manage {...props}
+                        <Route exact path="/manage" render={ (props) => <Manage 
+                                {...props}
                                 handleOnChange={this.handleOnChange}
+                                goals={this.state.goals}
                                 userGoals={this.state.userGoals}
-                                getUserDetails={this.getUserDetails}
-                                getGoalMatch={this.getGoalMatch}
-                                goals={this.state.goals}    
-                                selectGoal={this.selectGoal}    
-                                showTaskOverlay={this.state.showTaskOverlay}   
-                                selectedGoal={this.state.selectedGoal}
-                                tasks={this.state.tasks}
-                                userDetails={this.state.userDetails}
                             />}
                         />
+
                         <Route exact path='/progress' render={ (props) => <Progress {...props} 
                                 visualizerDates={this.state.visualizerDates}
                                 resetVisualizerDates={this.resetVisualizerDates}
