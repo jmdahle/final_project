@@ -37,7 +37,7 @@ class AddGoal extends React.Component {
                     />
                     <Instructions 
                         instructionsHeading='Instructions'
-                        instructionsText='Select a goal.  Our peronal coaching monkeys will select a list of activities for you to achieve your goal.  To complete a goal, you will need to successfully complete each of the tasks associated with the goal.  You complete each activity by either getting streak of consecutive days OR doing that activity a total number of times.'
+                        instructionsText='Select a goal.  Our personal coaching monkeys will select a list of activities for you to achieve your goal.  To complete a goal, you will need to successfully complete each of the tasks associated with the goal.  You complete each activity by either getting streak of consecutive days OR doing that activity a total number of times.'
                     />
                     <div>
                         {this.props.goals.length > 0 ?
