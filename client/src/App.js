@@ -49,7 +49,8 @@ class App extends React.Component {
         showTaskOverlay: false,
         showOkDialog: false,
         loginMessage: 'Log in or register to enhance your experience!',
-        visualizerDates: [],
+        userGoals: [],
+        visualizerDates: []
     }
 
     componentDidMount = () => {
@@ -324,6 +325,18 @@ class App extends React.Component {
             })
     }
 
+    getUserGoalByUser = userId => {
+        console.log("getting user goals by user");
+        let userId = localStorage.getItem("userKey");
+        API
+            .getUserGoalByUser(userId)
+            .then(jsonData => {
+                this.setState({
+                    userGoals: jsonData.data
+                });
+            })
+    }
+
     logoutClick = () => {
         console.log('logging out...');
         localStorage.setItem('userKey', '');
@@ -434,14 +447,19 @@ class App extends React.Component {
                                 clearCategory={this.clearCategory}
                             />}
                         />
-                        <Route exact path="/manage" render={ props =>
-                            <Manage 
-                                {...props}
+                        <Route exact path="/manage" render={ (props) => <Manage {...props}
                                 handleOnChange={this.handleOnChange}
                                 goals={this.state.goals}
+                                userGoals={this.state.userGoals}
+                                getUserDetails={this.getUserDetails}
+                                getGoalMatch={this.getGoalMatch}
+                                goals={this.state.goals}    
+                                selectGoal={this.selectGoal}    
+                                showTaskOverlay={this.state.showTaskOverlay}   
+                                selectedGoal={this.state.selectedGoal}
+                                tasks={this.state.tasks}
                             />}
                         />
-
                         <Route exact path='/progress' render={ (props) => <Progress {...props} 
                                 visualizerDates={this.state.visualizerDates}
                                 resetVisualizerDates={this.resetVisualizerDates}
