@@ -23,7 +23,7 @@ class Task extends React.Component {
                                 Task Name
                             </td>
                             <td>
-                                Streak Taget (# times consecutively)
+                                Streak Target (# times consecutively)
                             </td>
                             <td>
                                 Total Target (# times in total)
