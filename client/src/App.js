@@ -271,7 +271,7 @@ class App extends React.Component {
     }
 
     getCategoryMatch = categoryId => {
-        console.log("loding selected category with id " + categoryId);
+        console.log("loading selected category with id " + categoryId);
         API.getCategoryMatch(categoryId).then(jsonData => {
             console.log(jsonData);
             this.setState({
@@ -439,11 +439,10 @@ class App extends React.Component {
                                 clearCategory={this.clearCategory}
                             />}
                         />
-                        <Route exact path="/manage" render={ (props) => <Manage 
-                                {...props}
+                        <Route exact path="/manage" render={ (props) => <Manage {...props}
                                 handleOnChange={this.handleOnChange}
-                                goals={this.state.goals}
                                 userGoals={this.state.userGoals}
+                                getUserDetails={this.getUserDetails}
                             />}
                         />
 
