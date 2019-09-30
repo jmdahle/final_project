@@ -6,7 +6,7 @@ router.route('/')
     .post(userGoalController.create)
 
 // match with /api/usergoal/user/:user_id
-router.route('/user/:user_id')
-    .get(userGoalController.findByUser)
+// router.route('/user/:user_id')
+//     .get(userGoalController.findByUser)
 
 module.exports = router;

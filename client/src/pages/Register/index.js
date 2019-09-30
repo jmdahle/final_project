@@ -7,6 +7,10 @@ import RegisterForm from '../../components/RegisterForm';
 import API from '../../utils/API';
 
 class Register extends React.Component {
+    componentDidMount = () => {
+        this.props.loginClose();
+    }
+
     handleRegisterFormSubmit = event => {
         event.preventDefault();
         console.log('submit clicked');
@@ -23,8 +27,10 @@ class Register extends React.Component {
                 let userKey = jsonData.data._id;
                 console.log(userKey);
                 this.props.setUserSession(userKey);
-                //go back to root page
-                this.props.history.push('/');
+                // go back to root page
+                // this.props.history.push('/');
+                // go back to prior (referring) page
+                this.props.history.goBack();
             })
             .catch(error => {
                 console.log(error);

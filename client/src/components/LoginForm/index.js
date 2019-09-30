@@ -7,6 +7,7 @@ class LoginForm extends React.Component {
         if (this.props.showLogin) {
             return (
                 <div className='login-popup'>
+                    <h5>{this.props.message}</h5>
                 <p>Don't have an account?  <Link className='inline-link' to='/register'>Register</Link> now.</p>
                 <form>
                     <div className='form-group'>

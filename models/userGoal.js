@@ -10,7 +10,11 @@ const userGoalSchema = new Schema ({
     goalId: {
         type: Schema.Types.ObjectId,
         ref: 'Goal'
-    }
+    },
+    taskTimelines: [{
+        type: Schema.Types.ObjectId,
+        ref: 'TaskTimeline'
+    }]
 });
 
 const UserGoal = mongoose.model('UserGoal', userGoalSchema);
