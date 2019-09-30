@@ -50,7 +50,7 @@ class App extends React.Component {
         showOkDialog: false,
         loginMessage: 'Log in or register to enhance your experience!',
         userDetails: [],
-        // userGoals: [],
+        userGoals: [],
         visualizerDates: []
     }
 
@@ -89,6 +89,7 @@ class App extends React.Component {
             streakTarget: '7',
             totalTarget: '7',
             userDetails: [],
+            userGoals: [],
             isAuthenticated: false,
             showLogin: false,
             failedLoginAttempts: 0,
@@ -314,15 +315,18 @@ class App extends React.Component {
         console.log('loading user details')
         API.getUserDetails(userId)
             .then(jsonData => {
-                console.log(jsonData);
+                console.log('user details');
+                // console.log(jsonData);
                 let userData = jsonData.data;
+                console.log(userData);
                 this.setState({
                     loginMessage: "",
                     userId: userId,
                     firstName: userData.firstName,
                     lastName: userData.lastName,
                     email: userData.email,
-                    isAuthenticated: true
+                    isAuthenticated: true,
+                    userGoals: userData.userGoals
                 });
             })
     }

@@ -14,8 +14,8 @@ class Manage extends React.Component {
           <Col size="md-12">
              <h2>Active Goals</h2> 
             <div>
-              {!this.props.userDetails.userGoals ? (
-                this.props.userDetails.userGoals.map(userGoal => (
+              {!this.props.userGoals ? (
+                this.props.userGoals.map(userGoal => (
                   <GoalCard
                     id={userGoal._id}
                     key={userGoal._id}
