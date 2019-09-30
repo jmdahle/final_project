@@ -7,6 +7,7 @@ import RegisterForm from "../../components/RegisterForm";
 import API from "../../utils/API";
 
 class Register extends React.Component {
+<<<<<<< HEAD
   handleRegisterFormSubmit = event => {
     event.preventDefault();
     console.log("submit clicked");
@@ -30,6 +31,37 @@ class Register extends React.Component {
         console.log(error);
       });
   };
+=======
+    componentDidMount = () => {
+        this.props.loginClose();
+    }
+
+    handleRegisterFormSubmit = event => {
+        event.preventDefault();
+        console.log('submit clicked');
+        let userData = {
+            firstName: this.props.firstName,
+            lastName: this.props.lastName,
+            email: this.props.email,
+            password: this.props.password
+        }
+        console.log(userData);
+        API.registerUser(userData)
+            .then(jsonData => {
+                console.log(jsonData);
+                let userKey = jsonData.data._id;
+                console.log(userKey);
+                this.props.setUserSession(userKey);
+                // go back to root page
+                // this.props.history.push('/');
+                // go back to prior (referring) page
+                this.props.history.goBack();
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+>>>>>>> master
 
   render() {
     return (

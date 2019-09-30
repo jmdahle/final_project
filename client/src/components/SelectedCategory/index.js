@@ -29,6 +29,12 @@ class SelectedCategory extends React.Component {
                     <h2>{this.props.selectedCategory.categoryName}</h2>
                     <h5>{this.props.selectedCategory.categoryTagLine}</h5>
                     <p>And load the image at: {this.props.selectedCategory.categoryImgSrc}</p>
+                    <button 
+                            type='submit' 
+                            className='btn navbutton'
+                            onClick={this.props.clearCategory}
+                        >Change Category
+                    </button>
                 </div>
             )}
             </div>
