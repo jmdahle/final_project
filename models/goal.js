@@ -4,8 +4,7 @@ const Schema = mongoose.Schema;
 const goalSchema = new Schema({
     goalName: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     goalTagLine: {
         type: String,
