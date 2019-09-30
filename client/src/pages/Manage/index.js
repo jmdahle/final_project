@@ -8,16 +8,6 @@ import GoalCard from "../../components/GoalCard";
 
 class Manage extends React.Component {
 
-    // state = {
-    //     userDetails: {},
-        
-    // };
-
-    // componentDidMount = (userId) => {
-    //     console.log('manage page component did mount');
-    //     this.getUserDetails(userId);
-    // };
-
   render() {
     return (
       <Container>
