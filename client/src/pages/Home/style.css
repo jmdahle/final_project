@@ -7,7 +7,7 @@
 .aboutUsHeader{
     text-align: center;
     font-family: "Space Mono", monospace;
-    font-size: 3.6em;
+    font-size: 3.4em;
     font-weight:700;
     font-style: italic;
     padding: .5em;
@@ -23,7 +23,7 @@
     font-family: "Space Mono", monospace;
     letter-spacing:-.05em;
     font-style: italic;
-    font-size: 1.8em;
+    font-size: 1.6em;
     font-weight:400;
     margin: 0;
     padding: 0 25% 6% 25%;
@@ -32,4 +32,37 @@
 
 .rowInfoCards{
     text-align: center;
+    margin:3% 15%;
+}
+
+.infoCardImg{
+    height: 8em;
+}
+
+.heroImg{
+text-align: center;
+margin: 5% 0 0;
+height: 13em;
+}
+
+.heroImgDiv{
+    margin: 0;
+    background-color: #d4d600; 
+    text-align: center;
+    align-items: baseline;
+}
+
+.infoCardHeading{
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.2em;
+    font-size: 1.9em;
+    letter-spacing: -.02em;
+    padding: .8em .6em 0;
+    color: #f66e5e;
+}
+
+.infoCardCol{
+    margin: 1em 2em 0;
+    width: 4em;
 }

@@ -13,7 +13,7 @@ class TaskList extends React.Component {
                                 <br/>Task Name
                             </td>
                             <td>
-                                Streak<br/>Taget
+                                Streak<br/>Target
                             </td>
                             <td>
                                 Total<br/>Target
