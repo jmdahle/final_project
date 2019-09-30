@@ -15,10 +15,9 @@ class Progress extends React.Component {
                 <Container>
                     <h1>Visualizer Test</h1>
                     <Visualizer
-                        userGoals={this.props.userGoals}
-                        getUserGoalByUser={this.props.getUserGoalbyUser}
+                        visualizerData={this.props.visualizerData}
                         visualizerDates={this.props.visualizerDates}
-                        resetVisualizerDates={this.props.resetVisualizerDates}
+                        changeVisualizerDates={this.props.changeVisualizerDates}
                     />
                 </Container>
             </div>

@@ -29,8 +29,8 @@ module.exports = {
             // .populate('userGoals')
             .populate({
                 path: 'userGoals',
-                populate: {path: 'taskTimelines goalId', select: 'goalName taskId taskDate taskCompletedYN', options: {sort: {taskId: 1, taskDate: 1}}, 
-                    populate: {path: 'taskId', select: 'taskName streakTarget totalTarget'}},
+                populate: {path: 'taskTimelines goalId', select: 'goalName tasks taskId taskDate taskCompletedYN', options: {sort: {taskId: 1, taskDate: 1}}, 
+                    populate: {path: 'tasks', select: 'taskName streakTarget totalTarget'}},
                 // populate: {path: 'goalId', select: 'goalName'}
             })
             .then( dbUser => response.json(dbUser) )
