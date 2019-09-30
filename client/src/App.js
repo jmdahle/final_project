@@ -18,6 +18,9 @@ import Admin from "./pages/Admin";
 // import client API
 import API from "./utils/API";
 
+// moment js
+const moment = require('moment');
+
 class App extends React.Component {
 
     state = {
@@ -46,6 +49,7 @@ class App extends React.Component {
         showTaskOverlay: false,
         showOkDialog: false,
         loginMessage: 'Log in or register to enhance your experience!',
+        visualizerDates: [],
     }
 
     componentDidMount = () => {
@@ -87,7 +91,23 @@ class App extends React.Component {
             failedLoginAttempts: 0,
             showTaskOverlay: false
             });        
+            // get initial categories
             this.getCategories();
+            // set initial visualizer date range
+            let now = moment().format('YYYY MM DD');
+            let startDate = moment(now).subtract(6,'days');
+            this.resetVisualizerDates(startDate,7);
+    }
+
+    resetVisualizerDates = (startDate, numDays) => {
+        let dateArray = [];
+        for (let i = 0; i < numDays; i++) {
+            let thisDate = moment(startDate).add(i, 'days').format('YYYY-MM-DD').toString();
+            dateArray.push(thisDate);
+        }
+        this.setState({
+            visualizerDates: dateArray
+        });
     }
 
     handleOnChange = event => {
@@ -381,7 +401,6 @@ class App extends React.Component {
                         <Route exact path='/' render={
                             (props) => <Home {...props} 
                             categories={this.state.categories}
-                            // selectCategory={this.selectCategory}
                             getCategoryMatch={this.getCategoryMatch}
                             />}
                         />
@@ -395,12 +414,6 @@ class App extends React.Component {
                             loginClose={this.loginClose}
                             />}
                         />
-                        <Route exact path='/home' render={
-                               (props) => <Home {...props} 
-                               categories={this.state.categories}
-                               selectCategory={this.selectCategory}
-                               />}
-                         />
 
                         <Route exact path='/addgoal' render={ (props) => <AddGoal {...props}
                                 categoryId={this.state.categoryId}
@@ -429,12 +442,13 @@ class App extends React.Component {
                             />}
                         />
 
-                        <Route exact path='/progress' component={Progress} />
-                        {/* <Route exact path='/test' render={(props) => <Test {...props}
-                            handleOnChange={this.handleOnChange}
+                        <Route exact path='/progress' render={ (props) => <Progress {...props} 
+                                visualizerDates={this.state.visualizerDates}
+                                resetVisualizerDates={this.resetVisualizerDates}
                             />}
-                        /> */}
-                         <Route exact path='/admin' render={(props) => <Admin {...props}
+                        />
+
+                        <Route exact path='/admin' render={(props) => <Admin {...props}
                             categoryId={this.state.categoryId}
                             categoryName={this.state.categoryName}
                             categoryTagLine={this.state.categoryTagLine}

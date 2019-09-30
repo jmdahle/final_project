@@ -26,7 +26,13 @@ module.exports = {
             .findOne({
                 _id: request.params.user_id
             }).select("-password")
-            .populate('userGoals')
+            // .populate('userGoals')
+            .populate({
+                path: 'userGoals',
+                populate: {path: 'goalId', select: 'goalName tasks',
+                    populate: {path: 'tasks', 
+                        populate: {path: 'taskTimelines'}}}
+            })
             .then( dbUser => response.json(dbUser) )
             .catch( dbError => response.status(400).json(dbError) )
     }

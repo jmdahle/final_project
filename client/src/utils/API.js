@@ -55,8 +55,8 @@ export default {
         console.log('API request - addUserGoal');
         return axios.post('/api/usergoal', userGoalData);
     },
-    getUserGoalByUser: function(userId) {
-        console.log('API request - getUserGoalByUser');
-        return axios.get('/api/usergoal/user/' + userId);
-    },
+    // getUserGoalByUser: function(userId) {
+    //     console.log('API request - getUserGoalByUser');
+    //     return axios.get('/api/usergoal/user/' + userId);
+    // },
 }

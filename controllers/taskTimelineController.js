@@ -7,8 +7,13 @@ module.exports = {
             .create( request.body )
             .then ( async dbTaskTimeline => {
                 let relatedTaskId = dbTaskTimeline.taskId;
+                let relatedUserGoalId = dbTaskTimeline.userGoalId;
                 await db.Task.findOneAndUpdate ({
                     _id: relatedTaskId }, { $push: { taskTimelines: dbTaskTimeline._id } }, { new: true });
+
+                await db.UserGoal.findOneAndUpdate ({
+                    _id: relatedUserGoalId }, { $push: { taskTimelines: dbTaskTimeline._id } }, { new: true });
+
                 return dbTaskTimeline;
             })
             .then( dbTaskTimeline => response.json(dbTaskTimeline) )
