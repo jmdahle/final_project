@@ -94,7 +94,7 @@ class App extends React.Component {
             // get initial categories
             this.getCategories();
             // set initial visualizer date range
-            let now = moment().format('YYYY MM DD');
+            let now = moment().format('M/D/YYYY');
             let startDate = moment(now).subtract(6,'days');
             this.resetVisualizerDates(startDate,7);
     }
@@ -102,7 +102,7 @@ class App extends React.Component {
     resetVisualizerDates = (startDate, numDays) => {
         let dateArray = [];
         for (let i = 0; i < numDays; i++) {
-            let thisDate = moment(startDate).add(i, 'days').format('YYYY-MM-DD').toString();
+            let thisDate = moment(startDate).add(i, 'days').format('M/D/YYYY').toString();
             dateArray.push(thisDate);
         }
         this.setState({
