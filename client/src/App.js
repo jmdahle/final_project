@@ -49,7 +49,8 @@ class App extends React.Component {
         showTaskOverlay: false,
         showOkDialog: false,
         loginMessage: 'Log in or register to enhance your experience!',
-        userGoals: [],
+        userDetails: [],
+        // userGoals: [],
         visualizerDates: []
     }
 
@@ -87,6 +88,7 @@ class App extends React.Component {
             tasks: [],
             streakTarget: '7',
             totalTarget: '7',
+            userDetails: [],
             isAuthenticated: false,
             showLogin: false,
             failedLoginAttempts: 0,
@@ -268,7 +270,7 @@ class App extends React.Component {
     }
 
     getCategoryMatch = categoryId => {
-        console.log("loding selected category with id " + categoryId);
+        console.log("loading selected category with id " + categoryId);
         API.getCategoryMatch(categoryId).then(jsonData => {
             console.log(jsonData);
             this.setState({
@@ -323,18 +325,6 @@ class App extends React.Component {
                     isAuthenticated: true
                 });
             })
-    }
-
-    getUserGoalByUser = userId => {
-        console.log("getting user goals by user");
-        let userId = localStorage.getItem("userKey");
-        API
-            .getUserGoalByUser(userId)
-            .then(jsonData => {
-                this.setState({
-                    userGoals: jsonData.data
-                });
-            })
     }
 
     logoutClick = () => {
@@ -449,7 +439,6 @@ class App extends React.Component {
                         />
                         <Route exact path="/manage" render={ (props) => <Manage {...props}
                                 handleOnChange={this.handleOnChange}
-                                goals={this.state.goals}
                                 userGoals={this.state.userGoals}
                                 getUserDetails={this.getUserDetails}
                                 getGoalMatch={this.getGoalMatch}
@@ -458,6 +447,7 @@ class App extends React.Component {
                                 showTaskOverlay={this.state.showTaskOverlay}   
                                 selectedGoal={this.state.selectedGoal}
                                 tasks={this.state.tasks}
+                                userDetails={this.state.userDetails}
                             />}
                         />
                         <Route exact path='/progress' render={ (props) => <Progress {...props} 

@@ -1,5 +1,5 @@
 // react
-import React, { Component } from "react";
+import React from "react";
 
 // components
 import Container from "../../components/Container";
@@ -14,8 +14,8 @@ class Manage extends React.Component {
           <Col size="md-12">
              <h2>Active Goals</h2> 
             <div>
-              {!this.props.userGoals ? (
-                this.props.userGoals.map(userGoal => (
+              {!this.props.userDetails.userGoals ? (
+                this.props.userDetails.userGoals.map(userGoal => (
                   <GoalCard
                     id={userGoal._id}
                     key={userGoal._id}
