@@ -5,6 +5,7 @@ import React from "react";
 import Container from "../../components/Container";
 import { Col, Row } from "../../components/Grid";
 import UserGoalCard from "../../components/UserGoalCard";
+// import GoalCard from '../../components/GoalCard';
 
 class Manage extends React.Component {
 
@@ -17,7 +18,7 @@ class Manage extends React.Component {
           <Col size="md-12">
              <h2>Active Goals</h2> 
             <div>
-              {!this.props.userGoals ? (
+              {this.props.userGoals ? (
                 this.props.userGoals.map(userGoal => (
                   <UserGoalCard
                     id={userGoal._id}

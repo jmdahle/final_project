@@ -311,12 +311,33 @@ class App extends React.Component {
         });
     };
 
+    // getUserDetails = (userId) => {
+    //     console.log('loading user details')
+    //     API.getUserDetails(userId)
+    //         .then(jsonData => {
+    //             console.log(jsonData);
+    //             let userData = jsonData.data;
+    //             this.setState({
+    //                 loginMessage: "",
+    //                 userId: userId,
+    //                 firstName: userData.firstName,
+    //                 lastName: userData.lastName,
+    //                 email: userData.email,
+    //                 isAuthenticated: true,
+    //                 userGoals: userData.userGoals
+    //             });
+    //         })
+    // }
+
     getUserDetails = (userId) => {
         console.log('loading user details')
         API.getUserDetails(userId)
-            .then(jsonData => {
+            .then( jsonData => {
                 console.log(jsonData);
                 let userData = jsonData.data;
+                // form goal, task, and task completion items for state
+                let userGoals = this.setupUserGoals(userData);
+                // update state with user data
                 this.setState({
                     loginMessage: "",
                     userId: userId,
@@ -324,9 +345,74 @@ class App extends React.Component {
                     lastName: userData.lastName,
                     email: userData.email,
                     isAuthenticated: true,
-                    userGoals: userData.userGoals
+                    userDetails: userData,
+                    userGoals: userGoals,
                 });
             })
+    }
+
+    setupUserGoals = (userData) => {
+        // this appears to be needed because React sees the array nodes in the API results as Object rather than an array of Objects   
+        let userGoals = [];
+        let dbUserGoals = userData.userGoals;
+        for (let g = 0; g < dbUserGoals.length; g ++) {
+            console.log(dbUserGoals);
+            let userGoalId = dbUserGoals[g]._id;
+            let goalId = dbUserGoals[g].goalId._id;
+            let goalName = dbUserGoals[g].goalId.goalName;
+            let goalPercent = dbUserGoals[g].goalPercent;
+            let userTasks = [];
+            let dbUserTasks = dbUserGoals[g].goalId.tasks;
+            for (let t = 0; t < dbUserTasks.length; t++) {
+                let userTimeline = []
+                let dbUserTimeline = userData.userGoals[g].taskTimelines;
+                console.log(dbUserTimeline);
+                for (let l = 0; l < this.state.visualizerDates.length; l++) {
+                    // is the first date in the array of timeline
+                    let currentDate = this.state.visualizerDates[l];
+                    console.log('checking date' + currentDate);
+                    let taskCompleted = false;
+                    for (let ul = 0; ul < dbUserTimeline.length; ul++) {
+                        if (
+                                moment(dbUserTimeline[ul].taskDate).format('M/D/YYYY') === moment(currentDate).format('M/D/YYYY') &&
+                                dbUserTimeline[ul].taskId === dbUserTasks[t]._id
+                            ) {
+                            taskCompleted = dbUserTimeline[ul].taskCompletedYN;
+                        }
+                    }
+                    let timelineEntry = {
+                        timelineDate: moment(currentDate).format('M/D/YYYY'),
+                        taskCompletedYN: taskCompleted
+                    }
+                    userTimeline.push(timelineEntry);
+                }
+                let thisTask = {
+                    'taskId': dbUserTasks[t]._id,
+                    'taskName': dbUserTasks[t].taskName,
+                    'taskStreakTarget': dbUserTasks[t].streakTarget,
+                    'taskTotalTarget': dbUserTasks[t].totalTarget,
+                    'taskCurrentStreak': 0,
+                    'taskLongStreak': 0,
+                    'taskTotalCompleted': 0,
+                    'taskCompleteYN': false,
+                    'userTimeline': userTimeline
+                }
+                // add thisTask to userTask array
+                userTasks.push(thisTask);
+            }
+            let thisGoal = {
+                'userGoalId': userGoalId,
+                'goalId': goalId,
+                'goalName': goalName,
+                'goalPercent': goalPercent,
+                'userTasks': userTasks
+            }
+            userGoals.push(thisGoal);
+        }
+        console.log(userGoals);
+
+        //return userData.userGoals;
+        return userGoals;
     }
 
     logoutClick = () => {
