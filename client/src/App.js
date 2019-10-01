@@ -51,7 +51,7 @@ class App extends React.Component {
         showOkDialog: false,
         loginMessage: 'Log in or register to enhance your experience!',
         visualizerDates: [],
-        userGoals: [],
+        visualizerData: [],
         numVisualizerDays: 7,
     }
 
@@ -118,13 +118,6 @@ class App extends React.Component {
         this.resetVisualizerDates(startDate,this.state.numVisualizerDays);
         this.getUserDetails(localStorage.getItem('userKey'));
     }
-
-
-    // add call to user detail
-    // populates user detail
-    // calculates task stats, completion
-    // calculates goal completion percentage
-    // re-run every time there is a change to a tasktimeline
 
     handleOnChange = event => {
         this.setState({
@@ -202,6 +195,7 @@ class App extends React.Component {
                 });
                 this.setUserSession(userData[0]._id);
                 this.getUserDetails(userData[0]._id);
+                this.setupUserGoals(this.state.userGoals)
             } else {
               console.log("WTF??!  How did you get more than 1??");
             }
@@ -359,7 +353,7 @@ class App extends React.Component {
                 console.log(jsonData);
                 let userData = jsonData.data;
                 // form goal, task, and task completion items for state
-                let userGoals = this.setupUserGoals(userData);
+                let visualizerData = this.setupUserGoals(userData);
                 // update state with user data
                 this.setState({
                     loginMessage: "",
@@ -369,14 +363,14 @@ class App extends React.Component {
                     email: userData.email,
                     isAuthenticated: true,
                     userDetails: userData,
-                    userGoals: userGoals,
+                    visualizerData: visualizerData,
                 });
             })
     }
 
     setupUserGoals = (userData) => {
         // this appears to be needed becuase React sees the array nodes in the API results as Object rather than an array of Objects   
-        let userGoals = [];
+        let visualizerData = [];
         let dbUserGoals = userData.userGoals;
         for (let g = 0; g < dbUserGoals.length; g ++) {
             let userGoalId = dbUserGoals[g]._id;
@@ -431,12 +425,11 @@ class App extends React.Component {
                 'goalPercent': goalPercent,
                 'userTasks': userTasks
             }
-            userGoals.push(thisGoal);
+            visualizerData.push(thisGoal);
         }
-        console.log(userGoals);
+        console.log(visualizerData);
 
-        //return userData.userGoals;
-        return userGoals;
+        return visualizerData;
     }
 
     logoutClick = () => {
@@ -559,7 +552,7 @@ class App extends React.Component {
 
                         <Route exact path='/progress' render={ (props) => <Progress {...props} 
                                 visualizerDates={this.state.visualizerDates}
-                                visualizerData={this.state.userGoals}
+                                visualizerData={this.state.visualizerData}
                                 changeVisualizerDates={this.changeVisualizerDates}
                                 handleCompleteTask={this.handleCompleteTask}
                                 handleIncompleteTask={this.handleIncompleteTask}
