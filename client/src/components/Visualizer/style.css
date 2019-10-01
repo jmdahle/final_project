@@ -15,3 +15,13 @@
 .date-item {
     text-align: center;
 }
+
+.task-complete {
+    background-color: green;
+    cursor: default;
+}
+
+.task-incomplete {
+    background-color: lightpink;
+    cursor: default;
+}

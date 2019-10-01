@@ -18,6 +18,8 @@ class Progress extends React.Component {
                         visualizerData={this.props.visualizerData}
                         visualizerDates={this.props.visualizerDates}
                         changeVisualizerDates={this.props.changeVisualizerDates}
+                        handleCompleteTask={this.props.handleCompleteTask}
+                        handleIncompleteTask={this.props.handleIncompleteTask}
                     />
                 </Container>
             </div>

@@ -119,6 +119,7 @@ class App extends React.Component {
         this.getUserDetails(localStorage.getItem('userKey'));
     }
 
+
     // add call to user detail
     // populates user detail
     // calculates task stats, completion
@@ -141,6 +142,34 @@ class App extends React.Component {
             this.getTasksInGoal(event.target.value);
         }
     };
+
+    handleCompleteTask = (taskId, userGoalId, date) => {
+        console.log(`taskId: ${taskId}; userGoalId: ${userGoalId}; date: ${date}`);
+        let timelineData = {
+            taskId: taskId,
+            userGoalId: userGoalId,
+            taskDate: date,
+            taskCompletedYN: true
+        }
+        API.addTimeline(timelineData)
+            .then(jsonData => {
+                this.getUserDetails(localStorage.getItem('userKey'));
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
+    handleIncompleteTask = (timelineId) => {
+        console.log(`timelineId: ${timelineId}`);
+        API.deleteTimeline(timelineId)
+            .then(jsonData => {
+                this.getUserDetails(localStorage.getItem('userKey'));
+            })
+            .catch(error => {
+                console.log(error);
+            })        
+    }
 
     handleLoginFormSubmit = event => {
     event.preventDefault();
@@ -363,17 +392,19 @@ class App extends React.Component {
                 for (let l = 0; l < this.state.visualizerDates.length; l++) {
                     // is the first date in the array of timeline
                     let currentDate = this.state.visualizerDates[l];
-                    console.log('checking date' + currentDate);
                     let taskCompleted = false;
+                    let timelineId = 'null';
                     for (let ul = 0; ul < dbUserTimeline.length; ul++) {
                         if (
                                 moment(dbUserTimeline[ul].taskDate).format('M/D/YYYY') === moment(currentDate).format('M/D/YYYY') &&
                                 dbUserTimeline[ul].taskId === dbUserTasks[t]._id
                             ) {
                             taskCompleted = dbUserTimeline[ul].taskCompletedYN;
+                            timelineId = dbUserTimeline[ul]._id
                         }
                     }
                     let timelineEntry = {
+                        timelineId: timelineId,
                         timelineDate: moment(currentDate).format('M/D/YYYY'),
                         taskCompletedYN: taskCompleted
                     }
@@ -530,7 +561,8 @@ class App extends React.Component {
                                 visualizerDates={this.state.visualizerDates}
                                 visualizerData={this.state.userGoals}
                                 changeVisualizerDates={this.changeVisualizerDates}
-                                
+                                handleCompleteTask={this.handleCompleteTask}
+                                handleIncompleteTask={this.handleIncompleteTask}
                             />}
                         />
 

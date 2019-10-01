@@ -12,6 +12,7 @@ class Visualizer extends React.Component {
             <div>
                 <table>
                     <VizHeader
+                        key={'viz-header'}
                         visualizerDates={this.props.visualizerDates}
                         changeVisualizerDates={this.props.changeVisualizerDates}
                     />
@@ -19,6 +20,8 @@ class Visualizer extends React.Component {
                         <VizGoal
                             key={userGoal.userGoalId}
                             goalData={userGoal}
+                            handleCompleteTask={this.props.handleCompleteTask}
+                            handleIncompleteTask={this.props.handleIncompleteTask}
                         />
                     ))}
                 </table>
@@ -35,14 +38,14 @@ class VizHeader extends React.Component {
                 <tr>
                     <td>&nbsp;</td>
                     <td onClick={ () => this.props.changeVisualizerDates(-1) }>
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        <i className="fa fa-arrow-left" aria-hidden="true"></i>
                     </td>
                     {this.props.visualizerDates.map( date => (
                             <td className='date-heading' key={date}>{date}</td>
                         )
                     )}
                     <td onClick={ ()=> this.props.changeVisualizerDates(1) }>
-                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        <i className="fa fa-arrow-right" aria-hidden="true"></i>
                     </td>
                     <td>CURR</td>
                     <td>LONG</td>
@@ -66,6 +69,9 @@ class VizGoal extends React.Component {
                     <VizTask
                         key={task._id}
                         taskData={task}
+                        userGoalId={this.props.goalData.userGoalId}
+                        handleCompleteTask={this.props.handleCompleteTask}
+                        handleIncompleteTask={this.props.handleIncompleteTask}
                     />
                 ))}
             </tbody>
@@ -76,13 +82,18 @@ class VizGoal extends React.Component {
 class VizTask extends React.Component {
     render() {
         return(
-                    <tr key={this.props.taskData.taskId}>
+                    <tr>
                         <td>{this.props.taskData.taskName}</td>
                         <td>&nbsp;</td>
                         {this.props.taskData.userTimeline.map( date => (
                             <VizDate
-                                key={date + '_' + this.props.taskData.taskId}
+                                key={date.timelineDate + '_' + this.props.taskData.taskId}
+                                id={date.timelineDate + '_' + this.props.taskData.taskId}
+                                taskId={this.props.taskData.taskId}
+                                userGoalId={this.props.userGoalId}
                                 dateData={date}
+                                handleCompleteTask={this.props.handleCompleteTask}
+                                handleIncompleteTask={this.props.handleIncompleteTask}
                             />
                         ))}
                         <td>&nbsp;</td>
@@ -100,7 +111,21 @@ class VizDate extends React.Component {
             <td className='date-item'>
                 {/* {this.props.dateData.timelineDate}
                 <br></br> */}
-                {this.props.dateData.taskCompletedYN ? '[X]' : '[ ]'}
+                {this.props.dateData.taskCompletedYN ? (
+                    <div 
+                        className='task-complete'
+                        onClick={() => this.props.handleIncompleteTask(this.props.dateData.timelineId)}
+                    >
+                        &nbsp;
+                    </div>
+                ): (
+                    <div 
+                        className='task-incomplete'
+                        onClick={() => this.props.handleCompleteTask(this.props.taskId, this.props.userGoalId, this.props.dateData.timelineDate)}
+                    >
+                        &nbsp;
+                    </div>
+                )}
             </td>
         )
     }
