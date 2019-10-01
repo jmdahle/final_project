@@ -348,6 +348,10 @@ class App extends React.Component {
         });
     };
 
+    markUserGoalComplete = () => {
+        console.log('user completed their goal');
+    };
+
     taskOverlayClose = () => {
         this.setState({
             showTaskOverlay: false
@@ -443,6 +447,10 @@ class App extends React.Component {
                                 handleOnChange={this.handleOnChange}
                                 userGoals={this.state.userGoals}
                                 getUserDetails={this.getUserDetails}
+                                selectGoal={this.selectGoal}    
+                                showTaskOverlay={this.state.showTaskOverlay}   
+                                selectedGoal={this.state.selectedGoal}
+                                tasks={this.state.tasks}
                             />}
                         />
 

@@ -4,9 +4,11 @@ import React from "react";
 // components
 import Container from "../../components/Container";
 import { Col, Row } from "../../components/Grid";
-import GoalCard from "../../components/GoalCard";
+import UserGoalCard from "../../components/UserGoalCard";
 
 class Manage extends React.Component {
+
+    componentDidMount = () => {}
 
   render() {
     return (
@@ -17,10 +19,11 @@ class Manage extends React.Component {
             <div>
               {!this.props.userGoals ? (
                 this.props.userGoals.map(userGoal => (
-                  <GoalCard
+                  <UserGoalCard
                     id={userGoal._id}
                     key={userGoal._id}
                     goalName={userGoal.goalName}
+                    goalPercent={userGoal.goalPercent}
                   />
                 ))
               ) : (

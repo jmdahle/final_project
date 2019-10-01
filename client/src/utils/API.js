@@ -47,4 +47,8 @@ export default {
     console.log("API request - addUserGoal");
     return axios.post("/api/usergoal", userGoalData);
   },
+  // markUserGoalComplete: function(goalId) {
+  //   console.log("API Request - markUserGoalComplete");
+  //   return axios.post('/api/goal/' + goalId);
+  // }
 };
