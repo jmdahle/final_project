@@ -30,10 +30,6 @@ class Manage extends React.Component {
                         key={userGoal.userGoalId}
                         goalName={userGoal.goalName}
                         goalPercent={userGoal.goalPercent}
-//                     id={userGoal._id}
-//                     key={userGoal._id}
-//                     goalName={userGoal.goalName}
-//                     goalPercent={userGoal.goalPercent}
                   />
                 ))
               ) : (
