@@ -25,33 +25,24 @@ module.exports = {
         console.log(request.params.timeline_id);
         db.TaskTimeline
             .findOneAndDelete(
-                { _id: request.params.timeline_id }
+                { _id: request.params.timeline_id }, async ( dbError, dbTaskTimeline) => {
+                    if (dbError) {
+                        dbError => response.status(400).json( dbError )
+                    } else {
+                        let deletedRecord = dbTaskTimeline;
+                        let relatedTaskId = deletedRecord.taskId;
+                        let relatedUserGoalId = deletedRecord.userGoalId;
+                        await db.Task.findOneAndUpdate({
+                            _id: relatedTaskId }, { $pull: {taskTimelines: request.params.timeline_id } }
+                        );
+                        await db.UserGoal.findOneAndUpdate ({
+                            _id: relatedUserGoalId }, { $pull: {taskTimelines: request.params.timeline_id } }
+                        );
+                        return deletedRecord;
+                    }
+                }
             )
-            // .then( dbTasktimeline => {
-                // let relatedTaskId = dbTasktimeline.taskId;
-                // let relatedUserGoalId = dbTasktimeline.userGoalId;
-                // console.log('find parents of ' + dbTaskTimeline._id,);
-                // await db.Task.findOneAndUpdate({
-                //     _id: relatedTaskId }, { $pull: {taskTimelines: dbTaskTimeline._id } }
-                // );
-                // await db.UserGoal.findOneAndUpdate ({
-                //     _id: relatedUserGoalId }, { $pull: {taskTimelines: dbTasktimeline._id } }
-                // );
-                // return dbTaskTimeline;
-            // })
-            .then( dbTaskTimeline => response.json( dbTaskTimeline ) )
+            .then( deletedRecord => response.json( deletedRecord ) )
             .catch( dbError => response.status(400).json( dbError ) )
     }
-    // getTimelineByTask: function (request, response) {
-    //     console.log('retrieve task timelines for a task');
-    //     db.TaskTimeline
-    //         .find( { taskId: request.params.task_id } )
-    //         .populate('taskId')
-    //         .then( dbTaskTimeline => {
-    //             response.json(dbTaskTimeline)
-    //         })
-    //         .catch( dbError => {
-    //             response.status(400).json( dbError )
-    //         })
-    // }
 }
