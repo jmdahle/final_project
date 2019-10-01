@@ -11,6 +11,7 @@ const UserGoalCard = ({ selectGoal, goalName, id, goalPercent }) => {
         <h5>{goalName}</h5>
       </div>
       <div className="user-goal-card-body">
+        {/* <p>{tagline}</p> */}
         <br />
         <AppProgressBar goalPercent={goalPercent} />
         <br />
