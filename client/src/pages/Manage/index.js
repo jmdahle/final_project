@@ -21,10 +21,14 @@ class Manage extends React.Component {
               {this.props.userGoals ? (
                 this.props.userGoals.map(userGoal => (
                   <UserGoalCard
-                    id={userGoal._id}
-                    key={userGoal._id}
-                    goalName={userGoal.goalName}
-                    goalPercent={userGoal.goalPercent}
+                        id={userGoal.userGoalId}
+                        key={userGoal.userGoalId}
+                        goalName={userGoal.goalName}
+                        goalPercent={userGoal.goalPercent}
+//                     id={userGoal._id}
+//                     key={userGoal._id}
+//                     goalName={userGoal.goalName}
+//                     goalPercent={userGoal.goalPercent}
                   />
                 ))
               ) : (

@@ -41,6 +41,7 @@ class App extends React.Component {
         selectedGoal: {},
         taskName: '',
         tasks: [],
+        userDetails: {},
         streakTarget: '7',
         totalTarget: '7',
         isAuthenticated: false,
@@ -50,7 +51,8 @@ class App extends React.Component {
         showOkDialog: false,
         loginMessage: 'Log in or register to enhance your experience!',
         visualizerDates: [],
-        userDetails:[],
+        visualizerData: [],
+        numVisualizerDays: 7,
         userGoals: []
     }
 
@@ -60,9 +62,6 @@ class App extends React.Component {
         if (userId) {
             console.log('user key is ' + userId );
             this.getUserDetails(userId);
-        } else {
-            console.log('user key is missing!  No one is logged in');
-            this.resetState();
         }
     }
 
@@ -86,32 +85,47 @@ class App extends React.Component {
             selectedGoal: {},
             taskName: '',
             tasks: [],
+            userDetails: {},
             streakTarget: '7',
             totalTarget: '7',
             isAuthenticated: false,
             showLogin: false,
             failedLoginAttempts: 0,
             showTaskOverlay: false,
-            userDetails:[],
+            numVisualizerDays: 7,
+            visualizerDates: [],
+            visualizerData: [],
             userGoals: []
             });        
             // get initial categories
             this.getCategories();
             // set initial visualizer date range
-            let now = moment().format('YYYY MM DD');
-            let startDate = moment(now).subtract(6,'days');
-            this.resetVisualizerDates(startDate,7);
+            let now = moment().format('M/D/YYYY');
+            let startDate = moment(now).subtract(this.state.numVisualizerDays - 1 ,'days');
+            this.resetVisualizerDates(startDate,this.state.numVisualizerDays);
     }
 
     resetVisualizerDates = (startDate, numDays) => {
         let dateArray = [];
         for (let i = 0; i < numDays; i++) {
-            let thisDate = moment(startDate).add(i, 'days').format('YYYY-MM-DD').toString();
+            let thisDate = moment(startDate).add(i, 'days').format('M/D/YYYY').toString();
             dateArray.push(thisDate);
         }
         this.setState({
             visualizerDates: dateArray
         });
+    }
+
+    changeVisualizerDates = (numdays) => {
+        let startDate = moment(this.state.visualizerDates[0]).add(numdays,'days')
+        let now = moment().format('M/D/YYYY');
+        if (
+            moment(now).subtract(this.state.numVisualizerDays - 1 ,'days') < moment(this.state.visualizerDates[0]).add(numdays,'days')
+            ) {
+                startDate = moment(now).subtract(this.state.numVisualizerDays - 1 ,'days')
+            }
+        this.resetVisualizerDates(startDate,this.state.numVisualizerDays);
+        this.getUserDetails(localStorage.getItem('userKey'));
     }
 
     handleOnChange = event => {
@@ -130,6 +144,34 @@ class App extends React.Component {
             this.getTasksInGoal(event.target.value);
         }
     };
+
+    handleCompleteTask = (taskId, userGoalId, date) => {
+        console.log(`taskId: ${taskId}; userGoalId: ${userGoalId}; date: ${date}`);
+        let timelineData = {
+            taskId: taskId,
+            userGoalId: userGoalId,
+            taskDate: date,
+            taskCompletedYN: true
+        }
+        API.addTimeline(timelineData)
+            .then(jsonData => {
+                this.getUserDetails(localStorage.getItem('userKey'));
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
+    handleIncompleteTask = (timelineId) => {
+        console.log(`timelineId: ${timelineId}`);
+        API.deleteTimeline(timelineId)
+            .then(jsonData => {
+                this.getUserDetails(localStorage.getItem('userKey'));
+            })
+            .catch(error => {
+                console.log(error);
+            })        
+    }
 
     handleLoginFormSubmit = event => {
     event.preventDefault();
@@ -161,6 +203,8 @@ class App extends React.Component {
                     email: userData[0].email
                 });
                 this.setUserSession(userData[0]._id);
+                this.getUserDetails(userData[0]._id);
+                this.setupUserGoals(this.state.userGoals)
             } else {
               console.log("WTF??!  How did you get more than 1??");
             }
@@ -311,24 +355,6 @@ class App extends React.Component {
         });
     };
 
-    // getUserDetails = (userId) => {
-    //     console.log('loading user details')
-    //     API.getUserDetails(userId)
-    //         .then(jsonData => {
-    //             console.log(jsonData);
-    //             let userData = jsonData.data;
-    //             this.setState({
-    //                 loginMessage: "",
-    //                 userId: userId,
-    //                 firstName: userData.firstName,
-    //                 lastName: userData.lastName,
-    //                 email: userData.email,
-    //                 isAuthenticated: true,
-    //                 userGoals: userData.userGoals
-    //             });
-    //         })
-    // }
-
     getUserDetails = (userId) => {
         console.log('loading user details')
         API.getUserDetails(userId)
@@ -336,7 +362,7 @@ class App extends React.Component {
                 console.log(jsonData);
                 let userData = jsonData.data;
                 // form goal, task, and task completion items for state
-                let userGoals = this.setupUserGoals(userData);
+                let visualizerData = this.setupUserGoals(userData);
                 // update state with user data
                 this.setState({
                     loginMessage: "",
@@ -346,17 +372,17 @@ class App extends React.Component {
                     email: userData.email,
                     isAuthenticated: true,
                     userDetails: userData,
-                    userGoals: userGoals,
+                    visualizerData: visualizerData,
+                    userGoals: userData.userGoals,
                 });
             })
     }
 
     setupUserGoals = (userData) => {
-        // this appears to be needed because React sees the array nodes in the API results as Object rather than an array of Objects   
-        let userGoals = [];
+        // this appears to be needed becuase React sees the array nodes in the API results as Object rather than an array of Objects   
+        let visualizerData = [];
         let dbUserGoals = userData.userGoals;
         for (let g = 0; g < dbUserGoals.length; g ++) {
-            console.log(dbUserGoals);
             let userGoalId = dbUserGoals[g]._id;
             let goalId = dbUserGoals[g].goalId._id;
             let goalName = dbUserGoals[g].goalId.goalName;
@@ -370,17 +396,19 @@ class App extends React.Component {
                 for (let l = 0; l < this.state.visualizerDates.length; l++) {
                     // is the first date in the array of timeline
                     let currentDate = this.state.visualizerDates[l];
-                    console.log('checking date' + currentDate);
                     let taskCompleted = false;
+                    let timelineId = 'null';
                     for (let ul = 0; ul < dbUserTimeline.length; ul++) {
                         if (
                                 moment(dbUserTimeline[ul].taskDate).format('M/D/YYYY') === moment(currentDate).format('M/D/YYYY') &&
                                 dbUserTimeline[ul].taskId === dbUserTasks[t]._id
                             ) {
                             taskCompleted = dbUserTimeline[ul].taskCompletedYN;
+                            timelineId = dbUserTimeline[ul]._id
                         }
                     }
                     let timelineEntry = {
+                        timelineId: timelineId,
                         timelineDate: moment(currentDate).format('M/D/YYYY'),
                         taskCompletedYN: taskCompleted
                     }
@@ -407,12 +435,15 @@ class App extends React.Component {
                 'goalPercent': goalPercent,
                 'userTasks': userTasks
             }
-            userGoals.push(thisGoal);
+            visualizerData.push(thisGoal);
         }
-        console.log(userGoals);
+        console.log(visualizerData);
 
-        //return userData.userGoals;
-        return userGoals;
+        return visualizerData;
+    }
+
+    calculateProgress = () => {
+        // 
     }
 
     logoutClick = () => {
@@ -531,7 +562,8 @@ class App extends React.Component {
                         />
                         <Route exact path="/manage" render={ (props) => <Manage {...props}
                                 handleOnChange={this.handleOnChange}
-                                userGoals={this.state.userGoals}
+                                // userGoals={this.state.userGoals}
+                                userGoals={this.state.visualizerData}
                                 getUserDetails={this.getUserDetails}
                                 selectGoal={this.selectGoal}    
                                 showTaskOverlay={this.state.showTaskOverlay}   
@@ -542,7 +574,10 @@ class App extends React.Component {
 
                         <Route exact path='/progress' render={ (props) => <Progress {...props} 
                                 visualizerDates={this.state.visualizerDates}
-                                resetVisualizerDates={this.resetVisualizerDates}
+                                visualizerData={this.state.visualizerData}
+                                changeVisualizerDates={this.changeVisualizerDates}
+                                handleCompleteTask={this.handleCompleteTask}
+                                handleIncompleteTask={this.handleIncompleteTask}
                             />}
                         />
 

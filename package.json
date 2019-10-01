@@ -26,6 +26,7 @@
     "if-env": "^1.0.4",
     "moment": "^2.24.0",
     "mongoose": "^5.3.16",
+    "nodemailer": "^6.3.0",
     "path": "^0.12.7",
     "react-bootstrap": "^1.0.0-beta.12",
     "react-router-dom": "^5.0.1"
