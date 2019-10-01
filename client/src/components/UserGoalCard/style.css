@@ -1,0 +1,23 @@
+.user-goal-card {
+    display: inline-block;
+    width: 245px;
+    height: 200px;
+    margin: 15px;
+    padding: 10px;
+    border: 5px solid #0e184b;
+    border-radius: 15px;
+    background-color:white;
+    color: #0e184b;
+    cursor: default;
+}
+
+.user-goal-card-header {
+    background-color:white;
+    height: 15em;
+    color: #0e184b;
+}
+
+.user-goal-card-body {
+    background-color:white;
+    color: #0e184b;
+}
