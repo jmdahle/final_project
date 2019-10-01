@@ -10,7 +10,7 @@ module.exports = {
             .catch( dbError => response.status(400).json(dbError) )
     },
     loginUser: function (request, response) {
-        console.log('tyring login');
+        console.log('trying login');
         console.log(request.body);
         db.User
             .find({

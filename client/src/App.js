@@ -53,6 +53,7 @@ class App extends React.Component {
         visualizerDates: [],
         visualizerData: [],
         numVisualizerDays: 7,
+        userGoals: []
     }
 
     componentDidMount = () => {
@@ -92,7 +93,9 @@ class App extends React.Component {
             failedLoginAttempts: 0,
             showTaskOverlay: false,
             numVisualizerDays: 7,
-            userGoals: [],
+            visualizerDates: [],
+            visualizerData: [],
+            userGoals: []
             });        
             // get initial categories
             this.getCategories();
@@ -306,7 +309,7 @@ class App extends React.Component {
     }
 
     getCategoryMatch = categoryId => {
-        console.log("loding selected category with id " + categoryId);
+        console.log("loading selected category with id " + categoryId);
         API.getCategoryMatch(categoryId).then(jsonData => {
             console.log(jsonData);
             this.setState({
@@ -346,6 +349,24 @@ class App extends React.Component {
         });
     };
 
+    // getUserDetails = (userId) => {
+    //     console.log('loading user details')
+    //     API.getUserDetails(userId)
+    //         .then(jsonData => {
+    //             console.log(jsonData);
+    //             let userData = jsonData.data;
+    //             this.setState({
+    //                 loginMessage: "",
+    //                 userId: userId,
+    //                 firstName: userData.firstName,
+    //                 lastName: userData.lastName,
+    //                 email: userData.email,
+    //                 isAuthenticated: true,
+    //                 userGoals: userData.userGoals
+    //             });
+    //         })
+    // }
+
     getUserDetails = (userId) => {
         console.log('loading user details')
         API.getUserDetails(userId)
@@ -364,6 +385,7 @@ class App extends React.Component {
                     isAuthenticated: true,
                     userDetails: userData,
                     visualizerData: visualizerData,
+                    userGoals: userData.userGoals,
                 });
             })
     }
@@ -449,6 +471,10 @@ class App extends React.Component {
         this.setState({
           showLogin: true
         });
+    };
+
+    markUserGoalComplete = () => {
+        console.log('user completed their goal');
     };
 
     taskOverlayClose = () => {
@@ -542,11 +568,15 @@ class App extends React.Component {
                                 clearCategory={this.clearCategory}
                             />}
                         />
-                        <Route exact path="/manage" render={ props =>
-                            <Manage 
-                                {...props}
+                        <Route exact path="/manage" render={ (props) => <Manage {...props}
                                 handleOnChange={this.handleOnChange}
-                                goals={this.state.goals}
+                                // userGoals={this.state.userGoals}
+                                userGoals={this.state.visualizerData}
+                                getUserDetails={this.getUserDetails}
+                                selectGoal={this.selectGoal}    
+                                showTaskOverlay={this.state.showTaskOverlay}   
+                                selectedGoal={this.state.selectedGoal}
+                                tasks={this.state.tasks}
                             />}
                         />
 

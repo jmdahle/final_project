@@ -21,7 +21,7 @@ class Admin extends React.Component {
                         <CategoryForm 
                             categoryName={this.props.categoryName}
                             categoryTagLine={this.props.categoryTagLine}
-                            categroyImgSrc={this.props.categoryImgSrc}
+                            categoryImgSrc={this.props.categoryImgSrc}
                             handleOnChange={this.props.handleOnChange}
                             handleCategoryFormSubmit={this.props.handleCategoryFormSubmit}
                         />
