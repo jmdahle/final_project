@@ -19,13 +19,13 @@ class Task extends React.Component {
                 <table>
                     <thead>
                         <tr>
-                            <td>
+                            <td className="taskListTd">
                                 Task Name
                             </td>
-                            <td>
+                            <td className="taskListTd streakTarget">
                                 Streak Target (# times consecutively)
                             </td>
-                            <td>
+                            <td className="taskListTd totalTarget">
                                 Total Target (# times in total)
                             </td>
                         </tr>

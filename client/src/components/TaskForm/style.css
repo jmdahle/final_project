@@ -12,3 +12,16 @@
 .weeklyTarget, .totalTarget {
     width: 10%;
 }
+
+.taskListTd{
+    vertical-align: bottom;
+    line-height:1em; 
+}
+
+.totalTarget{
+    font-size: .8em;
+}
+
+.streakTarget{
+    font-size:.9em;
+}
