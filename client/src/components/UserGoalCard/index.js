@@ -26,6 +26,7 @@ const UserGoalCard = ({ selectGoal, goalName, id, goalPercent }) => {
     <ProgressBar variant="success" now={goalPercent} />
     <br />
     <Button variant="primary">See Tasks!</Button>
+    {/* a comment */}
   </Card.Body>
 </Card>
 
