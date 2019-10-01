@@ -14,7 +14,7 @@ router.use('/goal', goalRoutes);
 router.use('/task', taskRoutes);
 router.use('/usergoal', userGoalRoutes);
 router.use('/tasktimeline', taskTimelineRoutes);
-router.user('/email', emailRoutes);
+router.use('/email', emailRoutes);
 
 
 module.exports = router;

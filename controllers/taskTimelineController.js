@@ -24,9 +24,21 @@ module.exports = {
         console.log('removing timeline entry');
         console.log(request.params.timeline_id);
         db.TaskTimeline
-            .deleteOne(
-                { _id: request.params.timeline_id },
+            .findOneAndDelete(
+                { _id: request.params.timeline_id }
             )
+            // .then( dbTasktimeline => {
+                // let relatedTaskId = dbTasktimeline.taskId;
+                // let relatedUserGoalId = dbTasktimeline.userGoalId;
+                // console.log('find parents of ' + dbTaskTimeline._id,);
+                // await db.Task.findOneAndUpdate({
+                //     _id: relatedTaskId }, { $pull: {taskTimelines: dbTaskTimeline._id } }
+                // );
+                // await db.UserGoal.findOneAndUpdate ({
+                //     _id: relatedUserGoalId }, { $pull: {taskTimelines: dbTasktimeline._id } }
+                // );
+                // return dbTaskTimeline;
+            // })
             .then( dbTaskTimeline => response.json( dbTaskTimeline ) )
             .catch( dbError => response.status(400).json( dbError ) )
     }
