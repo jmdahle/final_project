@@ -117,7 +117,13 @@ class App extends React.Component {
     }
 
     changeVisualizerDates = (numdays) => {
-        let startDate = moment(this.state.visualizerDates[0]).add(numdays,'days');
+        let startDate = moment(this.state.visualizerDates[0]).add(numdays,'days')
+        let now = moment().format('M/D/YYYY');
+        if (
+            moment(now).subtract(this.state.numVisualizerDays - 1 ,'days') < moment(this.state.visualizerDates[0]).add(numdays,'days')
+            ) {
+                startDate = moment(now).subtract(this.state.numVisualizerDays - 1 ,'days')
+            }
         this.resetVisualizerDates(startDate,this.state.numVisualizerDays);
         this.getUserDetails(localStorage.getItem('userKey'));
     }
@@ -349,24 +355,6 @@ class App extends React.Component {
         });
     };
 
-    // getUserDetails = (userId) => {
-    //     console.log('loading user details')
-    //     API.getUserDetails(userId)
-    //         .then(jsonData => {
-    //             console.log(jsonData);
-    //             let userData = jsonData.data;
-    //             this.setState({
-    //                 loginMessage: "",
-    //                 userId: userId,
-    //                 firstName: userData.firstName,
-    //                 lastName: userData.lastName,
-    //                 email: userData.email,
-    //                 isAuthenticated: true,
-    //                 userGoals: userData.userGoals
-    //             });
-    //         })
-    // }
-
     getUserDetails = (userId) => {
         console.log('loading user details')
         API.getUserDetails(userId)
@@ -452,6 +440,10 @@ class App extends React.Component {
         console.log(visualizerData);
 
         return visualizerData;
+    }
+
+    calculateProgress = () => {
+        // 
     }
 
     logoutClick = () => {
