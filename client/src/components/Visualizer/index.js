@@ -1,4 +1,5 @@
 import React from 'react';
+import Table from 'react-bootstrap/Table';
 import './style.css'
 
 class Visualizer extends React.Component {
@@ -10,7 +11,7 @@ class Visualizer extends React.Component {
     render() {
         return (
             <div>
-                <table>
+                <Table responsive="lg">
                     <VizHeader
                         key={'viz-header'}
                         visualizerDates={this.props.visualizerDates}
@@ -24,7 +25,7 @@ class Visualizer extends React.Component {
                             handleIncompleteTask={this.props.handleIncompleteTask}
                         />
                     ))}
-                </table>
+                </Table>
 
             </div>
         );
@@ -67,6 +68,9 @@ class VizGoal extends React.Component {
                 </tr>
                 {this.props.goalData.userTasks.map( task => (
                     <VizTask
+                        currentStreak={task.taskCurrentStreak}
+                        // longStreak={task.taskLongStreak}
+                        // totalCompleted={task.taskTotalCompleted}
                         key={task._id}
                         taskData={task}
                         userGoalId={this.props.goalData.userGoalId}
@@ -82,8 +86,14 @@ class VizGoal extends React.Component {
 class VizTask extends React.Component {
     render() {
         return(
-                    <tr>
-                        <td>{this.props.taskData.taskName}</td>
+                    <tr 
+                        key={this.props.key}
+                        className={this.props.taskData.taskCompleteYN ? 'task-goal-met' : 'task-goal-unmet'}                        
+                    >
+                        <td>
+                            {this.props.taskData.taskCompleteYN ? <i class="fa fa-check" aria-hidden="true">&nbsp;</i> : <span>&nbsp;</span>}
+                            {this.props.taskData.taskName}
+                        </td>
                         <td>&nbsp;</td>
                         {this.props.taskData.userTimeline.map( date => (
                             <VizDate
@@ -97,9 +107,10 @@ class VizTask extends React.Component {
                             />
                         ))}
                         <td>&nbsp;</td>
-                        <td>#</td>
-                        <td>#</td>
-                        <td>#</td>
+                        {/* <td>{this.props.taskData.taskCurrentStreak}</td>  */}
+                        <td>{this.props.currentStreak}</td>                   
+                        <td>{this.props.taskData.taskLongStreak}/{this.props.taskData.taskStreakTarget}</td>
+                        <td>{this.props.taskData.taskTotalCompleted}/{this.props.taskData.taskTotalTarget}</td>
                     </tr>
         );
     }

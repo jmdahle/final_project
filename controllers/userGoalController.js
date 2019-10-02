@@ -18,13 +18,11 @@ module.exports = {
             .then( dbUserGoal => response.json(dbUserGoal) )
             .catch( dbError => response.status(400).json( dbError) );
     },
-    // findByUser: function( request, response ){
-    //     console.log('select UserGoals by user');
-    //     db.UserGoal
-    //         .find({ userId: request.params.user_id})
-    //         .populate('userId')
-    //         .populate('goalId')
-    //         .then( dbUserGoal => response.json(dbUserGoal))
-    //         .catch( dbError => response.status(400).json(dbError));
-    // },
+    updateGoalPercent: function(request, response) {
+        console.log('update usergoal percent complete')
+        db.UserGoal
+            .findOneAndUpdate( { _id: request.params.usergoal_id } , { $set: { goalPercent: request.params.pct } })
+            .then (dbUserGoal => response.json( dbUserGoal ) )
+            .catch ( dbError => response.status(400).json( dbError) )
+    }
 }

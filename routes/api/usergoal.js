@@ -5,8 +5,8 @@ const userGoalController = require('../../controllers/userGoalController');
 router.route('/')
     .post(userGoalController.create)
 
-// match with /api/usergoal/user/:user_id
-// router.route('/user/:user_id')
-//     .get(userGoalController.findByUser)
+// match with /api/usergoal/goalpercent
+router.route('/goalpercent/:usergoal_id/:pct')
+    .put(userGoalController.updateGoalPercent)
 
 module.exports = router;
