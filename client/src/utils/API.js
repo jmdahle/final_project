@@ -62,6 +62,10 @@ export default {
     deleteTimeline: function(timelineId) {
         console.log('API request - delete timeline entry');
         return axios.delete('/api/tasktimeline/' + timelineId);
+    },
+    email: function(emailAddr) {
+        console.log('API request - send an email');
+        return axios.post('/api/email/', emailAddr);
     }
 
 }
