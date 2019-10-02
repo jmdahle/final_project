@@ -64,7 +64,7 @@ class AddGoal extends React.Component {
                         <OkLinkDialog
                             showOkDialog={this.props.showOkDialog}
                             okDialogText='Congratulations!  You took another step towards being less of a garbage person!  But seriously, you got this!'
-                            okDialogLink='/'
+                            okDialogLink='/manage'
                         />
                     </div>
                 </Container>
