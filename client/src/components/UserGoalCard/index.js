@@ -10,7 +10,7 @@ const UserGoalCard = ({ selectGoal, taskName, id, goalPercent }) => {
     // <div className="user-goal-card" onClick={() => selectGoal(id)}>
     <div className="user-goal-card">
       <div className="user-goal-card-header">
-  
+  {/* andrew is weird */}
         <h5>{taskName}</h5>
       </div>
       <div className="user-goal-card-body">
