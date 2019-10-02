@@ -31,8 +31,8 @@ class Register extends React.Component {
         let userEmail={'user_email':this.props.email}
         API.email(userEmail)
           .then( res => {
-            //go back to root page
-            this.props.history.push("/");
+            // go back to prior (referring) page
+            this.props.history.goBack();
           });
       })
       .catch(error => {
