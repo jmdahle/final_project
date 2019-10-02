@@ -100,7 +100,7 @@ class App extends React.Component {
             // get initial categories
             this.getCategories();
             // set initial visualizer date range
-            let now = moment().format('M/D/YYYY');
+            let now = moment().startOf('day').format('M/D/YYYY');
             let startDate = moment(now).subtract(this.state.numVisualizerDays - 1 ,'days');
             this.resetVisualizerDates(startDate,this.state.numVisualizerDays);
     }
@@ -118,7 +118,7 @@ class App extends React.Component {
 
     changeVisualizerDates = (numdays) => {
         let startDate = moment(this.state.visualizerDates[0]).add(numdays,'days')
-        let now = moment().format('M/D/YYYY');
+        let now = moment().startOf('day').format('M/D/YYYY');
         if (
             moment(now).subtract(this.state.numVisualizerDays - 1 ,'days') < moment(this.state.visualizerDates[0]).add(numdays,'days')
             ) {
@@ -361,8 +361,6 @@ class App extends React.Component {
             .then( jsonData => {
                 console.log(jsonData);
                 let userData = jsonData.data;
-                // form goal, task, and task completion items for state
-                let visualizerData = this.setupUserGoals(userData);
                 // update state with user data
                 this.setState({
                     loginMessage: "",
@@ -372,9 +370,9 @@ class App extends React.Component {
                     email: userData.email,
                     isAuthenticated: true,
                     userDetails: userData,
-                    visualizerData: visualizerData,
                     userGoals: userData.userGoals,
                 });
+                this.setupUserGoals(userData);
             })
     }
 
@@ -392,7 +390,6 @@ class App extends React.Component {
             for (let t = 0; t < dbUserTasks.length; t++) {
                 let userTimeline = []
                 let dbUserTimeline = userData.userGoals[g].taskTimelines;
-                console.log(dbUserTimeline);
                 for (let l = 0; l < this.state.visualizerDates.length; l++) {
                     // is the first date in the array of timeline
                     let currentDate = this.state.visualizerDates[l];
@@ -419,10 +416,10 @@ class App extends React.Component {
                     'taskName': dbUserTasks[t].taskName,
                     'taskStreakTarget': dbUserTasks[t].streakTarget,
                     'taskTotalTarget': dbUserTasks[t].totalTarget,
-                    'taskCurrentStreak': 0,
-                    'taskLongStreak': 0,
-                    'taskTotalCompleted': 0,
-                    'taskCompleteYN': false,
+                    'taskCurrentStreak': 0,  // tracks towards task completion
+                    'taskLongStreak': 0, // tracks toward task completeion
+                    'taskTotalCompleted': 0, // tracks toward task completion
+                    'taskCompleteYN': false, // is task completed (met streak or total target)
                     'userTimeline': userTimeline
                 }
                 // add thisTask to userTask array
@@ -439,11 +436,75 @@ class App extends React.Component {
         }
         console.log(visualizerData);
 
-        return visualizerData;
+        this.calculateProgress(visualizerData);
     }
 
-    calculateProgress = () => {
-        // 
+    calculateProgress = async (visualizerData) => {
+        // loop through goals
+        for (let g = 0; g < visualizerData.length; g++) {
+            console.log('working on user goal' + visualizerData[g].goalName + ' ' + visualizerData[g].userGoalId);
+
+            for (let t = 0; t < visualizerData[g].userTasks.length; t++) {
+                console.log('working on task' + visualizerData[g].userTasks[t].taskName + ' ' + visualizerData[g].userTasks[t].taskId);
+
+                let userGoalId = visualizerData[g].userGoalId;
+                let taskId = visualizerData[g].userTasks[t].taskId
+                await API.getTaskTimeline(taskId, userGoalId)
+                    .then( dbTaskTimeline => {
+                        // cycle through timeline for 
+                        let currentStreak = 0;
+                        let longestStreak = 0;
+                        let totalCompleted = 0;
+                        let dbrecord = dbTaskTimeline.data;
+                        if (dbrecord.length > 0) {
+                            console.log(dbrecord);
+                            // set earliest date and now
+                            let taskStartDate = moment(dbrecord[0].taskDate);
+                            let taskEndDate = moment().startOf('day');
+                            let numDays = taskEndDate.diff(taskStartDate, 'days') + 1;
+                            let dateIndex = 0; // index for going through dbUserTimeline array
+                            // cycle through all day to current date
+                            let dateIndexMax = dbrecord.length - 1; // used to prevent increasing index past last item
+                            console.log(taskStartDate.format('M/D/YYYY'),'thru', taskEndDate.format('M/D/YYYY'))
+                            for (let d = 0; d < numDays; d++) {
+                                // test if the date d from start date (ddate) is the same as the current index of the timeline (idate)
+                                let ddate = moment(taskStartDate).add(d,'days').format('M/D/YYYY').toString();
+                                let idate = moment(dbrecord[dateIndex].taskDate).format('M/D/YYYY').toString();
+                                console.log(ddate, idate);
+                                if ( 
+                                    ddate === idate
+                                    ) {
+                                        console.log(ddate,idate,dateIndex, dbrecord[dateIndex].taskCompletedYN)
+                                        if (dbrecord[dateIndex].taskCompletedYN) {
+                                            // if the task is completed on this date
+                                            currentStreak++;  // increment current streak
+                                            if (currentStreak > longestStreak) {longestStreak = currentStreak} // if the current is > longest, reset longest
+                                            totalCompleted++; // increment total completed
+                                        } else {
+                                            // this should not be reached (since incompelte dates are going to be missing)... but in case something changes...
+                                            currentStreak = 0; // reset the current streak
+                                        }
+                                        // increase the dateIndex
+                                        if (dateIndex < dateIndexMax) {dateIndex ++};
+                                    } else {
+                                        currentStreak = 0;
+                                    }
+                            }
+                        }
+                        console.log(taskId, currentStreak, longestStreak, totalCompleted);
+                        // set the task progress
+                        console.log(visualizerData[g].userTasks[t])
+                        visualizerData[g].userTasks[t].taskCurrentStreak = currentStreak;  // tracks towards task completion
+                        visualizerData[g].userTasks[t].taskLongStreak = longestStreak; // tracks toward task completeion
+                        visualizerData[g].userTasks[t].taskTotalCompleted = totalCompleted;// tracks toward task completion    
+                    })
+            }
+        }
+        this.setState({
+            visualizerData: visualizerData
+        });
+
+        console.log(visualizerData);
     }
 
     logoutClick = () => {

@@ -66,6 +66,10 @@ export default {
     email: function(emailAddr) {
         console.log('API request - send an email');
         return axios.post('/api/email/', emailAddr);
+    },
+    getTaskTimeline: function(taskId, userGoalId) {
+        console.log('API request - get task timeline entries for a task/usergoal');
+        return axios.get('/api/tasktimeline/task/' + taskId + '/' + userGoalId);
     }
 
 }

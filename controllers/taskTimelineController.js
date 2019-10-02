@@ -44,5 +44,16 @@ module.exports = {
             )
             .then( deletedRecord => response.json( deletedRecord ) )
             .catch( dbError => response.status(400).json( dbError ) )
+    },
+    getTimelineByTask: function(request, response) {
+        console.log('get timeline entries by task');
+        db.TaskTimeline
+            .find(
+                { taskId: request.params.task_id, userGoalId: request.params.usergoal_id },
+                null,
+                {sort: 'taskDate'}
+            )
+            .then ( dbTaskTimeline => response.json( dbTaskTimeline ) )
+            .catch( dbError => response.status(400).json( dbError ) )
     }
 }

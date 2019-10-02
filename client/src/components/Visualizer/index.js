@@ -67,6 +67,9 @@ class VizGoal extends React.Component {
                 </tr>
                 {this.props.goalData.userTasks.map( task => (
                     <VizTask
+                        currentStreak={task.taskCurrentStreak}
+                        // longStreak={task.taskLongStreak}
+                        // totalCompleted={task.taskTotalCompleted}
                         key={task._id}
                         taskData={task}
                         userGoalId={this.props.goalData.userGoalId}
@@ -82,7 +85,7 @@ class VizGoal extends React.Component {
 class VizTask extends React.Component {
     render() {
         return(
-                    <tr>
+                    <tr key={this.props.key}>
                         <td>{this.props.taskData.taskName}</td>
                         <td>&nbsp;</td>
                         {this.props.taskData.userTimeline.map( date => (
@@ -97,9 +100,10 @@ class VizTask extends React.Component {
                             />
                         ))}
                         <td>&nbsp;</td>
-                        <td>#</td>
-                        <td>#</td>
-                        <td>#</td>
+                        {/* <td>{this.props.taskData.taskCurrentStreak}</td>  */}
+                        <td>{this.props.currentStreak}</td>                   
+                        <td>{this.props.taskData.taskLongStreak}</td>
+                        <td>{this.props.taskData.taskTotalCompleted}</td>
                     </tr>
         );
     }
