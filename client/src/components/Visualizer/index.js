@@ -109,8 +109,8 @@ class VizTask extends React.Component {
                         <td>&nbsp;</td>
                         {/* <td>{this.props.taskData.taskCurrentStreak}</td>  */}
                         <td>{this.props.currentStreak}</td>                   
-                        <td>{this.props.taskData.taskLongStreak}</td>
-                        <td>{this.props.taskData.taskTotalCompleted}</td>
+                        <td>{this.props.taskData.taskLongStreak}/{this.props.taskData.taskStreakTarget}</td>
+                        <td>{this.props.taskData.taskTotalCompleted}/{this.props.taskData.taskTotalTarget}</td>
                     </tr>
         );
     }
