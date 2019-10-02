@@ -442,13 +442,24 @@ class App extends React.Component {
     calculateProgress = async (visualizerData) => {
         // loop through goals
         for (let g = 0; g < visualizerData.length; g++) {
+            //goal loop
             console.log('working on user goal' + visualizerData[g].goalName + ' ' + visualizerData[g].userGoalId);
+            // determine how many tasks and number completed to track goal progress
+            let numTasks = 0
+            let numCompletedTasks = 0;
+            let goalPercent = 0;            
 
             for (let t = 0; t < visualizerData[g].userTasks.length; t++) {
+                // task loop within goal
+                numTasks++
                 console.log('working on task' + visualizerData[g].userTasks[t].taskName + ' ' + visualizerData[g].userTasks[t].taskId);
 
                 let userGoalId = visualizerData[g].userGoalId;
                 let taskId = visualizerData[g].userTasks[t].taskId
+                let taskCompleteYN = false; // for tracking if task has been completed by either long streak OR total number of completions
+                let taskStreakTarget = visualizerData[g].userTasks[t].taskStreakTarget;
+                let taskTotalTarget = visualizerData[g].userTasks[t].taskTotalTarget;
+                // get timeline entries for task
                 await API.getTaskTimeline(taskId, userGoalId)
                     .then( dbTaskTimeline => {
                         // cycle through timeline for 
@@ -492,13 +503,30 @@ class App extends React.Component {
                             }
                         }
                         console.log(taskId, currentStreak, longestStreak, totalCompleted);
+                        // did the task get completed?
+                        if (longestStreak > taskStreakTarget || totalCompleted > taskTotalTarget) {
+                            // mark task as complete
+                            taskCompleteYN = true;
+                            // increase number of completed tasks for the goal
+                            numCompletedTasks++
+                        }
                         // set the task progress
                         console.log(visualizerData[g].userTasks[t])
                         visualizerData[g].userTasks[t].taskCurrentStreak = currentStreak;  // tracks towards task completion
                         visualizerData[g].userTasks[t].taskLongStreak = longestStreak; // tracks toward task completeion
                         visualizerData[g].userTasks[t].taskTotalCompleted = totalCompleted;// tracks toward task completion    
+                        visualizerData[g].userTasks[t].taskCompleteYN = taskCompleteYN;
                     })
             }
+            // calculate the goal progress
+            if (numTasks === 0) {
+                goalPercent = 100;
+            } else {
+                goalPercent = Math.floor(100 * numCompletedTasks/numTasks);
+            }
+            // add the goal Percent
+            console.log(numCompletedTasks, numTasks, goalPercent);
+            visualizerData[g].goalPercent = goalPercent;
         }
         this.setState({
             visualizerData: visualizerData
