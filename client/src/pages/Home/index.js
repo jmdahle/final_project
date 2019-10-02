@@ -22,7 +22,7 @@ class Home extends React.Component {
         
         <Col className="infoCardCol">
         <img src="images/bossYell.jpg" alt="" className="infoCardImg"></img>
-        <h1 className="infoCardHeading">about us</h1>
+        <h1 className="infoCardHeading">Our Mission</h1>
         <p>Keep It Together was designed to help you build good habits without stressing you out.</p>
           </Col>
 
@@ -39,6 +39,7 @@ class Home extends React.Component {
           </Col>
 
         </Row>
+        <h1>How hard do you want to work toward your goals?</h1>
         <Row className="rowAbout">
           <Homecard categories={this.props.categories} />
 

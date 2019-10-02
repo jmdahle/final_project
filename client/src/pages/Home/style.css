@@ -1,7 +1,13 @@
 .rowAbout{
-    margin-left: 50px;
+    margin:auto;
+     margin-left: 50px;  
     background-image: url("/images/crumplyBG.png");
-    margin:0;
+     margin:0; 
+     text-align: center; 
+}
+
+h1{
+    text-align: center;
 }
 
 .aboutUsHeader{
@@ -66,3 +72,4 @@ height: 13em;
     margin: 1em 2em 0;
     width: 4em;
 }
+

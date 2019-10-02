@@ -1,5 +1,6 @@
 import React from 'react';
-import './style.css'
+import Table from 'react-bootstrap/Table';
+import './style.css';
 
 class Visualizer extends React.Component {
 
@@ -10,7 +11,7 @@ class Visualizer extends React.Component {
     render() {
         return (
             <div>
-                <table>
+                <Table responsive="lg">
                     <VizHeader
                         key={'viz-header'}
                         visualizerDates={this.props.visualizerDates}
@@ -24,7 +25,7 @@ class Visualizer extends React.Component {
                             handleIncompleteTask={this.props.handleIncompleteTask}
                         />
                     ))}
-                </table>
+                </Table>
 
             </div>
         );

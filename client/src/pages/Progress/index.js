@@ -3,6 +3,7 @@ import React from 'react';
 // // import React components
 import Container from '../../components/Container';
 import Visualizer from '../../components/Visualizer';
+// import './style.css';
 
 class Progress extends React.Component {
     componentDidMount = () => {
