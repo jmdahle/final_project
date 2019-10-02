@@ -10,7 +10,7 @@ class Navbar extends React.Component {
                     <img className='navlogo' src='images/KeepItTogetherLogo.png' alt='logo' />
                 </div></Link>
                 <div className='navbar-nav mr-auto'>
-                    <Link className='nav-item nav-link' to='/test'>Test</Link>
+                    {/* <Link className='nav-item nav-link' to='/test'>Test</Link> */}
                     { this.props.isAuthenticated ? (
                         <React.Fragment>
                             <Link className='nav-item nav-link' to='/addgoal'>Add Goal</Link>
