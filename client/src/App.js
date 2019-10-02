@@ -449,7 +449,7 @@ class App extends React.Component {
 
                 let userGoalId = visualizerData[g].userGoalId;
                 let taskId = visualizerData[g].userTasks[t].taskId
-                API.getTaskTimeline(taskId, userGoalId)
+                await API.getTaskTimeline(taskId, userGoalId)
                     .then( dbTaskTimeline => {
                         // cycle through timeline for 
                         let currentStreak = 0;
@@ -500,10 +500,11 @@ class App extends React.Component {
                     })
             }
         }
-        console.log(visualizerData);
         this.setState({
             visualizerData: visualizerData
         });
+
+        console.log(visualizerData);
     }
 
     logoutClick = () => {

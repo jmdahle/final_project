@@ -67,7 +67,7 @@ class VizGoal extends React.Component {
                 </tr>
                 {this.props.goalData.userTasks.map( task => (
                     <VizTask
-                        // currentStreak={task.taskCurrentStreak}
+                        currentStreak={task.taskCurrentStreak}
                         // longStreak={task.taskLongStreak}
                         // totalCompleted={task.taskTotalCompleted}
                         key={task._id}
@@ -100,7 +100,8 @@ class VizTask extends React.Component {
                             />
                         ))}
                         <td>&nbsp;</td>
-                        <td>{this.props.taskData.taskCurrentStreak}</td>
+                        {/* <td>{this.props.taskData.taskCurrentStreak}</td>  */}
+                        <td>{this.props.currentStreak}</td>                   
                         <td>{this.props.taskData.taskLongStreak}</td>
                         <td>{this.props.taskData.taskTotalCompleted}</td>
                     </tr>
