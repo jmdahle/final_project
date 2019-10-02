@@ -23,6 +23,16 @@
     background-color: #0e184b;
     cursor: default;
 }
+
+.task-goal-met {
+    font-weight: bold;
+    background-color: #2f949a;
+}
+
+.task-goal-unmet {
+    font-weight: lighter;
+}
+
 tr:first-child{
     font-weight:bolder;
    background-color:#fbd900;

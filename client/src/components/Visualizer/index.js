@@ -86,8 +86,14 @@ class VizGoal extends React.Component {
 class VizTask extends React.Component {
     render() {
         return(
-                    <tr key={this.props.key}>
-                        <td>{this.props.taskData.taskName}</td>
+                    <tr 
+                        key={this.props.key}
+                        className={this.props.taskData.taskCompleteYN ? 'task-goal-met' : 'task-goal-unmet'}                        
+                    >
+                        <td>
+                            {this.props.taskData.taskCompleteYN ? <i class="fa fa-check" aria-hidden="true">&nbsp;</i> : <span>&nbsp;</span>}
+                            {this.props.taskData.taskName}
+                        </td>
                         <td>&nbsp;</td>
                         {this.props.taskData.userTimeline.map( date => (
                             <VizDate
@@ -103,8 +109,8 @@ class VizTask extends React.Component {
                         <td>&nbsp;</td>
                         {/* <td>{this.props.taskData.taskCurrentStreak}</td>  */}
                         <td>{this.props.currentStreak}</td>                   
-                        <td>{this.props.taskData.taskLongStreak}</td>
-                        <td>{this.props.taskData.taskTotalCompleted}</td>
+                        <td>{this.props.taskData.taskLongStreak}/{this.props.taskData.taskStreakTarget}</td>
+                        <td>{this.props.taskData.taskTotalCompleted}/{this.props.taskData.taskTotalTarget}</td>
                     </tr>
         );
     }
