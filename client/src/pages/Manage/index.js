@@ -29,6 +29,7 @@ class Manage extends React.Component {
                         id={userGoal.userGoalId}
                         key={userGoal.userGoalId}
                         goalName={userGoal.goalName}
+                        taskName={userGoal.taskName}
                         goalPercent={userGoal.goalPercent}
                   />
                 ))
@@ -43,14 +44,17 @@ class Manage extends React.Component {
              <h2>Achieved Goals</h2> 
              <div>
               {this.props.userGoals ? (
-                this.props.userGoals.filter(userGoal => userGoal.goalPercent === 100).map(userGoal => (
+                this.props.userGoals.filter(userGoal => userGoal.goalPercent === 100).map(userGoal => 
+                (
                   <UserGoalCard
                         id={userGoal.userGoalId}
                         key={userGoal.userGoalId}
                         goalName={userGoal.goalName}
                         goalPercent={userGoal.goalPercent}
                   />
-                ))
+                )
+                
+                )
               ) : (
                 <span>No goals in this section.</span>
               )}
