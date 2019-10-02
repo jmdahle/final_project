@@ -1,21 +1,24 @@
 import React from "react";
 import AppProgressBar from '../AppProgressBar';
-// import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+ import Button from 'react-bootstrap/Button';
+import {Link} from "react-router-dom";
 import './style.css';
 
-const UserGoalCard = ({ selectGoal, goalName, id, goalPercent }) => {
+
+const UserGoalCard = ({ selectGoal, taskName, id, goalPercent }) => {
   return (
-    <div className="user-goal-card" onClick={() => selectGoal(id)}>
+    // <div className="user-goal-card" onClick={() => selectGoal(id)}>
+    <div className="user-goal-card">
       <div className="user-goal-card-header">
-        <h5>{goalName}</h5>
+  
+        <h5>{taskName}</h5>
       </div>
       <div className="user-goal-card-body">
         {/* <p>{tagline}</p> */}
         <br />
         <AppProgressBar goalPercent={goalPercent} />
         <br />
-         <Button variant="primary">See Tasks!</Button>
+         <Link to="/progress"><Button variant= "primary">See Tasks</Button></Link>
       </div>
     </div>
 
