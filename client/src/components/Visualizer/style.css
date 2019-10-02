@@ -1,10 +1,8 @@
 .date-heading {
-    width: 100px;
     text-align: center;
 }
 
 .date-changer {
-    width: 50px;
     text-align: center;
 }
 
@@ -17,11 +15,15 @@
 }
 
 .task-complete {
-    background-color: green;
+    background-color:#d4d600;
     cursor: default;
 }
 
 .task-incomplete {
-    background-color: lightpink;
+    background-color: #0e184b;
     cursor: default;
+}
+tr:first-child{
+    font-weight:bolder;
+   background-color:#fbd900;
 }
