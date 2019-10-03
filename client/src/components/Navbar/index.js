@@ -16,7 +16,7 @@ class Navbar extends React.Component {
                             <Link className='nav-item nav-link' to='/addgoal'>Add Goal</Link>
                             <Link className='nav-item nav-link' to='/manage'>Manage Goals</Link>
                             <Link className='nav-item nav-link' to='/progress'>Visualize Progress</Link>
-                            <a className='nav-item nav-link' href='https://medium.com/better-humans' target="_blank">Blog</a>
+                            <a className='nav-item nav-link' href='https://medium.com/better-humans' target="_blank" rel="noopener noreferrer">Blog</a>
                             <span className="loggedInAs">Let's do this {this.props.firstName}!</span>
                             <button 
                                 type='button' 

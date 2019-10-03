@@ -66,3 +66,41 @@ height: 13em;
     margin: 1em 2em 0;
     width: 4em;
 }
+
+.getStartedRow{
+    text-align: center;
+    margin: 0;
+    padding: 2em; 
+}
+
+.getStartedHeader{
+    text-align: left;
+    font-family: "Space Mono", monospace;
+    font-size: 3.4em;
+    font-weight:700;
+    font-style: italic;
+    padding: .5em;
+    color: #ffffff;
+    text-transform: lowercase;
+    margin: 0;
+    padding-top: 1em;
+    padding-left: 9em;
+}
+
+.getStartedBody{
+    text-align: left;
+    font-family: "Space Mono", monospace;
+    letter-spacing:-.05em;
+    font-style: italic;
+    font-size: 1.6em;
+    font-weight:400;
+    color: #ffffff;
+    margin: 0;
+    padding: 0 2em 3em 20em;
+}
+
+.getStartedRow{
+    margin:0;
+    background-image: url("/images/letsGetStartedBG.jpg");
+    text-align:center;
+}
