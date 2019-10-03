@@ -28,7 +28,7 @@ class Navbar extends React.Component {
                         </React.Fragment>
                     ) : (
                         <React.Fragment>
-                            <Link className='nav-item nav-link' to='/register'>Register</Link>
+                            {/* <Link className='nav-item nav-link' to='/register'>Register</Link> */}
                             <button 
                                 type='button' 
                                 className='btn navbutton'

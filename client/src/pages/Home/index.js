@@ -16,8 +16,8 @@ class Home extends React.Component {
         <div className="heroImgDiv">
         <img src="images/rockToss.gif" className="heroImg" alt=""/>
         </div>
-        <h1 className="aboutUsHeader">About Us</h1>
-        <p className="aboutUsCopy">Adulting is hard.<br/>There's no real guidebook on how to do it right and worst of all, thanks to social media, we all believe that everyone seems to have it all together except for ourselves.</p>
+        <h1 className="aboutUsHeader">Adulting is hard.</h1>
+        <p className="aboutUsCopy">There's no real guidebook on how to do it right and worst of all, thanks to social media, we all believe that everyone seems to have it all together except for ourselves.</p>
         <Row className="rowInfoCards">
         
         <Col className="infoCardCol">

@@ -13,7 +13,8 @@ class Progress extends React.Component {
         return (
             <div>
                 <Container>
-                    <h1>Visualizer Test</h1>
+                    <h1>Visualize Your Progress</h1>
+                    <h2 className="visualizerH2">Mark your progress on the dates you've completed the task.</h2>
                     <Visualizer
                         visualizerData={this.props.visualizerData}
                         visualizerDates={this.props.visualizerDates}
