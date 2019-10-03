@@ -1,15 +1,8 @@
-.visualizerH1{
+.manageH2{
     font-weight: 700;
     font-style:italic;
     letter-spacing: -.03em;
     font-size: 2.4em;
     padding-top: .5em;
-    align-items: left;
-    }
-
-.visualizerH2{
-    font-size: 1.2em;
-    padding-top: .09em;
-    padding-bottom: 1em;
     align-items: left;
     }

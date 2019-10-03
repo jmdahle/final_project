@@ -1,5 +1,6 @@
 // react
 import React from "react";
+import "./style.css";
 
 // react bootstrap
 import Container from 'react-bootstrap/Container'
@@ -21,7 +22,7 @@ class Manage extends React.Component {
       <Container>
         <Row>
           <Col size="xs-12 md-8">
-             <h2>Active Goals</h2> 
+             <h2 className="manageH2">Active Goals</h2> 
              <div>
               {this.props.userGoals ? (
                 this.props.userGoals.filter(userGoal => userGoal.goalPercent !== 100).map(userGoal => (
@@ -41,7 +42,7 @@ class Manage extends React.Component {
         </Row>
         <Row>
           <Col size="xs-12 md-8">
-             <h2>Achieved Goals</h2> 
+             <h2 className="manageH2">Achieved Goals</h2> 
              <div>
               {this.props.userGoals ? (
                 this.props.userGoals.filter(userGoal => userGoal.goalPercent === 100).map(userGoal => 

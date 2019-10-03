@@ -15,7 +15,7 @@ class SelectedCategory extends React.Component {
             {this.props.categoryId === '' ? (
                 <form>
                     <div className='form-group'>
-                        <label htmlFor='categoryId'>Select Category</label>
+                        <label htmlFor='categoryId' className="selectCategory">Select Category</label>
                         <select className='form-control' id='categoryId' name='categoryId' onChange={this.props.handleOnChange} value={this.props.categoryId}>
                             <option hidden selected>-- Select a Category --</option>
                         {this.props.categories.map( category => (
@@ -26,15 +26,16 @@ class SelectedCategory extends React.Component {
                 </form>
             ) : (
                 <div>
-                    <h2>{this.props.selectedCategory.categoryName}</h2>
-                    <h5>{this.props.selectedCategory.categoryTagLine}</h5>
-                    <p>And load the image at: {this.props.selectedCategory.categoryImgSrc}</p>
-                    <button 
+                    <span className="categoryName">{this.props.selectedCategory.categoryName} </span>|
+                    <span className="categoryTag">{this.props.selectedCategory.categoryTagLine}</span>
+                    {/* <p>And load the image at: {this.props.selectedCategory.categoryImgSrc}</p> */}
+                    <p><button 
                             type='submit' 
                             className='btn navbutton'
                             onClick={this.props.clearCategory}
                         >Change Category
                     </button>
+                    </p>
                 </div>
             )}
             </div>

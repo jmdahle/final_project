@@ -12,7 +12,7 @@ const UserGoalCard = ({ goalName, goalPercent }) => {
         <h5>{goalName}</h5>
       </div>
       <div className="user-goal-card-body">
-        <br />
+        {/* <br /> */}
         <AppProgressBar goalPercent={goalPercent} />
         <br />
          <Link to="/progress"><Button variant= "primary">See Tasks</Button></Link>

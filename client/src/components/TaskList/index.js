@@ -7,8 +7,8 @@ class TaskList extends React.Component {
         return (
             <div> 
                 <table>
-                    <thead>
-                        <tr className='task-list-head'>
+                    <thead className='taskListHead'>
+                        <tr>
                             <td>
                                 <br/>Task Name
                             </td>

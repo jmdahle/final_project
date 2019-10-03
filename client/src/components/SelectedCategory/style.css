@@ -1,3 +1,22 @@
 .navbutton{
     margin-bottom: 1em;
 }
+
+.selectCategory{
+    padding-top: 1.5em;
+}
+
+.categoryName{
+    font-weight: 700;
+    font-style:italic;
+    letter-spacing: -.03em;
+    font-size: 2.4em;
+    padding-top: .5em;
+    font-family: 'space mono', monospace;
+}
+
+.categoryTag{
+    font-family: 'Karla', sans-serif;
+    padding-left: 1em;
+    text-transform: uppercase;
+}
