@@ -25,11 +25,11 @@ class SelectedCategory extends React.Component {
                     </div>
                 </form>
             ) : (
-                <div>
+                <div className="categoryNameTag">
                     <span className="categoryName">{this.props.selectedCategory.categoryName} </span>|
                     <span className="categoryTag">{this.props.selectedCategory.categoryTagLine}</span>
                     {/* <p>And load the image at: {this.props.selectedCategory.categoryImgSrc}</p> */}
-                    <p><button 
+                    <p className="changeCategoryButton"><button 
                             type='submit' 
                             className='btn navbutton'
                             onClick={this.props.clearCategory}
