@@ -15,8 +15,8 @@ class Navbar extends React.Component {
                         <React.Fragment>
                             <Link className='nav-item nav-link' to='/addgoal'>Add Goal</Link>
                             <Link className='nav-item nav-link' to='/manage'>Manage Goals</Link>
-                            <Link className='nav-item nav-link' to='/progress'>Visualize Progress</Link>
-                            <a className='nav-item nav-link' href='https://medium.com/better-humans' target="_blank">Blog</a>
+                            <Link className='nav-item nav-link' to='/progress'>Progress</Link>
+                            <a className='nav-item nav-link' href='https://medium.com/better-humans' target="_blank" rel="noopener noreferrer">Blog</a>
                             <span className="loggedInAs">Let's do this {this.props.firstName}!</span>
                             <button 
                                 type='button' 
@@ -28,7 +28,7 @@ class Navbar extends React.Component {
                         </React.Fragment>
                     ) : (
                         <React.Fragment>
-                            <Link className='nav-item nav-link' to='/register'>Register</Link>
+                            {/* <Link className='nav-item nav-link' to='/register'>Register</Link> */}
                             <button 
                                 type='button' 
                                 className='btn navbutton'

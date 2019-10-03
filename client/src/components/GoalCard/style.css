@@ -2,32 +2,25 @@
     display: inline-block;
     width: 15em;
     height: 12em;
-    margin: 15px;
+    margin-right: 15px;
     padding: 10px;
     border: 5px solid #d4d600;
     border-radius: 15px;
-    background-color:white;
+    background-color:#d4d600;
     color: #0e184b;
     cursor: default;
 }
 
-.goal-card-header {
-    background-color:white;
-    height: 1em;
-    color: #0e184b;
-}
-
 .goal-card-body {
-    background-color:white;
     color: #0e184b;
     padding-top:2.5em;
 }
 
 .goalCardHeader{
-    height: 1em;
+    height: .8em;
     line-height: 1em;
     font-style: italic;
     font-weight: 700;
-    color: #f66e5e;
+    color: #ffffff;
 
 }

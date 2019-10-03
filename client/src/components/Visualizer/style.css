@@ -1,3 +1,7 @@
+body{
+    background-color: white;
+}
+
 .date-heading {
     text-align: center;
 }
@@ -12,21 +16,22 @@
 
 .date-item {
     text-align: center;
+    margin:0;
 }
 
 .task-complete {
-    background-color:#d4d600;
+    background-color:#e74c3c;
     cursor: default;
 }
 
 .task-incomplete {
-    background-color: #0e184b;
+    background-color: #ecf0f1;
     cursor: default;
 }
 
 .task-goal-met {
     font-weight: bold;
-    background-color: #2f949a;
+    background-color: #f66e5e;
 }
 
 .task-goal-unmet {
@@ -36,4 +41,20 @@
 tr:first-child{
     font-weight:bolder;
    background-color:#fbd900;
+   line-height: .5em;
+}
+
+tr{
+    margin:0;
+}
+
+td{
+    margin:0;
+}
+
+.taskName{
+    font-weight:boldest;
+    line-height: 1em;
+    margin:0;
+    letter-spacing: -.04em;
 }

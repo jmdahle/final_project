@@ -16,8 +16,8 @@ class Home extends React.Component {
         <div className="heroImgDiv">
         <img src="images/rockToss.gif" className="heroImg" alt=""/>
         </div>
-        <h1 className="aboutUsHeader">About Us</h1>
-        <p className="aboutUsCopy">Adulting is hard.<br/>There's no real guidebook on how to do it right and worst of all, thanks to social media, we all believe that everyone seems to have it all together except for ourselves.</p>
+        <h1 className="aboutUsHeader">Adulting is hard.</h1>
+        <p className="aboutUsCopy">There's no real guidebook on how to do it right and worst of all, thanks to social media, we all believe that everyone seems to have it all together except for ourselves.</p>
         <Row className="rowInfoCards">
         
         <Col className="infoCardCol">
@@ -37,58 +37,17 @@ class Home extends React.Component {
         <h1 className="infoCardHeading">the bigger picture</h1>
         <p>Our visualizer helps you spot trends ranging days and weeks so you will be well on your way to being an adult in no time.</p>
           </Col>
+</Row>
 
+
+        <Row className="getStartedRow">
+        <Col>
+          <h1 className="getStartedHeader">Let's get started</h1>
+          <p className="getStartedBody">Pick your difficulty level<br/> and we'll walk you through the rest.</p>
+          </Col>
         </Row>
         <Row className="rowAbout">
           <Homecard categories={this.props.categories} />
-
-          {/* <Col>
-           <Homecard />
-       </Col>
-       <Col>
-            <Card
-              image="https://img.freepik.com/free-vector/natural-background-with-colorful-painted-flowers_52683-17981.jpg?size=626&ext=jpg"
-              title="Catagory"
-              body="some kind of info about it"
-              button="Go here"
-            />
-       </Col>
-       <Col>
-            <Card
-              image="https://img.freepik.com/free-vector/natural-background-with-colorful-painted-flowers_52683-17981.jpg?size=626&ext=jpg"
-              title="Catagory"
-              body="some kind of info about it"
-              button="Go here"
-            />
-       </Col>
-      
-        </Row>
-        <Row className="rowabout">
-        <Col>
-            <Card
-            image="https://img.freepik.com/free-vector/natural-background-with-colorful-painted-flowers_52683-17981.jpg?size=626&ext=jpg"
-            title="Catagory"
-            body="some kind of info about it"
-            button="Go here"
-            />
-       </Col>
-       <Col>
-            <Card
-              image="https://img.freepik.com/free-vector/natural-background-with-colorful-painted-flowers_52683-17981.jpg?size=626&ext=jpg"
-              title="Catagory"
-              body="some kind of info about it"
-              button="Go here"
-            />
-       </Col>
-       <Col>
-            <Card
-              image="https://img.freepik.com/free-vector/natural-background-with-colorful-painted-flowers_52683-17981.jpg?size=626&ext=jpg"
-              title="Catagory"
-              body="some kind of info about it"
-              button="Go here"
-            />
-       </Col>
-       */}
         </Row>
         <Footer />
       </div>

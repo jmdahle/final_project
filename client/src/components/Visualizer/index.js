@@ -63,7 +63,7 @@ class VizGoal extends React.Component {
             <tbody>
                 <tr className='goal-row'>
                     <td colSpan='13'>
-                        {this.props.goalData.goalName} | {this.props.goalData.goalPercent}% Complete 
+                        {this.props.goalData.goalName} | {this.props.goalData.goalPercent}% Complete
                     </td>
                 </tr>
                 {this.props.goalData.userTasks.map( task => (
@@ -90,7 +90,7 @@ class VizTask extends React.Component {
                         key={this.props.key}
                         className={this.props.taskData.taskCompleteYN ? 'task-goal-met' : 'task-goal-unmet'}                        
                     >
-                        <td>
+                        <td className="taskName">
                             {this.props.taskData.taskCompleteYN ? <i class="fa fa-check" aria-hidden="true">&nbsp;</i> : <span>&nbsp;</span>}
                             {this.props.taskData.taskName}
                         </td>

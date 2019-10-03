@@ -8,11 +8,13 @@
     background-color:white;
     color: #0e184b;
     cursor: default;
+    text-align:left;
+    height: 13em;
 }
 
 .user-goal-card-header {
     background-color:white;
-    height: 15em;
+    height: 6em;
     color: #0e184b;
 }
 

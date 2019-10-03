@@ -27,7 +27,7 @@ class AddGoal extends React.Component {
         return (
             <div className='add-goal'>
                 <Container>
-                    <h1 className="addGoalHeader">Add Goal</h1>
+                    {/* <h1 className="addGoalHeader">Add Goal</h1> */}
                     <SelectedCategory
                         handleOnChange={this.props.handleOnChange}
                         categoryId={this.props.categoryId}

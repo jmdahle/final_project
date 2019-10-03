@@ -1,0 +1,8 @@
+.taskItemRow{
+    font-weight: bold;
+    color: #0e184b;
+    background-color:#ffffff;
+    height: 2em;
+    padding-bottom:3em;
+    border-bottom: 1px solid #ffffff;
+}

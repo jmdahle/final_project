@@ -3,7 +3,7 @@ import './style.css';
 
 const TaskItem = ({taskName, streakTarget, totalTarget, id}) =>{
     return(
-        <tr id={id} key={id}>
+        <tr id={id} key={id} className="taskItemRow">
             <td className='taskName'>
                 {taskName}
             </td>
