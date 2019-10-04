@@ -397,7 +397,7 @@ class App extends React.Component {
                     let taskCompleted = false;
                     let timelineId = 'null';
                     for (let ul = 0; ul < dbUserTimeline.length; ul++) {
-                        console.log('about to compare dates', dbUserTimeline[ul].taskDate,moment(dbUserTimeline[ul].taskDate).format('M/D/YYYY'));
+                        console.log('about to compare dates', dbUserTimeline[ul].taskDate,moment(dbUserTimeline[ul].taskDate), moment(currentDate), currentDate);
                         if (
                                 moment(dbUserTimeline[ul].taskDate).format('M/D/YYYY') === moment(currentDate).format('M/D/YYYY') &&
                                 dbUserTimeline[ul].taskId === dbUserTasks[t]._id
