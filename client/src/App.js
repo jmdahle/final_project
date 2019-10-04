@@ -390,6 +390,7 @@ class App extends React.Component {
             for (let t = 0; t < dbUserTasks.length; t++) {
                 let userTimeline = []
                 let dbUserTimeline = userData.userGoals[g].taskTimelines;
+                console.log('usertimeline:', dbUserTimeline);
                 for (let l = 0; l < this.state.visualizerDates.length; l++) {
                     // is the first date in the array of timeline
                     let currentDate = this.state.visualizerDates[l];
