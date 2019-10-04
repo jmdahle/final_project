@@ -21,7 +21,7 @@ class Manage extends React.Component {
     return (
       <Container>
         <Row className="userGoalRow">
-          <Col size="md-8" className="userGoalCol">
+          <Col size="md-12 col-auto" className="userGoalCol">
              <h2 className="manageH2">Active Goals</h2> 
              <div className="userGoalDiv">
               {this.props.userGoals ? (
@@ -40,8 +40,8 @@ class Manage extends React.Component {
             </div>
           </Col>
         </Row>
-        <Row>
-          <Col size="xs-12 md-8">
+        <Row className="userGoalRow" size="md-12">
+          <Col size="md-12 col-auto" className="userGoalCol">
              <h2 className="manageH2">Achieved Goals</h2> 
              <div className="userGoalDiv">
               {this.props.userGoals ? (

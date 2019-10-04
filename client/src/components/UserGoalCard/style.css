@@ -1,11 +1,7 @@
 .user-goal-card {
-    /* display: inline-block; */
+    display: inline-block;
     vertical-align:top;
-    /* flex-direction:row;
-    flex-wrap: wrap;
-    flex-flow:row wrap; */
-    /* align-items:flex-start; */
-    width: 245px;
+    width: 280px;
     margin: 15px;
     padding: 10px;
     border: 5px solid #0e184b;
@@ -13,7 +9,7 @@
     background-color:white;
     color: #0e184b;
     cursor: default;
-    text-align:left;
+    align-content:left;
     height: 13em;
 }
 
@@ -21,10 +17,14 @@
     background-color:white;
     height: 6em;
     color: #0e184b;
+    text-align: left;
+    align-content: left;
+    padding-left:3em;
 }
 
 .user-goal-card-body {
     background-color:white;
     color: #0e184b;
+    align-content: left;
 }
 
