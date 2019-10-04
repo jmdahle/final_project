@@ -1,5 +1,10 @@
 .user-goal-card {
-    display: inline-block;
+    /* display: inline-block; */
+    vertical-align:top;
+    /* flex-direction:row;
+    flex-wrap: wrap;
+    flex-flow:row wrap; */
+    /* align-items:flex-start; */
     width: 245px;
     margin: 15px;
     padding: 10px;

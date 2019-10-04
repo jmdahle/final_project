@@ -20,10 +20,10 @@ class Manage extends React.Component {
   render() {
     return (
       <Container>
-        <Row>
-          <Col size="xs-12 md-8">
+        <Row className="userGoalRow">
+          <Col size="md-8" className="userGoalCol">
              <h2 className="manageH2">Active Goals</h2> 
-             <div>
+             <div className="userGoalDiv">
               {this.props.userGoals ? (
                 this.props.userGoals.filter(userGoal => userGoal.goalPercent !== 100).map(userGoal => (
                   <UserGoalCard
@@ -43,7 +43,7 @@ class Manage extends React.Component {
         <Row>
           <Col size="xs-12 md-8">
              <h2 className="manageH2">Achieved Goals</h2> 
-             <div>
+             <div className="userGoalDiv">
               {this.props.userGoals ? (
                 this.props.userGoals.filter(userGoal => userGoal.goalPercent === 100).map(userGoal => 
                 (
