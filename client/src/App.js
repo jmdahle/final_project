@@ -359,7 +359,7 @@ class App extends React.Component {
         console.log('loading user details')
         API.getUserDetails(userId)
             .then( jsonData => {
-                // console.log(jsonData);
+                console.log(jsonData);
                 let userData = jsonData.data;
                 // update state with user data
                 this.setState({
