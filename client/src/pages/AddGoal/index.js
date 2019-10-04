@@ -47,6 +47,7 @@ class AddGoal extends React.Component {
                                 id={goal._id}
                                 key={goal._id}
                                 goalName={goal.goalName}
+                                goalTagline={goal.goalTagline}
                                 selectGoal={this.props.selectGoal}
                             />
                         )) : <span>No goals in this category.</span>}
