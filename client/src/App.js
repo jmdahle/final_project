@@ -146,7 +146,7 @@ class App extends React.Component {
     };
 
     handleCompleteTask = (taskId, userGoalId, date) => {
-        console.log(`completed taskId: ${taskId}; userGoalId: ${userGoalId}; date: ${date}`);
+        // console.log(`completed taskId: ${taskId}; userGoalId: ${userGoalId}; date: ${date}`);
         let timelineData = {
             taskId: taskId,
             userGoalId: userGoalId,
@@ -163,7 +163,7 @@ class App extends React.Component {
     }
 
     handleIncompleteTask = (timelineId) => {
-        console.log(`remove timelineId: ${timelineId}`);
+        // console.log(`remove timelineId: ${timelineId}`);
         API.deleteTimeline(timelineId)
             .then(jsonData => {
                 this.getUserDetails(localStorage.getItem('userKey'));
@@ -175,7 +175,7 @@ class App extends React.Component {
 
     handleLoginFormSubmit = event => {
     event.preventDefault();
-    console.log("login submit clicked");
+    // console.log("login submit clicked");
     let loginData = {
         email: this.state.email,
         password: this.state.password
@@ -195,7 +195,7 @@ class App extends React.Component {
                     isAuthenticated: false
                 });
             } else if (userData.length === 1) {
-                console.log("login successful");
+                // console.log("login successful");
                 this.setState({
                     loginMessage: "",
                     firstName: userData[0].firstName,
@@ -216,7 +216,7 @@ class App extends React.Component {
 
     handleCategoryFormSubmit = event => {
         event.preventDefault();
-        console.log("submit category clicked");
+        // console.log("submit category clicked");
         let categoryData = {
             categoryName: this.state.categoryName,
             categoryTagLine: this.state.categoryTagLine,
@@ -235,7 +235,7 @@ class App extends React.Component {
 
     handleTaskFormSubmit = event => {
         event.preventDefault();
-        console.log('submit task clicked');
+        // console.log('submit task clicked');
         let taskData = {
             goalId: this.state.goalId,
             taskName: this.state.taskName,
@@ -255,7 +255,7 @@ class App extends React.Component {
 
     handleAddGoalFormSubmit = event => {
         event.preventDefault();
-        console.log('Add User Goal');
+        // console.log('Add User Goal');
         let userId = localStorage.getItem('userKey');
         if (userId) {
             // user is logged in
@@ -286,7 +286,7 @@ class App extends React.Component {
 
     handleGoalFormSubmit = event => {
         event.preventDefault();
-        console.log("submit goal clicked");
+        // console.log("submit goal clicked");
         let goalData = {
             categoryId: this.state.categoryId,
             goalName: this.state.goalName,
@@ -304,7 +304,7 @@ class App extends React.Component {
     };
 
     getCategories = () => {
-        console.log('loading category options');
+        // console.log('loading category options');
         API.getCategories()
             .then(jsonData => {
                 // console.log(jsonData)
@@ -326,7 +326,7 @@ class App extends React.Component {
     };
 
     getGoalsInCategory = categoryId => {
-        console.log("loading goals for category " + categoryId);
+        // console.log("loading goals for category " + categoryId);
         API.getGoalsInCategory(categoryId).then(jsonData => {
             // console.log(jsonData);
             this.setState({
@@ -336,7 +336,7 @@ class App extends React.Component {
     };
 
     getGoalMatch = goalId => {
-        console.log("loading selected goal with id " + goalId);
+        // console.log("loading selected goal with id " + goalId);
         API.getGoalMatch(goalId).then(jsonData => {
             // console.log(jsonData);
             this.setState({
@@ -346,7 +346,7 @@ class App extends React.Component {
     };
 
     getTasksInGoal = goalId => {
-        console.log("loading tasks for goal " + goalId);
+        // console.log("loading tasks for goal " + goalId);
         API.getTasksInGoal(goalId).then(jsonData => {
             // console.log(jsonData);
             this.setState({
@@ -356,10 +356,10 @@ class App extends React.Component {
     };
 
     getUserDetails = (userId) => {
-        console.log('loading user details')
+        // console.log('loading user details')
         API.getUserDetails(userId)
             .then( jsonData => {
-                console.log(jsonData);
+                // console.log(jsonData);
                 let userData = jsonData.data;
                 // update state with user data
                 this.setState({
@@ -390,16 +390,15 @@ class App extends React.Component {
             for (let t = 0; t < dbUserTasks.length; t++) {
                 let userTimeline = []
                 let dbUserTimeline = userData.userGoals[g].taskTimelines;
-                console.log('usertimeline:', dbUserTimeline);
+                // console.log('usertimeline:', dbUserTimeline);
                 for (let l = 0; l < this.state.visualizerDates.length; l++) {
                     // is the first date in the array of timeline
                     let currentDate = this.state.visualizerDates[l];
                     let taskCompleted = false;
                     let timelineId = 'null';
                     for (let ul = 0; ul < dbUserTimeline.length; ul++) {
-                        console.log('about to compare dates', dbUserTimeline[ul].taskDate,moment.utc(dbUserTimeline[ul].taskDate), moment(currentDate), currentDate);
                         if (
-                                moment.utc(dbUserTimeline[ul].taskDate).format('M/D/YYYY') === moment(currentDate).format('M/D/YYYY') &&
+                                moment.utc(dbUserTimeline[ul].taskDate).format('M/D/YYYY') === moment.utc(currentDate).format('M/D/YYYY') &&
                                 dbUserTimeline[ul].taskId === dbUserTasks[t]._id
                             ) {
                             taskCompleted = dbUserTimeline[ul].taskCompletedYN;
@@ -436,7 +435,7 @@ class App extends React.Component {
             }
             visualizerData.push(thisGoal);
         }
-        console.log(visualizerData);
+        // console.log(visualizerData);
 
         this.calculateProgress(visualizerData);
     }
@@ -445,7 +444,7 @@ class App extends React.Component {
         // loop through goals
         for (let g = 0; g < visualizerData.length; g++) {
             //goal loop
-            console.log('working on user goal' + visualizerData[g].goalName + ' ' + visualizerData[g].userGoalId);
+            // console.log('working on user goal' + visualizerData[g].goalName + ' ' + visualizerData[g].userGoalId);
             // determine how many tasks and number completed to track goal progress
             let numTasks = 0
             let numCompletedTasks = 0;
@@ -454,7 +453,7 @@ class App extends React.Component {
             for (let t = 0; t < visualizerData[g].userTasks.length; t++) {
                 // task loop within goal
                 numTasks++
-                console.log('working on task' + visualizerData[g].userTasks[t].taskName + ' ' + visualizerData[g].userTasks[t].taskId);
+                // console.log('working on task' + visualizerData[g].userTasks[t].taskName + ' ' + visualizerData[g].userTasks[t].taskId);
 
                 let userGoalId = visualizerData[g].userGoalId;
                 let taskId = visualizerData[g].userTasks[t].taskId
@@ -527,7 +526,7 @@ class App extends React.Component {
                 goalPercent = Math.floor(100 * numCompletedTasks/numTasks);
             }
             // add the goal Percent
-            console.log(visualizerData[g].goalName, numCompletedTasks, numTasks, goalPercent);
+            // console.log(visualizerData[g].goalName, numCompletedTasks, numTasks, goalPercent);
             visualizerData[g].goalPercent = goalPercent;
             // update database with goalpercent
             await API.updateGoalPercent(visualizerData[g].userGoalId, goalPercent)
@@ -541,11 +540,11 @@ class App extends React.Component {
             visualizerData: visualizerData
         });
 
-        console.log(visualizerData);
+        // console.log(visualizerData);
     }
 
     logoutClick = () => {
-        console.log('logging out...');
+        // console.log('logging out...');
         localStorage.setItem('userKey', '');
         this.resetState();
     }
@@ -557,14 +556,14 @@ class App extends React.Component {
     }
 
     loginClick = () => {
-        console.log("logging in...");
+        // console.log("logging in...");
         this.setState({
           showLogin: true
         });
     };
 
     markUserGoalComplete = () => {
-        console.log('user completed their goal');
+        // console.log('user completed their goal');
     };
 
     taskOverlayClose = () => {
