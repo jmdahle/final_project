@@ -13,3 +13,8 @@
     padding-bottom: 1em;
     align-items: left;
     }
+
+    .visualizerDiv {
+        margin-left: 1em;
+        margin-right: 1em;
+    }
