@@ -2,6 +2,7 @@
     margin-left: 50px;
     background-image: url("/images/crumplyBG.png");
     margin:0;
+    align-content:center;
 }
 
 .aboutUsHeader{

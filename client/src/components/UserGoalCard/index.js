@@ -9,7 +9,7 @@ const UserGoalCard = ({ goalName, goalPercent }) => {
   return (
     <div className="user-goal-card">
       <div className="user-goal-card-header">
-        <h5>{goalName}</h5>
+        <h5 className="userGoalCardHeader">{goalName}</h5>
       </div>
       <div className="user-goal-card-body">
         {/* <br /> */}
