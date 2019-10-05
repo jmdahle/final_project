@@ -1,7 +1,7 @@
 {
   "name": "final_project",
   "version": "1.0.0",
-  "description": "## Overview",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -30,14 +30,5 @@
     "path": "^0.12.7",
     "react-bootstrap": "^1.0.0-beta.12",
     "react-router-dom": "^5.0.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jmdahle/final_project.git"
-  },
-  "keywords": [],
-  "bugs": {
-    "url": "https://github.com/jmdahle/final_project/issues"
-  },
-  "homepage": "https://github.com/jmdahle/final_project#readme"
+  }
 }
