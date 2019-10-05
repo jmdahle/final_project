@@ -8,9 +8,10 @@
     border-radius: 15px;
     background-color:white;
     color: #0e184b;
-    cursor: default;
     align-content:left;
+    text-align: left;
     height: 13em;
+    text-align-last: left;
 }
 
 .user-goal-card-header {
@@ -20,11 +21,19 @@
     text-align: left;
     align-content: left;
     padding-left:3em;
+    text-align-last: left;
 }
 
 .user-goal-card-body {
     background-color:white;
     color: #0e184b;
     align-content: left;
+}
+
+.userGoalCardHeader{
+    text-align:left;
+    align-content: left;
+    line-height: 1.1em;
+    text-align-last: left;
 }
 

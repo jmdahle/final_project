@@ -24,9 +24,11 @@
 .userGoalCol {
     padding-left: 0;
     padding-right: 0;
+    text-align: left;
 }
 
 .userGoalRow {
     margin-left: 0;
     margin-right: 0;
+    text-align: left;
 }

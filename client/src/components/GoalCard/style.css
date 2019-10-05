@@ -9,6 +9,7 @@
     background-color:#d4d600;
     color: #0e184b;
     cursor: default;
+    cursor: copy;
 }
 
 .goal-card-body {
