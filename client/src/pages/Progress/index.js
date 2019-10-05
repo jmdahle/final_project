@@ -12,8 +12,8 @@ class Progress extends React.Component {
 
     render() {
         return (
-            <div>
-                <Container>
+            <div className='visualizerDiv'>
+                {/* <Container> */}
                     <h1 className="visualizerH1">Visualize Your Progress</h1>
                     <h2 className="visualizerH2">Mark your progress on the dates you've completed the task.</h2>
                     <Visualizer
@@ -23,7 +23,7 @@ class Progress extends React.Component {
                         handleCompleteTask={this.props.handleCompleteTask}
                         handleIncompleteTask={this.props.handleIncompleteTask}
                     />
-                </Container>
+                {/* </Container> */}
             </div>
         );
     }
